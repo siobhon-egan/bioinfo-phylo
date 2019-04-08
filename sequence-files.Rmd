@@ -1,0 +1,122 @@
+---
+title: "Sequence file formats and basics"
+author: "Siobhon Egan"
+date: "08/04/2019"
+output: html_document
+---
+
+## Basic information and links
+This section first starts off with some quick useful commands that will be helpful to assess and manipulate your fasta and fastq file. They can be done locally in your command line and don't require any clumsy dependancies.
+
+Credit to some helpful inspiration
+* [Bioinformatics I/O by Joseph Hughes](http://bioinformatics.cvr.ac.uk/blog/short-command-lines-for-manipulation-fastq-and-fasta-sequence-files/)
+* [Bioinformatic one-liners by Stephen Turner](https://github.com/stephenturner/oneliners#basic-awk--sed)
+* [Linux command line exercises for NGS data processing by Umer Zeeshan Ijaz](http://userweb.eng.gla.ac.uk/umer.ijaz/bioinformatics/linux.html)
+* [Biostars thread](https://www.biostars.org/p/17680/)
+
+
+These examples simply use `sample.fa` or `sample.fq` or similar format to represent the file you want to investigate. Remember you will need to navigate to the the path of the file or ensure you are in the correct working directory.
+
+**Convert a fastq file to a fasta file**
+
+```console
+sed '/^@/!d;s//>/;N' sample.fq > sample1.fa
+```
+
+**Count number of sequences**
+
+Fastq file
+```console
+grep -c '^@' sample.fq
+```
+
+ Fasta file
+```console
+grep -c '>' sample.fasta
+```
+
+**Get some basic info on your file(s)**
+```console
+perl -ne 'if(/^>(\S+)/){print "$1\n"}' sample.fa
+```
+
+You may want to print them to a text file
+```console
+perl -ne 'if(/^>(\S+)/){print "$1\n"}' sample.fa > sample_names.txt
+```
+
+Get the sequence name and length for every individual sequence within a fasta file
+```console
+cat sample.fasta | awk '$0 ~ ">" {print c; c=0;printf substr($0,2,100) "\t"; } $0 !~ ">" {c+=length($0);} END { print c; }'
+```
+
+Calculate the mean length of reads in a fastq file:
+```console
+awk 'NR%4==2{sum+=length($0)}END{print sum/(NR/4)}' sample.fastq
+```
+
+Add something to the end of all header lines
+```console
+sed 's/>.*/&WHATEVERYOUWANT/' file.fa > outfile.fa
+```
+
+Clean up a fasta file so that only the first column of the header is outputted
+```console
+awk '{print $1}' file.fa > output.fa
+```
+
+Remove dupilcate sequences from your fasta file
+```console
+sed -e '/^>/s/$/@/' -e 's/^>/#/' file.fasta | tr -d '\n' | tr "#" "\n" | tr "@" "\t" | sort -u -t $'\t' -f -k 2,2  | sed -e 's/^/>/' -e 's/\t/\n/'
+```
+
+Get A T (or U) G C counts for all sequences in a fasta file
+```console
+echo -e "seq_id\tA\tU\tG\tC"; while read line; do echo $line | grep ">" | sed 's/>//g'; for i in A U G C;do echo $line | grep -v ">" | grep -o $i | wc -l | grep -v "^0"; done; done < your_fasta_file.fa | paste - - - - -
+```
+
+Split a multifasta in to separate files (with arbitrary names).
+```console
+splitfa(){
+i=1;
+while read line ; do
+  if [ ${line:0:1} == ">" ] ; then
+    header="$line"
+    echo "$header" >> seq"${i}".fasta
+  else
+    seq="$line"
+    echo "$seq" >> seq"${i}".fasta
+    ((i++))
+  fi
+done < $1
+}
+```
+
+**Extract sequences by their ID**
+
+Call just certain sequences of interest - in this case we are interested in sequences named `seq1`, `seq2` and `seq3` and put them in a file call `new.fasta`
+```console
+perl -ne 'if(/^>(\S+)/){$c=grep{/^$1$/}qw(seq1 seq2 seq3)}print if $c' sample.fa > new.fasta
+```
+Say you have a text file with a list of sequences you want to further investigate you can use this text file (called `seqs_of_interest.txt`) to call out the sequences in the `sample.fasta` file and put them in a few file `seqs_of_interest.fasta`
+
+```console
+perl -ne 'if(/^>(\S+)/){$c=$i{$1}}$c?print:chomp;$i{$_}=1 if @ARGV' seqs_of_interest.txt sample.fasta > seqs_of_interest.fasta
+```
+***
+***
+# SeqKit - a cross platform and ultrafast toolkit for fasta and fastq file manipulation
+
+The above commands are good for some basic editing and information but if you want to do more with your fasta and fastq files your going to need some dedicated programs.
+
+`seqkit` is a super useful program for any bioinformatician follow [this link](https://github.com/shenwei356/seqkit) for offical downloads and documenation.
+
+We'll run through the basic below but always refer to the link above for any issues and more details.
+
+## Install (Linux-like systems)
+
+Just [download](https://github.com/shenwei356/seqkit/releases) compressed executable file of your operating system. Navigate to the file in your command line and decompress it with `tar -zxvf *.tar.gz` command.
+* If you have root privilege simply copy it to `/usr/local/bin:`
+    `sudo cp seqkit /usr/local/bin/``
+* Or copy to anywhere in the environment variable PATH:
+    `mkdir -p $HOME/bin/; cp seqkit $HOME/bin/`
