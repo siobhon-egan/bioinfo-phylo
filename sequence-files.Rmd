@@ -1,13 +1,5 @@
 ---
 title: "Sequence file formats and basics"
-knit: (function(input_file, encoding) {
-  out_dir <- 'docs';
-  rmarkdown::render(input_file,
- encoding=encoding,
- output_file=file.path(dirname(input_file), out_dir, 'index.html'))})
-author: "Siobhon Egan"
-date: "08/04/2019"
-output: html_document
 ---
 
 ## Basic information and links
