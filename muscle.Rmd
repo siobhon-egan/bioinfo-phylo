@@ -1,0 +1,29 @@
+---
+title: "Muscle"
+---
+
+Free download available [here](https://www.drive5.com/muscle/manual/install.html)
+
+[Muscle documentation](https://www.drive5.com/muscle/manual/)
+
+### Alignments 
+Make an alignment and save to a file in FASTA format:
+```
+  muscle -in seqs.fa -out seqs_muscle.afa
+```
+
+Write alignment to the console in CLUSTALW format (more readable than FASTA):
+```
+  muscle -in seqs.fa -clw
+```
+### Trees
+Commandline muscle is very helpful for making quick trees. Depending on the depth of phylogenetics needed, a simple NJ tree maybe all you need.
+
+Make a UPGMA tree from a multiple alignment:
+```
+ muscle -maketree -in seqs_muscle.afa -out seqs_muscle_tree.phy
+```
+Make a Neighbor-Joining tree from a multiple alignment:
+```
+  muscle -maketree -in seqs_muscle.afa -out seqs_muscle_tree.phy -cluster neighborjoining
+```

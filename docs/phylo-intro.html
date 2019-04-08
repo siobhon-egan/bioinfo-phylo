@@ -11,7 +11,7 @@
 
 
 
-<title>Sequence file formats and basics</title>
+<title>Phylogenetics Introduction</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -336,70 +336,46 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Sequence file formats and basics</h1>
+<h1 class="title toc-ignore">Phylogenetics Introduction</h1>
 
 </div>
 
 
-<div id="basic-information-and-links" class="section level2">
-<h2>Basic information and links</h2>
-<p>This section first starts off with some quick useful commands that will be helpful to assess and manipulate your fasta and fastq file. They can be done locally in your command line and don’t require any clumsy dependancies.</p>
-<p>Credit to some helpful inspiration * <a href="http://bioinformatics.cvr.ac.uk/blog/short-command-lines-for-manipulation-fastq-and-fasta-sequence-files/">Bioinformatics I/O by Joseph Hughes</a> * <a href="https://github.com/stephenturner/oneliners#basic-awk--sed">Bioinformatic one-liners by Stephen Turner</a> * <a href="http://userweb.eng.gla.ac.uk/umer.ijaz/bioinformatics/linux.html">Linux command line exercises for NGS data processing by Umer Zeeshan Ijaz</a> * <a href="https://www.biostars.org/p/17680/">Biostars thread</a></p>
-<p>These examples simply use <code>sample.fa</code> or <code>sample.fq</code> or similar format to represent the file you want to investigate. Remember you will need to navigate to the the path of the file or ensure you are in the correct working directory.</p>
-<p><strong>Convert a fastq file to a fasta file</strong></p>
-<pre class="console"><code>sed &#39;/^@/!d;s//&gt;/;N&#39; sample.fq &gt; sample1.fa</code></pre>
-<p><strong>Count number of sequences</strong></p>
-<p>Fastq file</p>
-<pre class="console"><code>grep -c &#39;^@&#39; sample.fq</code></pre>
-<p>Fasta file</p>
-<pre class="console"><code>grep -c &#39;&gt;&#39; sample.fasta</code></pre>
-<p><strong>Get some basic info on your file(s)</strong></p>
-<pre class="console"><code>perl -ne &#39;if(/^&gt;(\S+)/){print &quot;$1\n&quot;}&#39; sample.fa</code></pre>
-<p>You may want to print them to a text file</p>
-<pre class="console"><code>perl -ne &#39;if(/^&gt;(\S+)/){print &quot;$1\n&quot;}&#39; sample.fa &gt; sample_names.txt</code></pre>
-<p>Get the sequence name and length for every individual sequence within a fasta file</p>
-<pre class="console"><code>cat sample.fasta | awk &#39;$0 ~ &quot;&gt;&quot; {print c; c=0;printf substr($0,2,100) &quot;\t&quot;; } $0 !~ &quot;&gt;&quot; {c+=length($0);} END { print c; }&#39;</code></pre>
-<p>Calculate the mean length of reads in a fastq file:</p>
-<pre class="console"><code>awk &#39;NR%4==2{sum+=length($0)}END{print sum/(NR/4)}&#39; sample.fastq</code></pre>
-<p>Add something to the end of all header lines</p>
-<pre class="console"><code>sed &#39;s/&gt;.*/&amp;WHATEVERYOUWANT/&#39; file.fa &gt; outfile.fa</code></pre>
-<p>Clean up a fasta file so that only the first column of the header is outputted</p>
-<pre class="console"><code>awk &#39;{print $1}&#39; file.fa &gt; output.fa</code></pre>
-<p>Remove dupilcate sequences from your fasta file</p>
-<pre class="console"><code>sed -e &#39;/^&gt;/s/$/@/&#39; -e &#39;s/^&gt;/#/&#39; file.fasta | tr -d &#39;\n&#39; | tr &quot;#&quot; &quot;\n&quot; | tr &quot;@&quot; &quot;\t&quot; | sort -u -t $&#39;\t&#39; -f -k 2,2  | sed -e &#39;s/^/&gt;/&#39; -e &#39;s/\t/\n/&#39;</code></pre>
-<p>Get A T (or U) G C counts for all sequences in a fasta file</p>
-<pre class="console"><code>echo -e &quot;seq_id\tA\tU\tG\tC&quot;; while read line; do echo $line | grep &quot;&gt;&quot; | sed &#39;s/&gt;//g&#39;; for i in A U G C;do echo $line | grep -v &quot;&gt;&quot; | grep -o $i | wc -l | grep -v &quot;^0&quot;; done; done &lt; your_fasta_file.fa | paste - - - - -</code></pre>
-<p>Split a multifasta in to separate files (with arbitrary names).</p>
-<pre class="console"><code>splitfa(){
-i=1;
-while read line ; do
-  if [ ${line:0:1} == &quot;&gt;&quot; ] ; then
-    header=&quot;$line&quot;
-    echo &quot;$header&quot; &gt;&gt; seq&quot;${i}&quot;.fasta
-  else
-    seq=&quot;$line&quot;
-    echo &quot;$seq&quot; &gt;&gt; seq&quot;${i}&quot;.fasta
-    ((i++))
-  fi
-done &lt; $1
-}</code></pre>
-<p><strong>Extract sequences by their ID</strong></p>
-<p>Call just certain sequences of interest - in this case we are interested in sequences named <code>seq1</code>, <code>seq2</code> and <code>seq3</code> and put them in a file call <code>new.fasta</code></p>
-<pre class="console"><code>perl -ne &#39;if(/^&gt;(\S+)/){$c=grep{/^$1$/}qw(seq1 seq2 seq3)}print if $c&#39; sample.fa &gt; new.fasta</code></pre>
-<p>Say you have a text file with a list of sequences you want to further investigate you can use this text file (called <code>seqs_of_interest.txt</code>) to call out the sequences in the <code>sample.fasta</code> file and put them in a few file <code>seqs_of_interest.fasta</code></p>
-<pre class="console"><code>perl -ne &#39;if(/^&gt;(\S+)/){$c=$i{$1}}$c?print:chomp;$i{$_}=1 if @ARGV&#39; seqs_of_interest.txt sample.fasta &gt; seqs_of_interest.fasta</code></pre>
-<hr />
+<p>There are four popular molecular phylogenetic methods. The following information is a summary of information provided by material from the Australian National Postgraduate Training Workshop in Systematics support by the <a href="https://www.sasb.org.au">Society of Australian Systematic Biologists</a>, <a href="http://www.environment.gov.au/science/abrs">The Australian Biological Resources Study</a> and <a href="https://www.adelaide.edu.au/environment/acebb/">Australian Centre for Evolutionary Biology and Biodiversity</a> <em>and</em> <a href="https://github.com/simon-ho/SydneyPhyloWorkshop">Sydney Phylo Workshop</a> by Simon Ho.</p>
+<p><strong>1. Maximum parsimony</strong> Identifies the tree topology that can explain the sequence data, using the smallest number of inferred substitution events. It is commonly used for morphological data, and now days is rarely used for analysing genetic data. It cannot estimate evolutionary rates or timescales and does not correct for multiple substitutions at the same site which leads to what is known as “long-branch attraction”. <strong>2. Distance-based methods</strong> Clustering algorithms - Unweighted Pair Group Method with Arithmetic Mean (UPGMA) - Neighbour joining (NJ) Tree searching using optimality criteria - Minimum evolution - Least-squares inference</p>
+<p><em>Pros</em> - Able to take into account multiple substitutions and long-branch attraction - Useful for analysing very large data sets with a lot of taxa (1000’s +) <em>Cons</em> - Does not use all information in alignment - Loss of information in pairwise comparisons - Unable to implement sophisticated evolutionary models</p>
+<p><strong>3. Maximum likelihood (ML)</strong> Search through the space of possible trees and parameter values Calculate the likelihood for these Find best tree and model parameter values Multivariate optimisation</p>
+<p><em>Pros</em> - Rigorous statistical method - Deals with multiple substitutions and long-branch attraction - Highly robust to violations of assumptions <em>Cons</em> - Not feasible to implement very parameter-rich models - Searching tree space can be difficult</p>
+<p><em>ML Analysis</em> * RAxML = Randomized Axelerated Maximum Likelihood. Rapid bootstrapping and can run sequentially or in parallel. * PhyML * MEGA * PAML * IQ-Tree</p>
+<p><strong>4. Bayesian inference</strong> Bayesian phylogenetic analysis was developed in the mid 1990s, and it now one of the most widely used methods for molecular phylogenetics.</p>
+<p>Key features of Bayesian paradigm - Contrast with frequentist statistics (likelihood) - Parameters have distributions - Before the data are observed, each parameter has a prior distribution - The likelihood of the data is computed - The prior distribution is combined (updated) with the likelihood to yield the posterior distribution</p>
+<p><em>Priors</em> - Priors are chosen in the form of probability distributions - Reflect our prior expectations (and uncertainty) about values of parameters (without knowledge of the data) * Past observations * Personal beliefs * Use of a biological model - Uninformative priors</p>
+<p><em>‘Prior options’</em> 1. Use a flat prior for tree topology (MrBayes) - All trees have equal probability - Also need a prior for branch lengths or node times</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Use a biological model to generate prior distribution (BEAST and MrBayes)</li>
+</ol>
+<ul>
+<li>Among species: speciation model</li>
+<li>Within species: coalescent model</li>
+</ul>
+<p><em>Markov Chain Monte Carlo Sampling</em> It is impossible to obtain the posterior directly. Instead, the posterior can be estimated using Markov chain Monte Carlo simulation. This is usually done using the Metropolis-Hastings algorithm. There is a wealth of literature available for more information on this topic. It can get super technical - we’ve just covered the basics.</p>
+<p><em>Pros</em> - Able to implement highly parameterised models - Estimating tree uncertainty is straightforward - Can only do this indirectly in likelihood (via bootstrapping) - Posterior probabilities have an intuitive interpretation - Can incorporate independent information (in the prior)</p>
+<p><em>Popular software and programs for Bayesian analysis</em> - MrBayes * Primarily designed for species-level data * Simultaneous estimation of tree and node times * Range of clock models * Range of tree priors * Multiple chains and MCMC diagnostics - RevBayes * Uses its own R-like language, Rev * Interactive construction of graphical model * Flexible and can be used for simulation and inference * Ongoing development - BEAST1 = Bayesian Evolutionary Analysis by Sampling Trees * Analyse population- or species-level data * Simultaneous estimation of tree and node times * Range of clock models * Range of tree priors and demographic models - BEAST2 * Re-write of BEAST to increase modularity * Users can extend BEAST by adding packages * Additional tree priors not available in BEAST 1 * Capacity to perform simulations * For a comparison of BEAST 1 and 2: www.beast2.org/beast-features</p>
+<div id="bootstrapping" class="section level5">
+<h5>Bootstrapping</h5>
+<p>Felsenstein (1985) Evolution 39(4):783-791 (<a href="https://www.ncbi.nlm.nih.gov/pubmed/28561359">Pub med</a>) Bootstrapping provides a confidence interval that contains the phylogeny that would be estimated from repeated sampling of many characters from the underlying set of all characters. Bootstrap values are measures of repeatability. High when the data set is large. Not meaningful when analysing genome-scale data.</p>
 <hr />
 </div>
-<div id="seqkit---a-cross-platform-and-ultrafast-toolkit-for-fasta-and-fastq-file-manipulation" class="section level1">
-<h1>SeqKit - a cross platform and ultrafast toolkit for fasta and fastq file manipulation</h1>
-<p>The above commands are good for some basic editing and information but if you want to do more with your fasta and fastq files your going to need some dedicated programs.</p>
-<p><code>seqkit</code> is a super useful program for any bioinformatician follow <a href="https://github.com/shenwei356/seqkit">this link</a> for offical downloads and documenation.</p>
-<p>We’ll run through the basic below but always refer to the link above for any issues and more details.</p>
-<div id="install-linux-like-systems" class="section level2">
-<h2>Install (Linux-like systems)</h2>
-<p>Just <a href="https://github.com/shenwei356/seqkit/releases">download</a> compressed executable file of your operating system. Navigate to the file in your command line and decompress it with <code>tar -zxvf *.tar.gz</code> command. * If you have root privilege simply copy it to <code>/usr/local/bin:</code> <code>sudo cp seqkit /usr/local/bin/`` * Or copy to anywhere in the environment variable PATH:</code>mkdir -p $HOME/bin/; cp seqkit $HOME/bin/`</p>
-</div>
+<div id="useful-resources-for-molecular-phylogenetics" class="section level2">
+<h2>Useful resources for molecular Phylogenetics</h2>
+<ul>
+<li><a href="https://github.com/simon-ho/SydneyPhyloWorkshop">Sydney Phylo Workshop</a> by Simon Ho provides some excellent lecture notes and workshops with dataset</li>
+<li><a href="https://github.com/Phylogenetics-Brown-BIOL1425/phylogeneticbiology">Phylogenetic Biology</a> by Casey Dunn at Brown University is a great source of lecture and practical material. It also has a an extensive list of extra resources and useful links to reading material</li>
+<li><a href="https://github.com/revbayes">RevBayes</a> github page has a wealth of information specifically around the software but also includes some general phylogenetics material as well. Tutorial pages available <a href="https://revbayes.github.io/tutorials/">here</a>, a example of workshop page on molecular phylogenetics and fossil data available <a href="http://phyloworks.org/revbayes-workshop2017/">here</a></li>
+<li><a href="https://taming-the-beast.org/tutorials/Introduction-to-BEAST2/">Taming the BEAST</a> workshops around the use of BEAST software for Phylogenetics</li>
+<li><a href="https://github.com/thednainus/Bayesian_tutorial">Bayesian MCMC phylogenetics tutorial in R</a> - for those wanting an R interface for their Phylogenetics</li>
+<li><a href="https://github.com/mmatschiner/tutorials">Collection of tutorials on phylogenetics</a> by Michael Matschiner. This goes through the workflow from sequence analysis through to dating and more</li>
+</ul>
 </div>
 
 

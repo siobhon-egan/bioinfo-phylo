@@ -11,7 +11,7 @@
 
 
 
-<title>Sequence file formats and basics</title>
+<title>Evolutionary models</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -336,70 +336,37 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Sequence file formats and basics</h1>
+<h1 class="title toc-ignore">Evolutionary models</h1>
 
 </div>
 
 
-<div id="basic-information-and-links" class="section level2">
-<h2>Basic information and links</h2>
-<p>This section first starts off with some quick useful commands that will be helpful to assess and manipulate your fasta and fastq file. They can be done locally in your command line and don’t require any clumsy dependancies.</p>
-<p>Credit to some helpful inspiration * <a href="http://bioinformatics.cvr.ac.uk/blog/short-command-lines-for-manipulation-fastq-and-fasta-sequence-files/">Bioinformatics I/O by Joseph Hughes</a> * <a href="https://github.com/stephenturner/oneliners#basic-awk--sed">Bioinformatic one-liners by Stephen Turner</a> * <a href="http://userweb.eng.gla.ac.uk/umer.ijaz/bioinformatics/linux.html">Linux command line exercises for NGS data processing by Umer Zeeshan Ijaz</a> * <a href="https://www.biostars.org/p/17680/">Biostars thread</a></p>
-<p>These examples simply use <code>sample.fa</code> or <code>sample.fq</code> or similar format to represent the file you want to investigate. Remember you will need to navigate to the the path of the file or ensure you are in the correct working directory.</p>
-<p><strong>Convert a fastq file to a fasta file</strong></p>
-<pre class="console"><code>sed &#39;/^@/!d;s//&gt;/;N&#39; sample.fq &gt; sample1.fa</code></pre>
-<p><strong>Count number of sequences</strong></p>
-<p>Fastq file</p>
-<pre class="console"><code>grep -c &#39;^@&#39; sample.fq</code></pre>
-<p>Fasta file</p>
-<pre class="console"><code>grep -c &#39;&gt;&#39; sample.fasta</code></pre>
-<p><strong>Get some basic info on your file(s)</strong></p>
-<pre class="console"><code>perl -ne &#39;if(/^&gt;(\S+)/){print &quot;$1\n&quot;}&#39; sample.fa</code></pre>
-<p>You may want to print them to a text file</p>
-<pre class="console"><code>perl -ne &#39;if(/^&gt;(\S+)/){print &quot;$1\n&quot;}&#39; sample.fa &gt; sample_names.txt</code></pre>
-<p>Get the sequence name and length for every individual sequence within a fasta file</p>
-<pre class="console"><code>cat sample.fasta | awk &#39;$0 ~ &quot;&gt;&quot; {print c; c=0;printf substr($0,2,100) &quot;\t&quot;; } $0 !~ &quot;&gt;&quot; {c+=length($0);} END { print c; }&#39;</code></pre>
-<p>Calculate the mean length of reads in a fastq file:</p>
-<pre class="console"><code>awk &#39;NR%4==2{sum+=length($0)}END{print sum/(NR/4)}&#39; sample.fastq</code></pre>
-<p>Add something to the end of all header lines</p>
-<pre class="console"><code>sed &#39;s/&gt;.*/&amp;WHATEVERYOUWANT/&#39; file.fa &gt; outfile.fa</code></pre>
-<p>Clean up a fasta file so that only the first column of the header is outputted</p>
-<pre class="console"><code>awk &#39;{print $1}&#39; file.fa &gt; output.fa</code></pre>
-<p>Remove dupilcate sequences from your fasta file</p>
-<pre class="console"><code>sed -e &#39;/^&gt;/s/$/@/&#39; -e &#39;s/^&gt;/#/&#39; file.fasta | tr -d &#39;\n&#39; | tr &quot;#&quot; &quot;\n&quot; | tr &quot;@&quot; &quot;\t&quot; | sort -u -t $&#39;\t&#39; -f -k 2,2  | sed -e &#39;s/^/&gt;/&#39; -e &#39;s/\t/\n/&#39;</code></pre>
-<p>Get A T (or U) G C counts for all sequences in a fasta file</p>
-<pre class="console"><code>echo -e &quot;seq_id\tA\tU\tG\tC&quot;; while read line; do echo $line | grep &quot;&gt;&quot; | sed &#39;s/&gt;//g&#39;; for i in A U G C;do echo $line | grep -v &quot;&gt;&quot; | grep -o $i | wc -l | grep -v &quot;^0&quot;; done; done &lt; your_fasta_file.fa | paste - - - - -</code></pre>
-<p>Split a multifasta in to separate files (with arbitrary names).</p>
-<pre class="console"><code>splitfa(){
-i=1;
-while read line ; do
-  if [ ${line:0:1} == &quot;&gt;&quot; ] ; then
-    header=&quot;$line&quot;
-    echo &quot;$header&quot; &gt;&gt; seq&quot;${i}&quot;.fasta
-  else
-    seq=&quot;$line&quot;
-    echo &quot;$seq&quot; &gt;&gt; seq&quot;${i}&quot;.fasta
-    ((i++))
-  fi
-done &lt; $1
-}</code></pre>
-<p><strong>Extract sequences by their ID</strong></p>
-<p>Call just certain sequences of interest - in this case we are interested in sequences named <code>seq1</code>, <code>seq2</code> and <code>seq3</code> and put them in a file call <code>new.fasta</code></p>
-<pre class="console"><code>perl -ne &#39;if(/^&gt;(\S+)/){$c=grep{/^$1$/}qw(seq1 seq2 seq3)}print if $c&#39; sample.fa &gt; new.fasta</code></pre>
-<p>Say you have a text file with a list of sequences you want to further investigate you can use this text file (called <code>seqs_of_interest.txt</code>) to call out the sequences in the <code>sample.fasta</code> file and put them in a few file <code>seqs_of_interest.fasta</code></p>
-<pre class="console"><code>perl -ne &#39;if(/^&gt;(\S+)/){$c=$i{$1}}$c?print:chomp;$i{$_}=1 if @ARGV&#39; seqs_of_interest.txt sample.fasta &gt; seqs_of_interest.fasta</code></pre>
-<hr />
+<p>An excellent summary of the different models (listed below) is directly sourced from Evolution and Geonomics Workshop (<a href="http://evomics.org/resources/substitution-models/nucleotide-substitution-models/">link here</a>). Highly recommend you check out the rest of the website for some great resources and detailed information &amp; tutorials.</p>
+<p>The use of maximum likelihood (ML) algorithms in developing phylogenetic hypotheses requires a model of evolution. The frequently used General Time Reversible (GTR) family of nested models encompasses 64 models with different combinations of parameters for DNA site substitution. The models are listed here from the least complex to the most parameter rich.</p>
+<p>Some common programs to carry out phylogenetic analysis include [MrBayes], <a href="https://paup.phylosolutions.com/">PAUP*</a>, <a href="http://www.beast2.org">BEAST v2</a>, <a href="http://www.atgc-montpellier.fr/phyml/">PhyML v3</a> and <a href="http://evomics.org/resources/software/molecular-evolution-software/paml/">PAML</a>. <a href="https://sco.h-its.org/exelixis/software.html">RAxML</a> generally only utilises the GTR model, although you can use JC and K80 models for DNA partitions. The below also include the settings if the model is available in these programs.</p>
+<p><a href="http://phylobotanist.blogspot.com/2016/06/implementation-of-substitution-models.html" class="uri">http://phylobotanist.blogspot.com/2016/06/implementation-of-substitution-models.html</a></p>
+<p><strong>Jukes-Cantor (JC/JC69)</strong> equal base frequencies, all substitutions equally likely (Jukes and Cantor 1969) - [x] MrBayes <code>nst=1</code> - [x] PAUP <code>aaaaaa</code> - [x] PAML <code>aaaaaa</code> - [x] BEAST - [x] PhyML</p>
+<p><strong>Felsenstein 1981 (F81)</strong> variable base frequencies, all substitutions equally likely (Felsenstein 1981) - [x] MrBayes <code>nst=1</code> - [x] PAUP <code>aaaaaa</code> - [x] PAML <code>aaaaaa</code> - [x] BEAST (check) - [x] PhyML</p>
+<p><strong>Kimura 2-parameter (K80/K2)</strong> equal base frequencies, one transition rate and one transversion rate (Kimura 1980) - [x] MrBayes <code>nst=2</code> - [x] PAUP <code>abaaba</code> - [x] PAML <code>abbbba</code> - [x] BEAST - [x] PhyML</p>
+<p><strong>Hasegawa-Kishino-Yano (HKY)</strong> variable base frequencies, one transition rate and one transversion rate (Hasegawa et. al. 1985). Note this model is very similar to K80 however allows for variable base frequencies. It is also commonly the default model in many programs. - [x] MrBayes <code>nst=2</code> - [x] PAUP <code>abaaba</code> - [x] PAML <code>abbbba</code> - [x] BEAST - [x] PhyML</p>
+<p><strong>Tamura-Nei (TrN/TN93)</strong> variable base frequencies, equal transversion rates, variable transition rates (Tamura Nei 1993) - [ ] MrBayes - [x] PAUP <code>abaaea</code> - [x] PAML <code>abbbbf</code> - [x] BEAST - [x] PhyML</p>
+<p><strong>Kimura 3-parameter (K3P)</strong> variable base frequencies, equal transition rates, two transversion rates (Kimura 1981) - [ ] MrBayes - [x] PAUP (<code>abccba</code>) - [x] PAML (<code>abccba</code>) - [ ] BEAST - [ ] PhyML</p>
+<p><strong>transition model (TIM)</strong> variable base frequencies, variable transition rates, two transversion rates - [ ] MrBayes - [x] PAUP <code>abccea</code> - [x] PAML <code>abccbe</code> - [x] BEAST - [ ] RAxML (check) - [ ] PhyML</p>
+<p><strong>transversion model (TVM)</strong> variable base frequencies, variable transversion rates, transition rates equal - [ ] MrBayes - [x] PAUP (<code>abcdbe</code>) - [x] PAML (<code>abcdea</code>) - [x] BEAST - [ ] PhyML</p>
+<p><strong>symmetrical model (SYM)</strong> equal base frequencies, symmetrical substitution matrix (A to T = T to A) (Zharkikh 1994) - [x] MrBayes <code>nst=6</code> - [x] PAUP <code>abcdef</code> - [x] PAML <code>abcdef</code> - [x] BEAST - [ ] PhyML</p>
+<p><strong>general time reversible (GTR)</strong> variable base frequencies, symmetrical substitution matrix (e.g., Lanave et al. 1984, Tavare 1986, Rodriguez et. al. 1990) - [x] MrBayes <code>nst=6</code> - [x] PAUP <code>abcdef</code> - [x] PAML <code>abcdef</code> - [x] BEAST - [x] PhyML</p>
+<div id="rate-variation" class="section level3">
+<h3>Rate variation</h3>
+<p>In addition to models describing the rates of change from one nucleotide to another, there are models to describe rate variation among sites in a sequence. The following are the two most commonly used models and are generally available across all platforms and programs.</p>
+<p><strong>gamma distribution (G)</strong> gamma distributed rate variation among sites</p>
+<p><strong>proportion of invariable sites (I)</strong>* extent of static, unchanging sites in a dataset</p>
 <hr />
 </div>
-<div id="seqkit---a-cross-platform-and-ultrafast-toolkit-for-fasta-and-fastq-file-manipulation" class="section level1">
-<h1>SeqKit - a cross platform and ultrafast toolkit for fasta and fastq file manipulation</h1>
-<p>The above commands are good for some basic editing and information but if you want to do more with your fasta and fastq files your going to need some dedicated programs.</p>
-<p><code>seqkit</code> is a super useful program for any bioinformatician follow <a href="https://github.com/shenwei356/seqkit">this link</a> for offical downloads and documenation.</p>
-<p>We’ll run through the basic below but always refer to the link above for any issues and more details.</p>
-<div id="install-linux-like-systems" class="section level2">
-<h2>Install (Linux-like systems)</h2>
-<p>Just <a href="https://github.com/shenwei356/seqkit/releases">download</a> compressed executable file of your operating system. Navigate to the file in your command line and decompress it with <code>tar -zxvf *.tar.gz</code> command. * If you have root privilege simply copy it to <code>/usr/local/bin:</code> <code>sudo cp seqkit /usr/local/bin/`` * Or copy to anywhere in the environment variable PATH:</code>mkdir -p $HOME/bin/; cp seqkit $HOME/bin/`</p>
-</div>
+<div id="programs" class="section level1">
+<h1>Programs</h1>
+<p>Some well resourced programs to carry out model selection include: - <a href="https://www.megasoftware.net/">MEGA</a> - <a href="http://www.atgc-montpellier.fr/phyml/">PhyML</a> - <a href="https://github.com/ddarriba/jmodeltest2">jmodeltest</a></p>
+<p>Depending on the program most will produce two sets of ‘scores’ to assess the models. the Akaike information criterion (AIC) and Bayesian information criterion (BIC). The lower the score the more support there is for a particular model. There are different reasons for choosing the best model based on the AIC or BIC scores. Generally the BIC score is used in most cases, however if in doubt its always best to do some more research to understand why you chose that value. Some references for more information on these criterion available here <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2925852/">Luo A. <em>et al.</em> 2010</a>; <a href="https://www.annualreviews.org/doi/pdf/10.1146/annurev.ecolsys.36.102003.152633">Sullivan J. and Joyce P. 2005</a>,<a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12541">Brewer M. J. <em>et al.</em> 2016</a>.</p>
+<p>Example output from MEGA7 using Model Selection feature <img src="MEGA7_ModelSelection.png" alt="MEGA7_ModelSelection" /></p>
 </div>
 
 

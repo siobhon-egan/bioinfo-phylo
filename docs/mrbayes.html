@@ -11,7 +11,7 @@
 
 
 
-<title>Sequence file formats and basics</title>
+<title>MrBayes</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -336,70 +336,116 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Sequence file formats and basics</h1>
+<h1 class="title toc-ignore">MrBayes</h1>
 
 </div>
 
 
-<div id="basic-information-and-links" class="section level2">
-<h2>Basic information and links</h2>
-<p>This section first starts off with some quick useful commands that will be helpful to assess and manipulate your fasta and fastq file. They can be done locally in your command line and don’t require any clumsy dependancies.</p>
-<p>Credit to some helpful inspiration * <a href="http://bioinformatics.cvr.ac.uk/blog/short-command-lines-for-manipulation-fastq-and-fasta-sequence-files/">Bioinformatics I/O by Joseph Hughes</a> * <a href="https://github.com/stephenturner/oneliners#basic-awk--sed">Bioinformatic one-liners by Stephen Turner</a> * <a href="http://userweb.eng.gla.ac.uk/umer.ijaz/bioinformatics/linux.html">Linux command line exercises for NGS data processing by Umer Zeeshan Ijaz</a> * <a href="https://www.biostars.org/p/17680/">Biostars thread</a></p>
-<p>These examples simply use <code>sample.fa</code> or <code>sample.fq</code> or similar format to represent the file you want to investigate. Remember you will need to navigate to the the path of the file or ensure you are in the correct working directory.</p>
-<p><strong>Convert a fastq file to a fasta file</strong></p>
-<pre class="console"><code>sed &#39;/^@/!d;s//&gt;/;N&#39; sample.fq &gt; sample1.fa</code></pre>
-<p><strong>Count number of sequences</strong></p>
-<p>Fastq file</p>
-<pre class="console"><code>grep -c &#39;^@&#39; sample.fq</code></pre>
-<p>Fasta file</p>
-<pre class="console"><code>grep -c &#39;&gt;&#39; sample.fasta</code></pre>
-<p><strong>Get some basic info on your file(s)</strong></p>
-<pre class="console"><code>perl -ne &#39;if(/^&gt;(\S+)/){print &quot;$1\n&quot;}&#39; sample.fa</code></pre>
-<p>You may want to print them to a text file</p>
-<pre class="console"><code>perl -ne &#39;if(/^&gt;(\S+)/){print &quot;$1\n&quot;}&#39; sample.fa &gt; sample_names.txt</code></pre>
-<p>Get the sequence name and length for every individual sequence within a fasta file</p>
-<pre class="console"><code>cat sample.fasta | awk &#39;$0 ~ &quot;&gt;&quot; {print c; c=0;printf substr($0,2,100) &quot;\t&quot;; } $0 !~ &quot;&gt;&quot; {c+=length($0);} END { print c; }&#39;</code></pre>
-<p>Calculate the mean length of reads in a fastq file:</p>
-<pre class="console"><code>awk &#39;NR%4==2{sum+=length($0)}END{print sum/(NR/4)}&#39; sample.fastq</code></pre>
-<p>Add something to the end of all header lines</p>
-<pre class="console"><code>sed &#39;s/&gt;.*/&amp;WHATEVERYOUWANT/&#39; file.fa &gt; outfile.fa</code></pre>
-<p>Clean up a fasta file so that only the first column of the header is outputted</p>
-<pre class="console"><code>awk &#39;{print $1}&#39; file.fa &gt; output.fa</code></pre>
-<p>Remove dupilcate sequences from your fasta file</p>
-<pre class="console"><code>sed -e &#39;/^&gt;/s/$/@/&#39; -e &#39;s/^&gt;/#/&#39; file.fasta | tr -d &#39;\n&#39; | tr &quot;#&quot; &quot;\n&quot; | tr &quot;@&quot; &quot;\t&quot; | sort -u -t $&#39;\t&#39; -f -k 2,2  | sed -e &#39;s/^/&gt;/&#39; -e &#39;s/\t/\n/&#39;</code></pre>
-<p>Get A T (or U) G C counts for all sequences in a fasta file</p>
-<pre class="console"><code>echo -e &quot;seq_id\tA\tU\tG\tC&quot;; while read line; do echo $line | grep &quot;&gt;&quot; | sed &#39;s/&gt;//g&#39;; for i in A U G C;do echo $line | grep -v &quot;&gt;&quot; | grep -o $i | wc -l | grep -v &quot;^0&quot;; done; done &lt; your_fasta_file.fa | paste - - - - -</code></pre>
-<p>Split a multifasta in to separate files (with arbitrary names).</p>
-<pre class="console"><code>splitfa(){
-i=1;
-while read line ; do
-  if [ ${line:0:1} == &quot;&gt;&quot; ] ; then
-    header=&quot;$line&quot;
-    echo &quot;$header&quot; &gt;&gt; seq&quot;${i}&quot;.fasta
-  else
-    seq=&quot;$line&quot;
-    echo &quot;$seq&quot; &gt;&gt; seq&quot;${i}&quot;.fasta
-    ((i++))
-  fi
-done &lt; $1
-}</code></pre>
-<p><strong>Extract sequences by their ID</strong></p>
-<p>Call just certain sequences of interest - in this case we are interested in sequences named <code>seq1</code>, <code>seq2</code> and <code>seq3</code> and put them in a file call <code>new.fasta</code></p>
-<pre class="console"><code>perl -ne &#39;if(/^&gt;(\S+)/){$c=grep{/^$1$/}qw(seq1 seq2 seq3)}print if $c&#39; sample.fa &gt; new.fasta</code></pre>
-<p>Say you have a text file with a list of sequences you want to further investigate you can use this text file (called <code>seqs_of_interest.txt</code>) to call out the sequences in the <code>sample.fasta</code> file and put them in a few file <code>seqs_of_interest.fasta</code></p>
-<pre class="console"><code>perl -ne &#39;if(/^&gt;(\S+)/){$c=$i{$1}}$c?print:chomp;$i{$_}=1 if @ARGV&#39; seqs_of_interest.txt sample.fasta &gt; seqs_of_interest.fasta</code></pre>
-<hr />
-<hr />
+<p>Notes for command line MrBayes</p>
+<p><strong>Useful resources</strong> - <a href="http://mrbayes.sourceforge.net/mb3.2_manual.pdf">Manual v3.2</a> - <a href="http://mrbayes.sourceforge.net/wiki/index.php?title=Tutorial&amp;oldid=5239">Tutorial</a> - <a href="http://people.binf.ku.dk/rasmus/courses/Spring06/Chapter7-MrBayes.pdf">John P. Huelsenbeck and Fredrik Ronquist, Bayesian Analysis of Molecular Evolution Using MrBayes</a></p>
+<div id="step-1---convert-your-sequence-file-to-nexus-format" class="section level3">
+<h3>Step 1 - Convert your sequence file to nexus format</h3>
+<p>You will need to convert your aligned sequence file to a nexus file first. Although this can commonly be done in most sequence analysis programs (e.g. geneious) using the <code>export as...</code> make sure you check the file formatting by opening the <code>nexus</code> file in a text editor program (e.g. atom).</p>
+<p>I find a more reliable way is to use a web program to convert the fasta file to a nexus file - such as one available <a href="http://sequenceconversion.bugaco.com/converter/biology/sequences/fasta_to_nexus.php">here</a>. Make sure the sequence names do not contain any of the following; hyphens <code>-</code>, commas<code>,</code>, semicolcons <code>:</code>, exclamation marks <code>!</code>. Underscores <code>_</code> and periods <code>.</code> are okay.</p>
+<blockquote>
+<p>For details on how to download MrBayes see the <a href="http://mrbayes.sourceforge.net/mb3.2_manual.pdf">manual section 1.2</a></p>
+</blockquote>
 </div>
-<div id="seqkit---a-cross-platform-and-ultrafast-toolkit-for-fasta-and-fastq-file-manipulation" class="section level1">
-<h1>SeqKit - a cross platform and ultrafast toolkit for fasta and fastq file manipulation</h1>
-<p>The above commands are good for some basic editing and information but if you want to do more with your fasta and fastq files your going to need some dedicated programs.</p>
-<p><code>seqkit</code> is a super useful program for any bioinformatician follow <a href="https://github.com/shenwei356/seqkit">this link</a> for offical downloads and documenation.</p>
-<p>We’ll run through the basic below but always refer to the link above for any issues and more details.</p>
-<div id="install-linux-like-systems" class="section level2">
-<h2>Install (Linux-like systems)</h2>
-<p>Just <a href="https://github.com/shenwei356/seqkit/releases">download</a> compressed executable file of your operating system. Navigate to the file in your command line and decompress it with <code>tar -zxvf *.tar.gz</code> command. * If you have root privilege simply copy it to <code>/usr/local/bin:</code> <code>sudo cp seqkit /usr/local/bin/`` * Or copy to anywhere in the environment variable PATH:</code>mkdir -p $HOME/bin/; cp seqkit $HOME/bin/`</p>
+<div id="step-2---activate-mrbayes" class="section level3">
+<h3>Step 2 - Activate MrBayes</h3>
+<p>Type <code>mb</code> to activate MrBayes</p>
+<pre><code>execute AlignedSeqs.nexus</code></pre>
+<p>This will check will ensure your data is formatting and read correctly by the program. Any issues at this point are most likely due to the syntax and formatting of your nexus file. Note: you may need to also include the path to the file if you are not already in the correct directory. Generic Shell commands (e.g. <code>ls</code> <code>cd</code>) do not work in the MrBayes environment.</p>
 </div>
+<div id="step-3---set-the-evolutionary-model" class="section level3">
+<h3>Step 3 - Set the evolutionary model</h3>
+<p>This is where you start to set the parameters for your analysis. You will likely need to do some background work to figure out which is the correct model for your data - <a href="/Users/siobhonegan/Documents/Uni/PhD/code/notes-cheatsheets/Evolutionary_model_selection.md">see here</a></p>
+<p>If your data are not DNA or RNA, if you want to invoke a different model, or if you want to use non-default priors, refer to the MrBayes manual and Appendix for more help.</p>
+<div class="figure">
+<img src="MrBayesv3_DNA_EvolutionaryModel.png" alt="DNA_EvolModel" />
+<p class="caption">DNA_EvolModel</p>
+</div>
+<p><em>DNA models support by MrBayes v3 (MrBayes Manual p164)</em></p>
+<p><strong>Settings</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th align="center">Options</th>
+<th align="right">Current setting</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Nucmodel</td>
+<td align="center">4by4/Doublet/Codon/Protein</td>
+<td align="right">4by4</td>
+</tr>
+<tr class="even">
+<td>Nst</td>
+<td align="center">1(JC/F81)/2(HKY)/6(GTR)/Mixed</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td>Code</td>
+<td align="center">Universal/Vertmt/Mycoplasma/Yeast/Ciliates/Metmt</td>
+<td align="right">Universal</td>
+</tr>
+<tr class="even">
+<td>Ploidy</td>
+<td align="center">Haploid/Dilpoid/Zlinked</td>
+<td align="right">Diploid</td>
+</tr>
+<tr class="odd">
+<td>Rates</td>
+<td align="center">Equal/Gamma/Propinv/Invgamma/Adgamma</td>
+<td align="right">Equal</td>
+</tr>
+<tr class="even">
+<td>Ngammacat</td>
+<td align="center">number</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td>Nbetacat</td>
+<td align="center">number</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td>Omegavar</td>
+<td align="center">Equal/Ny93/M3</td>
+<td align="right">Equal</td>
+</tr>
+<tr class="odd">
+<td>Covarion</td>
+<td align="center">No/Yes</td>
+<td align="right">No</td>
+</tr>
+<tr class="even">
+<td>Coding</td>
+<td align="center">All/Variable/Noabsencesites/Nopresencesites</td>
+<td align="right">All</td>
+</tr>
+<tr class="odd">
+<td>Parsmodel</td>
+<td align="center">No/Yes</td>
+<td align="right">No</td>
+</tr>
+</tbody>
+</table>
+<p>To set a GTR + I + G model execute the following:</p>
+<pre><code>lset nst=6 rates=invgamma</code></pre>
+</div>
+<div id="step-4-start-sampling" class="section level3">
+<h3>Step 4 start sampling</h3>
+<pre><code>mcmc ngen=1000000 samplefreq=500 printfreq=500 diagnfreq=5000</code></pre>
+<p>If the standard deviation of split frequencies is below 0.01 the specific number of generations, stop the run by answering no when the program asks <code>Continue the analysis? (yes/no)</code>. Otherwise, keep adding generations until the value falls below <code>0.01</code>. If you are interested mainly in the well-supported parts of the tree, a standard deviation below <code>0.05</code> may be adequate.</p>
+</div>
+<div id="get-output" class="section level3">
+<h3>Get output</h3>
+<p>Type <code>sump</code> to summarize the parameter values using the same burn-in as the diagnostics in the mcmc command. The program will output a table with summaries of the samples of the substitution model parameters, including the mean, mode, and 95 % credibility interval (region of Highest Posterior Density, HPD) of each parameter. Make sure that the potential scale reduction factor (PSRF) is reasonably close to 1.0 for all parameters; if not, you need to run the analysis longer.</p>
+<p>Summarize the trees using the same burn-in as the mcmc command by typing <code>sumt</code>. The program will output a cladogram with the posterior probabilities for each split and a phylogram with mean branch lengths. Both trees will also be printed to a file that can be read by FigTree and other tree-drawing programs, such as TreeView and Mesquite.</p>
+<p>It does not have to be more complicated than this; however, as you get more proficient you will probably want to know more about what is happening behind the scenes. The rest of this section explains each of the steps in more detail and introduces you to all the implicit assumptions you are making and the machinery that MrBayes uses in order to perform your analysis.</p>
 </div>
 
 

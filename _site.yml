@@ -7,6 +7,22 @@ navbar:
     href: index.html
   - text: "Sequence files"
     href: sequence-files.html
+    icon: fa-file-alt
+  - text: "Alignment"
+    icon: fa-binoculars
+    menu: 
+      - text: "Muscle"
+        href: muscle.html
+  - text: "Phylogenetics"
+    icon: fa-code-branch
+    menu:
+      - text: "Introduction"
+        href: phylo-intro.html
+      - text: "Evolutionary models"
+        href: evolutionary-models.html
+      - text: "MrBayes"
+        href: mrbayes.html
 output:
   html_document:
-theme: cosmo
+    theme: lumen
+    highlight: textmate
