@@ -1,0 +1,12 @@
+name: "Bioinformatics & Phylogenetics"
+output_dir: "docs"
+navbar:
+  title: "Code"
+  left:
+  - text: "Home"
+    href: index.html
+  - text: "Sequence files"
+    href: sequence-files.html
+output:
+  html_document:
+theme: cosmo
