@@ -1,0 +1,14 @@
+---
+title: "Visualise"
+---
+
+When you recieve your raw sanger sequences you will usually recieve files with the following extensions `.ab1` and `.fasta`.
+The `.ab1` file is the most useful as it contains the cromatogram which contains information on quality of each base call.
+
+There are lots of programs that you can use to visualise and edit these files.
+
+- [FinchTV](https://finchtv.software.informer.com/1.4/) - a free program, that allows you to quickly and easily visualise your `ab1` files. It also allows you to do some basic edits on your sequences.
+- [4 peaks](https://nucleobytes.com/4peaks/index.html) - another free program, that works well on macOS. It works in a similar fashion to FinchTV and also has a good short cut to BLAST sequences. 
+- [UGENE](http://ugene.net/) - is a free program that allows has a lot more features than the first two programs. It is a popular, widely used program. In additional to basic visualisation and sequence editing it has some useful features to deisgn primers (integrated with primer3), sequence alignment (including short reads), contig assembly, phylogenetic trees and more.
+- [GeneStudio](http://genestudio.com/) - is a collection of free programs that allow you to do everything from viewing & editing sequences to building phylogenies and editing trees.
+- [Geneious](https://www.geneious.com/) - a paid program, that is one of the most widely used by molecular biologists. It has a range of features and plugins that allow you to do a wide range of phylogenetic and bioinformatic analysis.

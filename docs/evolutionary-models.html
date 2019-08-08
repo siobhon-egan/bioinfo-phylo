@@ -71,9 +71,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -192,8 +190,6 @@ $(document).ready(function () {
 });
 </script>
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
 
 <style type="text/css">
@@ -267,6 +263,15 @@ $(document).ready(function () {
 
 
 
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
@@ -283,12 +288,22 @@ $(document).ready(function () {
         <li>
   <a href="index.html">Home</a>
 </li>
-<li>
-  <a href="sequence-files.html">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fa fa-file-alt"></span>
      
     Sequence files
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="sequence-files.html">Command line</a>
+    </li>
+    <li>
+      <a href="visualise.html">Visualising and editing</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -341,20 +356,102 @@ $(document).ready(function () {
 </div>
 
 
-<p>An excellent summary of the different models (listed below) is directly sourced from Evolution and Geonomics Workshop (<a href="http://evomics.org/resources/substitution-models/nucleotide-substitution-models/">link here</a>). Highly recommend you check out the rest of the website for some great resources and detailed information &amp; tutorials.</p>
+<p><a href="https://shields.io/"><img src="https://img.shields.io/badge/Siobhon%20Egan-August%202019-%3CCOLOR%3E.svg" alt="Generic badge" /></a></p>
+<p>An excellent summary of the different models (listed below) is directly sourced from Evolution and Geonomics Workshop (<a href="http://evomics.org/resources/substitution-models/nucleotide-substitution-models/">link here</a>).</p>
+<p>Highly recommend you check out the rest of the website for some great resources and detailed information &amp; tutorials.</p>
 <p>The use of maximum likelihood (ML) algorithms in developing phylogenetic hypotheses requires a model of evolution. The frequently used General Time Reversible (GTR) family of nested models encompasses 64 models with different combinations of parameters for DNA site substitution. The models are listed here from the least complex to the most parameter rich.</p>
-<p>Some common programs to carry out phylogenetic analysis include [MrBayes], <a href="https://paup.phylosolutions.com/">PAUP*</a>, <a href="http://www.beast2.org">BEAST v2</a>, <a href="http://www.atgc-montpellier.fr/phyml/">PhyML v3</a> and <a href="http://evomics.org/resources/software/molecular-evolution-software/paml/">PAML</a>. <a href="https://sco.h-its.org/exelixis/software.html">RAxML</a> generally only utilises the GTR model, although you can use JC and K80 models for DNA partitions. The below also include the settings if the model is available in these programs.</p>
+<p>Some common programs to carry out phylogenetic analysis include:</p>
+<ul>
+<li><a href="http://nbisweden.github.io/MrBayes/">MrBayes</a></li>
+<li><a href="https://paup.phylosolutions.com/">PAUP*</a></li>
+<li><a href="http://www.beast2.org">BEAST v2</a></li>
+<li><a href="http://www.atgc-montpellier.fr/phyml/">PhyML v3</a></li>
+<li><a href="http://evomics.org/resources/software/molecular-evolution-software/paml/">PAML</a></li>
+<li><a href="https://sco.h-its.org/exelixis/software.html">RAxML</a> generally only utilises the GTR model, although you can use JC and K80 models for DNA partitions.</li>
+</ul>
+<p>The below also include the settings if the model is available in these programs.</p>
 <p><a href="http://phylobotanist.blogspot.com/2016/06/implementation-of-substitution-models.html" class="uri">http://phylobotanist.blogspot.com/2016/06/implementation-of-substitution-models.html</a></p>
-<p><strong>Jukes-Cantor (JC/JC69)</strong> equal base frequencies, all substitutions equally likely (Jukes and Cantor 1969) - [x] MrBayes <code>nst=1</code> - [x] PAUP <code>aaaaaa</code> - [x] PAML <code>aaaaaa</code> - [x] BEAST - [x] PhyML</p>
-<p><strong>Felsenstein 1981 (F81)</strong> variable base frequencies, all substitutions equally likely (Felsenstein 1981) - [x] MrBayes <code>nst=1</code> - [x] PAUP <code>aaaaaa</code> - [x] PAML <code>aaaaaa</code> - [x] BEAST (check) - [x] PhyML</p>
-<p><strong>Kimura 2-parameter (K80/K2)</strong> equal base frequencies, one transition rate and one transversion rate (Kimura 1980) - [x] MrBayes <code>nst=2</code> - [x] PAUP <code>abaaba</code> - [x] PAML <code>abbbba</code> - [x] BEAST - [x] PhyML</p>
-<p><strong>Hasegawa-Kishino-Yano (HKY)</strong> variable base frequencies, one transition rate and one transversion rate (Hasegawa et. al. 1985). Note this model is very similar to K80 however allows for variable base frequencies. It is also commonly the default model in many programs. - [x] MrBayes <code>nst=2</code> - [x] PAUP <code>abaaba</code> - [x] PAML <code>abbbba</code> - [x] BEAST - [x] PhyML</p>
-<p><strong>Tamura-Nei (TrN/TN93)</strong> variable base frequencies, equal transversion rates, variable transition rates (Tamura Nei 1993) - [ ] MrBayes - [x] PAUP <code>abaaea</code> - [x] PAML <code>abbbbf</code> - [x] BEAST - [x] PhyML</p>
-<p><strong>Kimura 3-parameter (K3P)</strong> variable base frequencies, equal transition rates, two transversion rates (Kimura 1981) - [ ] MrBayes - [x] PAUP (<code>abccba</code>) - [x] PAML (<code>abccba</code>) - [ ] BEAST - [ ] PhyML</p>
-<p><strong>transition model (TIM)</strong> variable base frequencies, variable transition rates, two transversion rates - [ ] MrBayes - [x] PAUP <code>abccea</code> - [x] PAML <code>abccbe</code> - [x] BEAST - [ ] RAxML (check) - [ ] PhyML</p>
-<p><strong>transversion model (TVM)</strong> variable base frequencies, variable transversion rates, transition rates equal - [ ] MrBayes - [x] PAUP (<code>abcdbe</code>) - [x] PAML (<code>abcdea</code>) - [x] BEAST - [ ] PhyML</p>
-<p><strong>symmetrical model (SYM)</strong> equal base frequencies, symmetrical substitution matrix (A to T = T to A) (Zharkikh 1994) - [x] MrBayes <code>nst=6</code> - [x] PAUP <code>abcdef</code> - [x] PAML <code>abcdef</code> - [x] BEAST - [ ] PhyML</p>
-<p><strong>general time reversible (GTR)</strong> variable base frequencies, symmetrical substitution matrix (e.g., Lanave et al. 1984, Tavare 1986, Rodriguez et. al. 1990) - [x] MrBayes <code>nst=6</code> - [x] PAUP <code>abcdef</code> - [x] PAML <code>abcdef</code> - [x] BEAST - [x] PhyML</p>
+<p><strong>Jukes-Cantor (JC/JC69)</strong> equal base frequencies, all substitutions equally likely (Jukes and Cantor 1969)</p>
+<ul>
+<li>[x] MrBayes <code>nst=1</code></li>
+<li>[x] PAUP <code>aaaaaa</code></li>
+<li>[x] PAML <code>aaaaaa</code></li>
+<li>[x] BEAST</li>
+<li>[x] PhyML</li>
+</ul>
+<p><strong>Felsenstein 1981 (F81)</strong> variable base frequencies, all substitutions equally likely (Felsenstein 1981)</p>
+<ul>
+<li>[x] MrBayes <code>nst=1</code></li>
+<li>[x] PAUP <code>aaaaaa</code></li>
+<li>[x] PAML <code>aaaaaa</code></li>
+<li>[x] BEAST (check)</li>
+<li>[x] PhyML</li>
+</ul>
+<p><strong>Kimura 2-parameter (K80/K2)</strong> equal base frequencies, one transition rate and one transversion rate (Kimura 1980)</p>
+<ul>
+<li>[x] MrBayes <code>nst=2</code></li>
+<li>[x] PAUP <code>abaaba</code></li>
+<li>[x] PAML <code>abbbba</code></li>
+<li>[x] BEAST</li>
+<li>[x] PhyML</li>
+</ul>
+<p><strong>Hasegawa-Kishino-Yano (HKY)</strong> variable base frequencies, one transition rate and one transversion rate (Hasegawa et. al. 1985). Note this model is very similar to K80 however allows for variable base frequencies. It is also commonly the default model in many programs.</p>
+<ul>
+<li>[x] MrBayes <code>nst=2</code></li>
+<li>[x] PAUP <code>abaaba</code></li>
+<li>[x] PAML <code>abbbba</code></li>
+<li>[x] BEAST</li>
+<li>[x] PhyML</li>
+</ul>
+<p><strong>Tamura-Nei (TrN/TN93)</strong> variable base frequencies, equal transversion rates, variable transition rates (Tamura Nei 1993)</p>
+<ul>
+<li>[ ] MrBayes</li>
+<li>[x] PAUP <code>abaaea</code></li>
+<li>[x] PAML <code>abbbbf</code></li>
+<li>[x] BEAST</li>
+<li>[x] PhyML</li>
+</ul>
+<p><strong>Kimura 3-parameter (K3P)</strong> variable base frequencies, equal transition rates, two transversion rates (Kimura 1981)</p>
+<ul>
+<li>[ ] MrBayes</li>
+<li>[x] PAUP (<code>abccba</code>)</li>
+<li>[x] PAML (<code>abccba</code>)</li>
+<li>[ ] BEAST</li>
+<li>[ ] PhyML</li>
+</ul>
+<p><strong>transition model (TIM)</strong> variable base frequencies, variable transition rates, two transversion rates</p>
+<ul>
+<li>[ ] MrBayes</li>
+<li>[x] PAUP <code>abccea</code></li>
+<li>[x] PAML <code>abccbe</code></li>
+<li>[x] BEAST</li>
+<li>[ ] RAxML (check)</li>
+<li>[ ] PhyML</li>
+</ul>
+<p><strong>transversion model (TVM)</strong> variable base frequencies, variable transversion rates, transition rates equal</p>
+<ul>
+<li>[ ] MrBayes</li>
+<li>[x] PAUP (<code>abcdbe</code>)</li>
+<li>[x] PAML (<code>abcdea</code>)</li>
+<li>[x] BEAST</li>
+<li>[ ] PhyML</li>
+</ul>
+<p><strong>symmetrical model (SYM)</strong> equal base frequencies, symmetrical substitution matrix (A to T = T to A) (Zharkikh 1994)</p>
+<ul>
+<li>[x] MrBayes <code>nst=6</code></li>
+<li>[x] PAUP <code>abcdef</code></li>
+<li>[x] PAML <code>abcdef</code></li>
+<li>[x] BEAST</li>
+<li>[ ] PhyML</li>
+</ul>
+<p><strong>general time reversible (GTR)</strong> variable base frequencies, symmetrical substitution matrix (e.g., Lanave et al. 1984, Tavare 1986, Rodriguez et. al. 1990)</p>
+<ul>
+<li>[x] MrBayes <code>nst=6</code></li>
+<li>[x] PAUP <code>abcdef</code></li>
+<li>[x] PAML <code>abcdef</code></li>
+<li>[x] BEAST</li>
+<li>[x] PhyML</li>
+</ul>
 <div id="rate-variation" class="section level3">
 <h3>Rate variation</h3>
 <p>In addition to models describing the rates of change from one nucleotide to another, there are models to describe rate variation among sites in a sequence. The following are the two most commonly used models and are generally available across all platforms and programs.</p>

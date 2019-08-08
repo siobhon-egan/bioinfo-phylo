@@ -71,9 +71,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -192,8 +190,6 @@ $(document).ready(function () {
 });
 </script>
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
 
 <style type="text/css">
@@ -267,6 +263,15 @@ $(document).ready(function () {
 
 
 
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
@@ -283,12 +288,22 @@ $(document).ready(function () {
         <li>
   <a href="index.html">Home</a>
 </li>
-<li>
-  <a href="sequence-files.html">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fa fa-file-alt"></span>
      
     Sequence files
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="sequence-files.html">Command line</a>
+    </li>
+    <li>
+      <a href="visualise.html">Visualising and editing</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -341,6 +356,8 @@ $(document).ready(function () {
 </div>
 
 
+<p><a href="https://shields.io/"><img src="https://img.shields.io/badge/Siobhon%20Egan-August%202019-%3CCOLOR%3E.svg" alt="Generic badge" /></a></p>
+<p>MUSCLE is one of the most common tools to align sequences. In most cases, only a few command line options are needed.</p>
 <p>Free download available <a href="https://www.drive5.com/muscle/manual/install.html">here</a></p>
 <p><a href="https://www.drive5.com/muscle/manual/">Muscle documentation</a></p>
 <div id="alignments" class="section level3">
@@ -349,6 +366,12 @@ $(document).ready(function () {
 <pre><code>  muscle -in seqs.fa -out seqs_muscle.afa</code></pre>
 <p>Write alignment to the console in CLUSTALW format (more readable than FASTA):</p>
 <pre><code>  muscle -in seqs.fa -clw</code></pre>
+<p>If you have an existing alignment, you can add a new sequence using the following:</p>
+<pre><code>   muscle -profile -in1 existing_msa.afa -in2 new_seq.fa -out combined.afa</code></pre>
+<p>If you have more than one new sequence you need to align them first, and then can merge the two alignments:</p>
+<pre><code>  muscle -in new_seqs.fa -out new_seqs.afa
+
+  muscle -profile -in1 existing_aln.afa -in2 new_seqs.afa -out combined.afas</code></pre>
 </div>
 <div id="trees" class="section level3">
 <h3>Trees</h3>

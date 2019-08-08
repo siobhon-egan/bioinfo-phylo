@@ -2,6 +2,10 @@
 title: "Muscle"
 ---
 
+[![Generic badge](https://img.shields.io/badge/Siobhon Egan-August 2019-<COLOR>.svg)](https://shields.io/)
+
+MUSCLE is one of the most common tools to align sequences. In most cases, only a few command line options are needed.
+
 Free download available [here](https://www.drive5.com/muscle/manual/install.html)
 
 [Muscle documentation](https://www.drive5.com/muscle/manual/)
@@ -16,6 +20,19 @@ Write alignment to the console in CLUSTALW format (more readable than FASTA):
 ```
   muscle -in seqs.fa -clw
 ```
+
+If you have an existing alignment, you can add a new sequence using the following:
+```
+   muscle -profile -in1 existing_msa.afa -in2 new_seq.fa -out combined.afa
+```
+
+If you have more than one new sequence you need to align them first, and then can merge the two alignments:
+```
+  muscle -in new_seqs.fa -out new_seqs.afa
+
+  muscle -profile -in1 existing_aln.afa -in2 new_seqs.afa -out combined.afas
+```
+
 ### Trees
 Commandline muscle is very helpful for making quick trees. Depending on the depth of phylogenetics needed, a simple NJ tree maybe all you need.
 

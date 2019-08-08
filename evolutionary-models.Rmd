@@ -2,16 +2,29 @@
 title: "Evolutionary models"
 ---
 
+[![Generic badge](https://img.shields.io/badge/Siobhon Egan-August 2019-<COLOR>.svg)](https://shields.io/)
+
 An excellent summary of the different models (listed below) is directly sourced from Evolution and Geonomics Workshop ([link here](http://evomics.org/resources/substitution-models/nucleotide-substitution-models/)).
+
 Highly recommend you check out the rest of the website for some great resources and detailed information & tutorials.
 
 The use of maximum likelihood (ML) algorithms in developing phylogenetic hypotheses requires a model of evolution. The frequently used General Time Reversible (GTR) family of nested models encompasses 64 models with different combinations of parameters for DNA site substitution. The models are listed here from the least complex to the most parameter rich.
 
-Some common programs to carry out phylogenetic analysis include [MrBayes], [PAUP*](https://paup.phylosolutions.com/), [BEAST v2](http://www.beast2.org), [PhyML v3](http://www.atgc-montpellier.fr/phyml/) and [PAML](http://evomics.org/resources/software/molecular-evolution-software/paml/). [RAxML](https://sco.h-its.org/exelixis/software.html) generally only utilises the GTR model, although you can use JC and K80 models for DNA partitions. The below also include the settings if the model is available in these programs.
+Some common programs to carry out phylogenetic analysis include: 
+
+* [MrBayes](http://nbisweden.github.io/MrBayes/)
+* [PAUP*](https://paup.phylosolutions.com/)
+* [BEAST v2](http://www.beast2.org)
+* [PhyML v3](http://www.atgc-montpellier.fr/phyml/) 
+* [PAML](http://evomics.org/resources/software/molecular-evolution-software/paml/)
+* [RAxML](https://sco.h-its.org/exelixis/software.html) generally only utilises the GTR model, although you can use JC and K80 models for DNA partitions. 
+
+The below also include the settings if the model is available in these programs.
 
 http://phylobotanist.blogspot.com/2016/06/implementation-of-substitution-models.html
 
 **Jukes-Cantor (JC/JC69)** equal base frequencies, all substitutions equally likely (Jukes and Cantor 1969)
+
 - [x] MrBayes `nst=1`
 - [x] PAUP `aaaaaa`
 - [x] PAML `aaaaaa`
@@ -20,6 +33,7 @@ http://phylobotanist.blogspot.com/2016/06/implementation-of-substitution-models.
 
 
 **Felsenstein 1981 (F81)** variable base frequencies, all substitutions equally likely (Felsenstein 1981)
+  
   - [x] MrBayes `nst=1`
   - [x] PAUP `aaaaaa`
   - [x] PAML `aaaaaa`
@@ -27,6 +41,7 @@ http://phylobotanist.blogspot.com/2016/06/implementation-of-substitution-models.
   - [x] PhyML
 
 **Kimura 2-parameter (K80/K2)** equal base frequencies, one transition rate and one transversion rate (Kimura 1980)
+
 - [x] MrBayes `nst=2`
 - [x] PAUP `abaaba`
 - [x] PAML `abbbba`
@@ -34,6 +49,7 @@ http://phylobotanist.blogspot.com/2016/06/implementation-of-substitution-models.
 - [x] PhyML
 
 **Hasegawa-Kishino-Yano (HKY)** variable base frequencies, one transition rate and one transversion rate (Hasegawa et. al. 1985). Note this model is very similar to K80 however allows for variable base frequencies. It is also commonly the default model in many programs.
+
 - [x] MrBayes `nst=2`
 - [x] PAUP `abaaba`
 - [x] PAML `abbbba`
@@ -41,6 +57,7 @@ http://phylobotanist.blogspot.com/2016/06/implementation-of-substitution-models.
 - [x] PhyML
 
 **Tamura-Nei (TrN/TN93)** variable base frequencies, equal transversion rates, variable transition rates (Tamura Nei 1993)
+
 - [ ] MrBayes
 - [x] PAUP `abaaea`
 - [x] PAML `abbbbf`
@@ -48,6 +65,7 @@ http://phylobotanist.blogspot.com/2016/06/implementation-of-substitution-models.
 - [x] PhyML
 
 **Kimura 3-parameter (K3P)** variable base frequencies, equal transition rates, two transversion rates (Kimura 1981)
+
 - [ ] MrBayes
 - [x] PAUP (`abccba`)
 - [x] PAML (`abccba`)
@@ -55,6 +73,7 @@ http://phylobotanist.blogspot.com/2016/06/implementation-of-substitution-models.
 - [ ] PhyML
 
 **transition model (TIM)** variable base frequencies, variable transition rates, two transversion rates
+
 - [ ] MrBayes
 - [x] PAUP `abccea`
 - [x] PAML `abccbe`
@@ -63,6 +82,7 @@ http://phylobotanist.blogspot.com/2016/06/implementation-of-substitution-models.
 - [ ] PhyML
 
 **transversion model (TVM)** variable base frequencies, variable transversion rates, transition rates equal
+
 - [ ] MrBayes
 - [x] PAUP (`abcdbe`)
 - [x] PAML (`abcdea`)
@@ -70,6 +90,7 @@ http://phylobotanist.blogspot.com/2016/06/implementation-of-substitution-models.
 - [ ] PhyML
 
 **symmetrical model (SYM)** equal base frequencies, symmetrical substitution matrix (A to T = T to A) (Zharkikh 1994)
+
 - [x] MrBayes `nst=6`
 - [x] PAUP `abcdef`
 - [x] PAML `abcdef`
@@ -77,6 +98,7 @@ http://phylobotanist.blogspot.com/2016/06/implementation-of-substitution-models.
 - [ ] PhyML
 
 **general time reversible (GTR)** variable base frequencies, symmetrical substitution matrix (e.g., Lanave et al. 1984, Tavare 1986, Rodriguez et. al. 1990)
+
 - [x] MrBayes `nst=6`
 - [x] PAUP `abcdef`
 - [x] PAML `abcdef`

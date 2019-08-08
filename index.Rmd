@@ -2,10 +2,26 @@
 title: "Home"
 ---
 
+My guide to some useful sequencing and phylogenetics tools.
+
+I also maintain the Cryptick lab NGS analysis webpage [here](https://cryptick-lab.github.io/NGS-Analysis/_site/index.html) 
+
 **Contact details**
 
 Email: siobhon.egan@murdoch.edu.au
 
 Email: siobhonegan@hotmail.com
 
-Webpage: https://siobhonegan.wordpress.com/
+***
+
+**Some links**
+
+[Webpage](https://siobhonegan.wordpress.com/)
+
+[Researchgate](https://www.researchgate.net/profile/Siobhon_Egan)
+
+[Github](https://github.com/siobhon-egan)
+
+[Orcid](http://orcid.org/0000-0003-4395-4069)
+
+[Scopus](https://www.scopus.com/authid/detail.uri?authorId=57202210372&amp;eid=2-s2.0-85047463715)

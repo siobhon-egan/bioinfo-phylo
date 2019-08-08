@@ -6,8 +6,12 @@ navbar:
   - text: "Home"
     href: index.html
   - text: "Sequence files"
-    href: sequence-files.html
     icon: fa-file-alt
+    menu:
+      - text: Command line
+        href: sequence-files.html
+      - text: Visualising and editing
+        href: visualise.html
   - text: "Alignment"
     icon: fa-binoculars
     menu: 

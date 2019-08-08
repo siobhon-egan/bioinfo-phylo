@@ -71,9 +71,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -192,8 +190,6 @@ $(document).ready(function () {
 });
 </script>
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
 
 <style type="text/css">
@@ -267,6 +263,15 @@ $(document).ready(function () {
 
 
 
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
@@ -283,12 +288,22 @@ $(document).ready(function () {
         <li>
   <a href="index.html">Home</a>
 </li>
-<li>
-  <a href="sequence-files.html">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fa fa-file-alt"></span>
      
     Sequence files
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="sequence-files.html">Command line</a>
+    </li>
+    <li>
+      <a href="visualise.html">Visualising and editing</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -341,10 +356,17 @@ $(document).ready(function () {
 </div>
 
 
+<p><a href="https://shields.io/"><img src="https://img.shields.io/badge/Siobhon%20Egan-August%202019-%3CCOLOR%3E.svg" alt="Generic badge" /></a></p>
 <div id="basic-information-and-links" class="section level2">
 <h2>Basic information and links</h2>
 <p>This section first starts off with some quick useful commands that will be helpful to assess and manipulate your fasta and fastq file. They can be done locally in your command line and don’t require any clumsy dependancies.</p>
-<p>Credit to some helpful inspiration * <a href="http://bioinformatics.cvr.ac.uk/blog/short-command-lines-for-manipulation-fastq-and-fasta-sequence-files/">Bioinformatics I/O by Joseph Hughes</a> * <a href="https://github.com/stephenturner/oneliners#basic-awk--sed">Bioinformatic one-liners by Stephen Turner</a> * <a href="http://userweb.eng.gla.ac.uk/umer.ijaz/bioinformatics/linux.html">Linux command line exercises for NGS data processing by Umer Zeeshan Ijaz</a> * <a href="https://www.biostars.org/p/17680/">Biostars thread</a></p>
+<p>Credit to some helpful inspiration</p>
+<ul>
+<li><a href="http://bioinformatics.cvr.ac.uk/blog/short-command-lines-for-manipulation-fastq-and-fasta-sequence-files/">Bioinformatics I/O by Joseph Hughes</a></li>
+<li><a href="https://github.com/stephenturner/oneliners#basic-awk--sed">Bioinformatic one-liners by Stephen Turner</a></li>
+<li><a href="http://userweb.eng.gla.ac.uk/umer.ijaz/bioinformatics/linux.html">Linux command line exercises for NGS data processing by Umer Zeeshan Ijaz</a></li>
+<li><a href="https://www.biostars.org/p/17680/">Biostars thread</a></li>
+</ul>
 <p>These examples simply use <code>sample.fa</code> or <code>sample.fq</code> or similar format to represent the file you want to investigate. Remember you will need to navigate to the the path of the file or ensure you are in the correct working directory.</p>
 <p><strong>Convert a fastq file to a fasta file</strong></p>
 <pre class="console"><code>sed &#39;/^@/!d;s//&gt;/;N&#39; sample.fq &gt; sample1.fa</code></pre>
@@ -391,14 +413,25 @@ done &lt; $1
 <hr />
 <hr />
 </div>
-<div id="seqkit---a-cross-platform-and-ultrafast-toolkit-for-fasta-and-fastq-file-manipulation" class="section level1">
-<h1>SeqKit - a cross platform and ultrafast toolkit for fasta and fastq file manipulation</h1>
+<div id="useful-programs" class="section level1">
+<h1>Useful programs</h1>
+<p>There are a lot of programs out that. Some use the command line interface, there is also plenty of GUI and web-based programs too. Below are just two on the most useful ones that I like (I tend to like the command line interface ones, as they can easily be upscaled and used on your VM/supercomputer if needed).</p>
+<div id="seqkit---a-cross-platform-and-ultrafast-toolkit-for-fasta-and-fastq-file-manipulation" class="section level2">
+<h2>SeqKit - a cross platform and ultrafast toolkit for fasta and fastq file manipulation</h2>
 <p>The above commands are good for some basic editing and information but if you want to do more with your fasta and fastq files your going to need some dedicated programs.</p>
 <p><code>seqkit</code> is a super useful program for any bioinformatician follow <a href="https://github.com/shenwei356/seqkit">this link</a> for offical downloads and documenation.</p>
 <p>We’ll run through the basic below but always refer to the link above for any issues and more details.</p>
-<div id="install-linux-like-systems" class="section level2">
-<h2>Install (Linux-like systems)</h2>
+<p><strong>Install (Linux-like systems)</strong></p>
 <p>Just <a href="https://github.com/shenwei356/seqkit/releases">download</a> compressed executable file of your operating system. Navigate to the file in your command line and decompress it with <code>tar -zxvf *.tar.gz</code> command. * If you have root privilege simply copy it to <code>/usr/local/bin:</code> <code>sudo cp seqkit /usr/local/bin/`` * Or copy to anywhere in the environment variable PATH:</code>mkdir -p $HOME/bin/; cp seqkit $HOME/bin/`</p>
+</div>
+<div id="bioawk" class="section level2">
+<h2>Bioawk</h2>
+<p>This is a super useful addition to the awk range of commands specific to bioinformatics - see github page <a href="https://github.com/lh3/bioawk">here</a></p>
+<p><strong>conda install</strong> Easy install using terminal, as long as you have conda installed <a href="https://anaconda.org/bioconda/bioawk" class="uri">https://anaconda.org/bioconda/bioawk</a></p>
+<pre class="console"><code>conda install -c bioconda bioawk
+conda install -c bioconda/label/cf201901 bioawk</code></pre>
+<p><strong>Useful tutorials</strong></p>
+<p>Detailed bioinformatics workbook from the <a href="https://gif.biotech.iastate.edu/">Genome Informatics Facility</a> - tutorial available <a href="https://isugenomics.github.io/bioinformatics-workbook/Appendix/bioawk-basics.html">here</a>, and github account <a href="https://github.com/ISUgenomics/bioinformatics-workbook">here</a>.</p>
 </div>
 </div>
 
