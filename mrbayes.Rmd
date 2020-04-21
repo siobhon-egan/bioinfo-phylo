@@ -267,7 +267,7 @@ mcmc ngen=1000000 samplefreq=500 printfreq=500 diagnfreq=5000
 
 ***
 
-# <a id="web-server">Web server</a>
+# Web server
 
 You can also use MrBayes via a web server, There is a variety to choose, check their limitations with regards to compute power to ensure it is going to work for you.
 
