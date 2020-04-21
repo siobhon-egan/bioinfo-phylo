@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -19,6 +20,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -85,7 +89,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -246,20 +249,71 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
 
 
 
@@ -269,6 +323,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -287,6 +351,26 @@ $(document).ready(function () {
       <ul class="nav navbar-nav">
         <li>
   <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-bookmark"></span>
+     
+    RMarkdown
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="rmd-intro.html">Introduction</a>
+    </li>
+    <li>
+      <a href="rmd-bookdown.html">Bookdown</a>
+    </li>
+    <li>
+      <a href="rmd-webpages.html">Websites</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -335,6 +419,9 @@ $(document).ready(function () {
       <a href="evolutionary-models.html">Evolutionary models</a>
     </li>
     <li>
+      <a href="iqtree.html">IQ-TREE</a>
+    </li>
+    <li>
       <a href="mrbayes.html">MrBayes</a>
     </li>
   </ul>
@@ -367,7 +454,10 @@ $(document).ready(function () {
 <li><a href="http://userweb.eng.gla.ac.uk/umer.ijaz/bioinformatics/linux.html">Linux command line exercises for NGS data processing by Umer Zeeshan Ijaz</a></li>
 <li><a href="https://www.biostars.org/p/17680/">Biostars thread</a></li>
 </ul>
-<p>These examples simply use <code>sample.fa</code> or <code>sample.fq</code> or similar format to represent the file you want to investigate. Remember you will need to navigate to the the path of the file or ensure you are in the correct working directory.</p>
+</div>
+<div id="some-simple-commands" class="section level2">
+<h2>Some simple commands</h2>
+<p>These examples simply use <code>sample.fa</code> or <code>sample.fq</code> or similar format to represent the file you want to investigate. Remember you will need to navigate to the the path of the file or ensure you are in the correct working directory. The following use some basic sed, awk and pearl commands - often these are already installed if working on a macOS terminal environment</p>
 <p><strong>Convert a fastq file to a fasta file</strong></p>
 <pre class="console"><code>sed &#39;/^@/!d;s//&gt;/;N&#39; sample.fq &gt; sample1.fa</code></pre>
 <p><strong>Count number of sequences</strong></p>
@@ -410,22 +500,39 @@ done &lt; $1
 <pre class="console"><code>perl -ne &#39;if(/^&gt;(\S+)/){$c=grep{/^$1$/}qw(seq1 seq2 seq3)}print if $c&#39; sample.fa &gt; new.fasta</code></pre>
 <p>Say you have a text file with a list of sequences you want to further investigate you can use this text file (called <code>seqs_of_interest.txt</code>) to call out the sequences in the <code>sample.fasta</code> file and put them in a few file <code>seqs_of_interest.fasta</code></p>
 <pre class="console"><code>perl -ne &#39;if(/^&gt;(\S+)/){$c=$i{$1}}$c?print:chomp;$i{$_}=1 if @ARGV&#39; seqs_of_interest.txt sample.fasta &gt; seqs_of_interest.fasta</code></pre>
+</div>
+<div id="seqmagick" class="section level2">
+<h2>Seqmagick</h2>
+<p><code>seqmagick</code> is a simple yet powerful utility that helps with basic manipulation and conversion/formatting of sequence files. Super easy to install and use with minimal requirements (likely already installed) - you just need Python &gt;=3.5 and biopython &gt;=1.70.</p>
+<p>Link to github <a href="https://github.com/fhcrc/seqmagick">here</a> and additional documentation <a href="https://seqmagick.readthedocs.io/en/latest/">here</a>.</p>
+<p><strong>Install</strong></p>
+<p>Open a new terminal window and type the following</p>
+<pre><code>pip install seqmagick</code></pre>
+<p>Convert a <code>.fasta</code> file to a <code>.nexus</code> format.</p>
+<pre><code>seqmagick convert --output-format nexus --alphabet dna input.fasta output.nex</code></pre>
+<p>Convert a <code>.fasta</code> file to a <code>.phylip</code> format.</p>
+<pre><code>seqmagick convert --output-format phylip --alphabet dna input.fasta output.phy</code></pre>
+<p>Reverse complement a sequence</p>
+<pre><code>seqmagick mogrify --reverse-complement sequence.fasta</code></pre>
+<p>Remove duplicate sequences</p>
+<pre><code>seqmagick mogrify --deduplicate-sequences sequence.fasta</code></pre>
 <hr />
 <hr />
 </div>
-<div id="useful-programs" class="section level1">
-<h1>Useful programs</h1>
+<div id="other-useful-programs" class="section level2">
+<h2>Other useful programs</h2>
 <p>There are a lot of programs out that. Some use the command line interface, there is also plenty of GUI and web-based programs too. Below are just two on the most useful ones that I like (I tend to like the command line interface ones, as they can easily be upscaled and used on your VM/supercomputer if needed).</p>
-<div id="seqkit---a-cross-platform-and-ultrafast-toolkit-for-fasta-and-fastq-file-manipulation" class="section level2">
-<h2>SeqKit - a cross platform and ultrafast toolkit for fasta and fastq file manipulation</h2>
+<div id="seqkit" class="section level3">
+<h3>SeqKit</h3>
+<p><em>A cross platform and ultrafast toolkit for fasta and fastq file manipulation</em></p>
 <p>The above commands are good for some basic editing and information but if you want to do more with your fasta and fastq files your going to need some dedicated programs.</p>
 <p><code>seqkit</code> is a super useful program for any bioinformatician follow <a href="https://github.com/shenwei356/seqkit">this link</a> for offical downloads and documenation.</p>
 <p>We’ll run through the basic below but always refer to the link above for any issues and more details.</p>
 <p><strong>Install (Linux-like systems)</strong></p>
 <p>Just <a href="https://github.com/shenwei356/seqkit/releases">download</a> compressed executable file of your operating system. Navigate to the file in your command line and decompress it with <code>tar -zxvf *.tar.gz</code> command. * If you have root privilege simply copy it to <code>/usr/local/bin:</code> <code>sudo cp seqkit /usr/local/bin/`` * Or copy to anywhere in the environment variable PATH:</code>mkdir -p $HOME/bin/; cp seqkit $HOME/bin/`</p>
 </div>
-<div id="bioawk" class="section level2">
-<h2>Bioawk</h2>
+<div id="bioawk" class="section level3">
+<h3>Bioawk</h3>
 <p>This is a super useful addition to the awk range of commands specific to bioinformatics - see github page <a href="https://github.com/lh3/bioawk">here</a></p>
 <p><strong>conda install</strong> Easy install using terminal, as long as you have conda installed <a href="https://anaconda.org/bioconda/bioawk" class="uri">https://anaconda.org/bioconda/bioawk</a></p>
 <pre class="console"><code>conda install -c bioconda bioawk
@@ -437,6 +544,8 @@ conda install -c bioconda/label/cf201901 bioawk</code></pre>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -451,6 +560,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

@@ -5,6 +5,15 @@ navbar:
   left:
   - text: "Home"
     href: index.html
+  - text: "RMarkdown"
+    icon: fa-bookmark
+    menu:
+      - text: Introduction
+        href: rmd-intro.html
+      - text: Bookdown
+        href: rmd-bookdown.html
+      - text: Websites
+        href: rmd-webpages.html
   - text: "Sequence files"
     icon: fa-file-alt
     menu:
@@ -24,6 +33,8 @@ navbar:
         href: phylo-intro.html
       - text: "Evolutionary models"
         href: evolutionary-models.html
+      - text: "IQ-TREE"
+        href: iqtree.html
       - text: "MrBayes"
         href: mrbayes.html
 output:

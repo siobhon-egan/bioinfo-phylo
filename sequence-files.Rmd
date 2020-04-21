@@ -1,5 +1,10 @@
 ---
 title: "Sequence file formats and basics"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 4
 ---
 
 [![Generic badge](https://img.shields.io/badge/Siobhon Egan-August 2019-<COLOR>.svg)](https://shields.io/)
@@ -15,8 +20,10 @@ Credit to some helpful inspiration
 * [Linux command line exercises for NGS data processing by Umer Zeeshan Ijaz](http://userweb.eng.gla.ac.uk/umer.ijaz/bioinformatics/linux.html)
 * [Biostars thread](https://www.biostars.org/p/17680/)
 
+## Some simple commands
 
 These examples simply use `sample.fa` or `sample.fq` or similar format to represent the file you want to investigate. Remember you will need to navigate to the the path of the file or ensure you are in the correct working directory.
+The following use some basic sed, awk and pearl commands - often these are already installed if working on a macOS terminal environment
 
 **Convert a fastq file to a fasta file**
 
@@ -104,14 +111,53 @@ Say you have a text file with a list of sequences you want to further investigat
 ```console
 perl -ne 'if(/^>(\S+)/){$c=$i{$1}}$c?print:chomp;$i{$_}=1 if @ARGV' seqs_of_interest.txt sample.fasta > seqs_of_interest.fasta
 ```
+
+## Seqmagick
+
+`seqmagick` is a simple yet powerful utility that helps with basic manipulation and conversion/formatting of sequence files.
+Super easy to install and use with minimal requirements (likely already installed) - you just need Python >=3.5 and biopython >=1.70.
+
+Link to github [here](https://github.com/fhcrc/seqmagick) and additional documentation [here](https://seqmagick.readthedocs.io/en/latest/).
+
+
+**Install**
+
+Open a new terminal window and type the following
+```
+pip install seqmagick
+```
+
+Convert a `.fasta` file to a `.nexus` format.
+
+```
+seqmagick convert --output-format nexus --alphabet dna input.fasta output.nex
+```
+
+Convert a `.fasta` file to a `.phylip` format.
+
+```
+seqmagick convert --output-format phylip --alphabet dna input.fasta output.phy
+```
+Reverse complement a sequence
+```
+seqmagick mogrify --reverse-complement sequence.fasta
+```
+
+Remove duplicate sequences
+```
+seqmagick mogrify --deduplicate-sequences sequence.fasta
+```
+
+
 ***
 ***
-# Useful programs
+## Other useful programs
 
 There are a lot of programs out that. Some use the command line interface, there is also plenty of GUI and web-based programs too.
 Below are just two on the most useful ones that I like (I tend to like the command line interface ones, as they can easily be upscaled and used on your VM/supercomputer if needed).
 
-## SeqKit - a cross platform and ultrafast toolkit for fasta and fastq file manipulation
+### SeqKit 
+*A cross platform and ultrafast toolkit for fasta and fastq file manipulation*
 
 The above commands are good for some basic editing and information but if you want to do more with your fasta and fastq files your going to need some dedicated programs.
 
@@ -127,7 +173,7 @@ Just [download](https://github.com/shenwei356/seqkit/releases) compressed execut
 * Or copy to anywhere in the environment variable PATH:
     `mkdir -p $HOME/bin/; cp seqkit $HOME/bin/`
     
-## Bioawk
+### Bioawk
 
 This is a super useful addition to the awk range of commands specific to bioinformatics - see github page [here](https://github.com/lh3/bioawk)
 

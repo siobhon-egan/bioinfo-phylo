@@ -12,7 +12,7 @@
 
 
 
-<title>Muscle</title>
+<title>Bookdown</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,6 +20,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -250,6 +253,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -257,6 +323,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -362,39 +438,17 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Muscle</h1>
+<h1 class="title toc-ignore">Bookdown</h1>
 
 </div>
 
 
-<p><a href="https://shields.io/"><img src="https://img.shields.io/badge/Siobhon%20Egan-August%202019-%3CCOLOR%3E.svg" alt="Generic badge" /></a></p>
-<p>MUSCLE is one of the most common tools to align sequences. In most cases, only a few command line options are needed.</p>
-<p>Free download available <a href="https://www.drive5.com/muscle/manual/install.html">here</a></p>
-<p><a href="https://www.drive5.com/muscle/manual/">Muscle documentation</a></p>
-<div id="alignments" class="section level3">
-<h3>Alignments</h3>
-<p>Make an alignment and save to a file in FASTA format:</p>
-<pre><code>  muscle -in seqs.fa -out seqs_muscle.afa</code></pre>
-<p>Write alignment to the console in CLUSTALW format (more readable than FASTA):</p>
-<pre><code>  muscle -in seqs.fa -clw</code></pre>
-<p>If you have an existing alignment, you can add a new sequence using the following:</p>
-<pre><code>   muscle -profile -in1 existing_msa.afa -in2 new_seq.fa -out combined.afa</code></pre>
-<p>If you have more than one new sequence you need to align them first, and then can merge the two alignments:</p>
-<pre><code>  muscle -in new_seqs.fa -out new_seqs.afa
+<p>Bookdown <a href="https://bookdown.org/yihui/rmarkdown/document-templates.html">here</a> Books <a href="https://bookdown.org/yihui/rmarkdown/books.html">here</a></p>
 
-  muscle -profile -in1 existing_aln.afa -in2 new_seqs.afa -out combined.afas</code></pre>
+
+
 </div>
-<div id="trees" class="section level3">
-<h3>Trees</h3>
-<p>Commandline muscle is very helpful for making quick trees. Depending on the depth of phylogenetics needed, a simple NJ tree maybe all you need.</p>
-<p>Make a UPGMA tree from a multiple alignment:</p>
-<pre><code> muscle -maketree -in seqs_muscle.afa -out seqs_muscle_tree.phy</code></pre>
-<p>Make a Neighbor-Joining tree from a multiple alignment:</p>
-<pre><code>  muscle -maketree -in seqs_muscle.afa -out seqs_muscle_tree.phy -cluster neighborjoining</code></pre>
 </div>
-
-
-
 
 </div>
 
@@ -427,6 +481,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

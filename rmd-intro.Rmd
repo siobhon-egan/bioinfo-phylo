@@ -1,0 +1,97 @@
+---
+title: "Introduction"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+Lets start with some of my favourite essential resources
+
+* [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) by Yihui Xie, J. J. Allaire, Garrett Grolemund.
+* [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/) by Yihui Xie and Christophe Dervieux
+* [Pimp by RMD: a few tips for R Markdown](https://holtzy.github.io/Pimp-my-rmd/) by Yan Holtz.
+* [Reference Guide](https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf?_ga=2.203245073.1802232962.1587452707-209816525.1575608236)
+* [R Markdown Cheat Sheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf)
+
+
+If are a R Markdown newbie I suggest starting at the offical lessons on [R Markdown by R Studio](https://rmarkdown.rstudio.com/).
+
+**Reference guides**
+
+
+**INSTALL**
+Just like the rest of R packages, get started with R Markdown by executing the following from the console
+```
+install.packages("rmarkdown")
+```
+
+
+# Useful bits of code
+
+## Text colour
+
+Below are some useful bits of code that you can use to change font. For basic Rmd syntax see offical [Reference Guide](https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf?_ga=2.203245073.1802232962.1587452707-209816525.1575608236).
+
+It is also handy to have colour guides/convertors at the ready, for example
+
+* [CSS Colours](https://www.w3schools.com/cssref/css_colors.asp)
+* [HTML colour names](https://www.w3schools.com/colors/colors_names.asp)
+* [HTML colour codes](https://htmlcolorcodes.com/)
+
+### For `Rmd` -> `PDF` docs
+
+**Font colour**
+
+The quickest option is this `\textcolor{olive}{This text is olive}`. It will look like this "<span style="color: olive;">This text is olive</span>" in your PDF document.
+
+
+If you want a more customisable option you can use the following to first choose your font colour, and then apply it.
+Define text colour (this won't appear in your Knitted PDF)
+```
+\definecolor{fancyTextColor}{HTML}{FF0000}
+```
+
+Then use the following syntax to change font colour `\colorbox{hightlightColor}{This text is red}` It will look like this "<span style="color: red;">This text is red</span>" in your PDF document.
+
+### For `Rmd` -> `html` docs
+
+**For coloured text blocks.**
+```
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
+
+- This is my first conclusion
+- This is my second conclusion
+
+</div>
+```
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
+
+- This is my first conclusion
+- This is my second conclusion
+
+</div>
+
+[Custom Fonts in R Markdown PDF](https://community.rstudio.com/t/custom-fonts-in-rmarkdown-pdf/2098)
+[Font Formatting - coloring and emphasis](https://edpflager.com/?p=4002)
+
+## Hyperlinks
+
+**Underlink links in `PDF` documents**
+By default hyperlinks on PDF knitted documents are not underlined.
+Use the following to underlink the link.
+```
+[\underline{R Markdown: The Definitive Guide}](https://bookdown.org/yihui/rmarkdown/)
+```
+[R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
+
+## Images and Figures
+
+[Tips and tricks for working with images and figures in R Markdown documents](http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/)
+

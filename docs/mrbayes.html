@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -19,6 +20,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -85,7 +89,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -246,20 +249,71 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
 
 
 
@@ -269,6 +323,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -287,6 +351,26 @@ $(document).ready(function () {
       <ul class="nav navbar-nav">
         <li>
   <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-bookmark"></span>
+     
+    RMarkdown
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="rmd-intro.html">Introduction</a>
+    </li>
+    <li>
+      <a href="rmd-bookdown.html">Bookdown</a>
+    </li>
+    <li>
+      <a href="rmd-webpages.html">Websites</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -335,6 +419,9 @@ $(document).ready(function () {
       <a href="evolutionary-models.html">Evolutionary models</a>
     </li>
     <li>
+      <a href="iqtree.html">IQ-TREE</a>
+    </li>
+    <li>
       <a href="mrbayes.html">MrBayes</a>
     </li>
   </ul>
@@ -356,32 +443,51 @@ $(document).ready(function () {
 </div>
 
 
-<p>Notes for command line MrBayes</p>
-<p><strong>Useful resources</strong> - <a href="http://mrbayes.sourceforge.net/mb3.2_manual.pdf">Manual v3.2</a> - <a href="http://mrbayes.sourceforge.net/wiki/index.php?title=Tutorial&amp;oldid=5239">Tutorial</a> - <a href="http://people.binf.ku.dk/rasmus/courses/Spring06/Chapter7-MrBayes.pdf">John P. Huelsenbeck and Fredrik Ronquist, Bayesian Analysis of Molecular Evolution Using MrBayes</a></p>
-<div id="step-1---convert-your-sequence-file-to-nexus-format" class="section level3">
-<h3>Step 1 - Convert your sequence file to nexus format</h3>
+<p>MrBayes is a program for Bayesian inference and model choice across a wide range of phylogenetic and evolutionary models. MrBayes uses Markov chain Monte Carlo (MCMC) methods to estimate the posterior distribution of model parameters. Here I have described two options of using MrBayes (i) command line and (ii) webserver.</p>
+<p><strong>Useful resources</strong></p>
+<ul>
+<li><a href="http://nbisweden.github.io/MrBayes/">Homepage</a></li>
+<li><a href="http://mrbayes.sourceforge.net/mb3.2_manual.pdf">Manual v3.2</a></li>
+<li><a href="http://mrbayes.sourceforge.net/wiki/index.php?title=Tutorial&amp;oldid=5239">Tutorial</a></li>
+<li><a href="http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=3C92ACF672625E025B8EAE2291777B2F?doi=10.1.1.134.3825&amp;rep=rep1&amp;type=pdf">John P. Huelsenbeck and Fredrik Ronquist, Bayesian Analysis of Molecular Evolution Using MrBayes</a></li>
+</ul>
+<div id="command-line" class="section level1">
+<h1>Command line</h1>
+<p>Instructions for commandline workflow on MacOS for MrBayes v3.2</p>
+<p><strong>Install</strong></p>
+<p>Instructions on how to installl MrBayes are available <a href="https://nbisweden.github.io/MrBayes/download.html">here</a> and <a href="http://mrbayes.sourceforge.net/wiki/index.php/Introduction_3.2">here</a>.</p>
+<p>Download source code for compliation on Unix machines <a href="https://github.com/NBISweden/MrBayes/archive/v3.2.7a.tar.gz">3.2.7a</a>.</p>
+<p>Open a terminal window and execute the following, remember you may need to navigate to change directory or move download file to currently working directory.</p>
+<pre class="bash"><code>~ $ tar zxf mrbayes-3.2.tar.gz
+~ $ cd mrbayes-3.2
+~/mrbayes-3.2 $ ./configure
+~/mrbayes-3.2 $ make
+~/mrbayes-3.2 $ export CC=MyCompiler
+~/mrbayes-3.2 % ./configure</code></pre>
+<p>You should now be ready to start!</p>
+<div id="nexus-file-format" class="section level2">
+<h2>1. Nexus file format</h2>
 <p>You will need to convert your aligned sequence file to a nexus file first. Although this can commonly be done in most sequence analysis programs (e.g. geneious) using the <code>export as...</code> make sure you check the file formatting by opening the <code>nexus</code> file in a text editor program (e.g. atom).</p>
 <p>I find a more reliable way is to use a web program to convert the fasta file to a nexus file - such as one available <a href="http://sequenceconversion.bugaco.com/converter/biology/sequences/fasta_to_nexus.php">here</a>. Make sure the sequence names do not contain any of the following; hyphens <code>-</code>, commas<code>,</code>, semicolcons <code>:</code>, exclamation marks <code>!</code>. Underscores <code>_</code> and periods <code>.</code> are okay.</p>
-<blockquote>
-<p>For details on how to download MrBayes see the <a href="http://mrbayes.sourceforge.net/mb3.2_manual.pdf">manual section 1.2</a></p>
-</blockquote>
 </div>
-<div id="step-2---activate-mrbayes" class="section level3">
-<h3>Step 2 - Activate MrBayes</h3>
-<p>Type <code>mb</code> to activate MrBayes</p>
+<div id="activate-mrbayes" class="section level2">
+<h2>2. Activate MrBayes</h2>
+<p>Type <code>mb</code> to activate MrBayes.</p>
+<p>Set the data file for analysis</p>
+<p><em>Example</em> - alignment file called <code>AlignedSeqs.nexus</code></p>
 <pre><code>execute AlignedSeqs.nexus</code></pre>
 <p>This will check will ensure your data is formatting and read correctly by the program. Any issues at this point are most likely due to the syntax and formatting of your nexus file. Note: you may need to also include the path to the file if you are not already in the correct directory. Generic Shell commands (e.g. <code>ls</code> <code>cd</code>) do not work in the MrBayes environment.</p>
 </div>
-<div id="step-3---set-the-evolutionary-model" class="section level3">
-<h3>Step 3 - Set the evolutionary model</h3>
+<div id="specify-the-evolutionary-model" class="section level2">
+<h2>3. Specify the evolutionary model</h2>
 <p>This is where you start to set the parameters for your analysis. You will likely need to do some background work to figure out which is the correct model for your data - <a href="/Users/siobhonegan/Documents/Uni/PhD/code/notes-cheatsheets/Evolutionary_model_selection.md">see here</a></p>
 <p>If your data are not DNA or RNA, if you want to invoke a different model, or if you want to use non-default priors, refer to the MrBayes manual and Appendix for more help.</p>
 <div class="figure">
-<img src="MrBayesv3_DNA_EvolutionaryModel.png" alt="DNA_EvolModel" />
+<img src="image-mrbayes1.png" alt="DNA_EvolModel" />
 <p class="caption">DNA_EvolModel</p>
 </div>
 <p><em>DNA models support by MrBayes v3 (MrBayes Manual p164)</em></p>
-<p><strong>Settings</strong></p>
+<p><strong>Specifying a model</strong> Type <code>help lset</code> for more information</p>
 <table>
 <thead>
 <tr class="header">
@@ -448,23 +554,408 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-<p>To set a GTR + I + G model execute the following:</p>
+<p><em>Example</em> - Set to a GTR + I + G To set a General Time Reversible (GTR) model with Gamma (+G) invariable (+I) distribution, execute the following:</p>
 <pre><code>lset nst=6 rates=invgamma</code></pre>
 </div>
-<div id="step-4-start-sampling" class="section level3">
-<h3>Step 4 start sampling</h3>
+<div id="setting-the-priors" class="section level2">
+<h2>4. Setting the Priors</h2>
+<p><strong>Priors</strong> Type <code>help prset</code> for more information</p>
+<table>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th align="center">Options</th>
+<th align="right">Current setting</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tratiopr</td>
+<td align="center">Beta/Fixed</td>
+<td align="right">Beta(1.0,1.0)</td>
+</tr>
+<tr class="even">
+<td>Revmatpr</td>
+<td align="center">Dirichlet/Fixed</td>
+<td align="right">Dirichlet(1.0,1.0,1.0,1.0,1.0,1.0)</td>
+</tr>
+<tr class="odd">
+<td>Aamodelpr</td>
+<td align="center">Fixed/Mixed</td>
+<td align="right">Fixed(Poisson)</td>
+</tr>
+<tr class="even">
+<td>Aarevmatpr</td>
+<td align="center">Dirichlet/Fixed</td>
+<td align="right">Dirichlet(1.0,1.0,…)</td>
+</tr>
+<tr class="odd">
+<td>Omegapr</td>
+<td align="center">Dirichlet/Fixed</td>
+<td align="right">Dirichlet(1.0,1.0)</td>
+</tr>
+<tr class="even">
+<td>Ny98omega1pr</td>
+<td align="center">Beta/Fixed</td>
+<td align="right">Beta(1.0,1.0)</td>
+</tr>
+<tr class="odd">
+<td>Ny98omega3pr</td>
+<td align="center">Uniform/Exponential/Fixed</td>
+<td align="right">Exponential(1.0)</td>
+</tr>
+<tr class="even">
+<td>M3omegapr</td>
+<td align="center">Exponential/Fixed</td>
+<td align="right">Exponential</td>
+</tr>
+<tr class="odd">
+<td>Codoncatfreqs</td>
+<td align="center">Dirichlet/Fixed</td>
+<td align="right">Dirichlet(1.0,1.0,1.0)</td>
+</tr>
+<tr class="even">
+<td>Statefreqpr</td>
+<td align="center">Dirichlet/Fixed</td>
+<td align="right">Dirichlet(1.0,1.0,1.0,1.0)</td>
+</tr>
+<tr class="odd">
+<td>Shapepr</td>
+<td align="center">Uniform/Exponential/Fixed</td>
+<td align="right">Uniform(0.0,200.0)</td>
+</tr>
+<tr class="even">
+<td>Ratecorrpr</td>
+<td align="center">Uniform/Fixed</td>
+<td align="right">Uniform(-1.0,1.0)</td>
+</tr>
+<tr class="odd">
+<td>Pinvarpr</td>
+<td align="center">Uniform/Fixed</td>
+<td align="right">Uniform(0.0,1.0)</td>
+</tr>
+<tr class="even">
+<td>Covswitchpr</td>
+<td align="center">Uniform/Exponential/Fixed</td>
+<td align="right">Uniform(0.0,100.0)</td>
+</tr>
+<tr class="odd">
+<td>Symdirihyperpr</td>
+<td align="center">Uniform/Exponential/Fixed</td>
+<td align="right">Fixed(Infinity)</td>
+</tr>
+<tr class="even">
+<td>Topologypr</td>
+<td align="center">Uniform/Constraints</td>
+<td align="right">Uniform</td>
+</tr>
+<tr class="odd">
+<td>Brlenspr</td>
+<td align="center">Unconstrained/Clock</td>
+<td align="right">Unconstrained:Exp(10.0)</td>
+</tr>
+<tr class="even">
+<td>Treeheightpr</td>
+<td align="center">Exponential/Gamma</td>
+<td align="right">Exponential(1.0)</td>
+</tr>
+<tr class="odd">
+<td>Speciationpr</td>
+<td align="center">Uniform/Exponential/Fixed</td>
+<td align="right">Uniform(0.0,10.0)</td>
+</tr>
+<tr class="even">
+<td>Extinctionpr</td>
+<td align="center">Uniform/Exponential/Fixed</td>
+<td align="right">Uniform(0.0,10.0)</td>
+</tr>
+<tr class="odd">
+<td>Sampleprob</td>
+<td align="center">number</td>
+<td align="right">1.00</td>
+</tr>
+<tr class="even">
+<td>Thetapr</td>
+<td align="center">Uniform/Exponential/Fixed</td>
+<td align="right">Uniform(0.0,10.0)</td>
+</tr>
+<tr class="odd">
+<td>Nodeagepr</td>
+<td align="center">Unconstrained/Calibrated</td>
+<td align="right">Unconstrained</td>
+</tr>
+<tr class="even">
+<td>Treeagepr</td>
+<td align="center">Fixed/Uniform/Offsetexponential</td>
+<td align="right">Fixed(1.00)</td>
+</tr>
+<tr class="odd">
+<td>Clockratepr</td>
+<td align="center">Strict/Cpp/Bm</td>
+<td align="right">Strict</td>
+</tr>
+<tr class="even">
+<td>Cppratepr</td>
+<td align="center">Fixed/Exponential</td>
+<td align="right">Exponential(0.10)</td>
+</tr>
+<tr class="odd">
+<td>Psigammapr</td>
+<td align="center">Fixed/Exponential/Uniform</td>
+<td align="right">Fixed(1.00)</td>
+</tr>
+<tr class="even">
+<td>Nupr</td>
+<td align="center">Fixed/Exponential/Uniform</td>
+<td align="right">Fixed(1.00)</td>
+</tr>
+<tr class="odd">
+<td>Ratepr</td>
+<td align="center">Fixed/Variable=Dirichlet</td>
+<td align="right">Fixed</td>
+</tr>
+</tbody>
+</table>
+<p><em>Example</em> - Set the G and I parameters To manually set the shape parameter of the gamma distribution of rate variation (<code>Shapepr</code>) and the proportion of invariable sites (<code>Pinvarpr</code>), execute the following:</p>
+<pre><code>prset shapepr=fixed(0.05) pinvarpr=fixed(0.30)</code></pre>
+</div>
+<div id="running-analysis" class="section level2">
+<h2>5. Running Analysis</h2>
+<p>The analysis is started by issuing the mcmc command. However, before doing this, we recommend that you review the run settings by typing help mcmc. The help mcmc command will produce the following table at the bottom of the output:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th align="center">Options</th>
+<th align="right">Current setting</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ngen</td>
+<td align="center">number</td>
+<td align="right">1000000</td>
+</tr>
+<tr class="even">
+<td>Nruns</td>
+<td align="center">number</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td>Nchains</td>
+<td align="center">number</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td>Temp</td>
+<td align="center">number</td>
+<td align="right">0.100000</td>
+</tr>
+<tr class="odd">
+<td>Reweight</td>
+<td align="center">number,number</td>
+<td align="right">0.00 v 0.00 ^</td>
+</tr>
+<tr class="even">
+<td>Swapfreq</td>
+<td align="center">number</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td>Nswaps</td>
+<td align="center">number</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td>Samplefreq</td>
+<td align="center">number</td>
+<td align="right">500</td>
+</tr>
+<tr class="odd">
+<td>Printfreq</td>
+<td align="center">number</td>
+<td align="right">500</td>
+</tr>
+<tr class="even">
+<td>Printall</td>
+<td align="center">Yes/No</td>
+<td align="right">Yes</td>
+</tr>
+<tr class="odd">
+<td>Printmax</td>
+<td align="center">number</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td>Mcmcdiagn</td>
+<td align="center">Yes/No</td>
+<td align="right">Yes</td>
+</tr>
+<tr class="odd">
+<td>Diagnfreq</td>
+<td align="center">number</td>
+<td align="right">5000</td>
+</tr>
+<tr class="even">
+<td>Diagnstat</td>
+<td align="center">Avgstddev/Maxstddev</td>
+<td align="right">Avgstddev</td>
+</tr>
+<tr class="odd">
+<td>Minpartfreq</td>
+<td align="center">number</td>
+<td align="right">0.10</td>
+</tr>
+<tr class="even">
+<td>Allchains</td>
+<td align="center">Yes/No</td>
+<td align="right">No</td>
+</tr>
+<tr class="odd">
+<td>Allcomps</td>
+<td align="center">Yes/No</td>
+<td align="right">No</td>
+</tr>
+<tr class="even">
+<td>Relburnin</td>
+<td align="center">Yes/No</td>
+<td align="right">Yes</td>
+</tr>
+<tr class="odd">
+<td>Burnin</td>
+<td align="center">number</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td>Burninfrac</td>
+<td align="center">number</td>
+<td align="right">0.25</td>
+</tr>
+<tr class="odd">
+<td>Stoprule</td>
+<td align="center">Yes/No</td>
+<td align="right">No</td>
+</tr>
+<tr class="even">
+<td>Stopval</td>
+<td align="center">number</td>
+<td align="right">0.05</td>
+</tr>
+<tr class="odd">
+<td>Savetrees</td>
+<td align="center">Yes/No</td>
+<td align="right">No</td>
+</tr>
+<tr class="even">
+<td>Checkpoint</td>
+<td align="center">Yes/No</td>
+<td align="right">Yes</td>
+</tr>
+<tr class="odd">
+<td>Checkfreq</td>
+<td align="center">number</td>
+<td align="right">100000</td>
+</tr>
+</tbody>
+</table>
+| Filename | name | primates.nex.
+<p/t>
+<p>| | Startparams | Current/Reset | Current | | Starttree | Current/Random/Parsimony | Current | | Nperts | number | 0 | | Data | Yes/No | Yes | | Ordertaxa | Yes/No | No | | Append | Yes/No | No | | Autotune | Yes/No | Yes | | Tunefreq | number | 100 |</p>
+<p><em>Example</em></p>
 <pre><code>mcmc ngen=1000000 samplefreq=500 printfreq=500 diagnfreq=5000</code></pre>
 <p>If the standard deviation of split frequencies is below 0.01 the specific number of generations, stop the run by answering no when the program asks <code>Continue the analysis? (yes/no)</code>. Otherwise, keep adding generations until the value falls below <code>0.01</code>. If you are interested mainly in the well-supported parts of the tree, a standard deviation below <code>0.05</code> may be adequate.</p>
-</div>
-<div id="get-output" class="section level3">
-<h3>Get output</h3>
 <p>Type <code>sump</code> to summarize the parameter values using the same burn-in as the diagnostics in the mcmc command. The program will output a table with summaries of the samples of the substitution model parameters, including the mean, mode, and 95 % credibility interval (region of Highest Posterior Density, HPD) of each parameter. Make sure that the potential scale reduction factor (PSRF) is reasonably close to 1.0 for all parameters; if not, you need to run the analysis longer.</p>
-<p>Summarize the trees using the same burn-in as the mcmc command by typing <code>sumt</code>. The program will output a cladogram with the posterior probabilities for each split and a phylogram with mean branch lengths. Both trees will also be printed to a file that can be read by FigTree and other tree-drawing programs, such as TreeView and Mesquite.</p>
+<p>Summarize the trees using the same burn-in as the mcmc command by typing <code>sumt</code>. The program will output a cladogram with the posterior probabilities for each split (file ending <code>.trprobs</code>) and a phylogram with mean branch lengths (file ending <code>.con.tre</code>). Both trees will also be printed to a file that can be read by FigTree and other tree-drawing programs, such as <code>TreeView</code> and <code>Mesquite</code>.</p>
 <p>It does not have to be more complicated than this; however, as you get more proficient you will probably want to know more about what is happening behind the scenes. The rest of this section explains each of the steps in more detail and introduces you to all the implicit assumptions you are making and the machinery that MrBayes uses in order to perform your analysis.</p>
 </div>
+<div id="altering-the-model" class="section level2">
+<h2>Altering the model</h2>
+<p><strong>GTR</strong></p>
+<p>GTR</p>
+<pre><code>lset nst=6</code></pre>
+<p>GTR + G</p>
+<pre><code>lset nst=6 rates=gamma</code></pre>
+<p>GTR + I</p>
+<pre><code>lset nst=6 rates=inv</code></pre>
+<p>GTR + G + I</p>
+<pre><code>lset nst=6 rates=gammainv</code></pre>
+<p><strong>K2P</strong></p>
+<blockquote>
+<p>Use the HKY model and set the stationary state frequencies to be equal, this will give you a K2P model</p>
+</blockquote>
+<p>K2P</p>
+<pre><code>lset nst=2</code></pre>
+<pre><code>prset statefreqpr=fixed(equal)</code></pre>
+<p>K2P + G</p>
+<pre><code>lset nst=2 rates=gamma</code></pre>
+<pre><code>prset statefreqpr=fixed(equal)</code></pre>
+<p>K2P + I</p>
+<pre><code>lset nst=2 rates=inv</code></pre>
+<pre><code>prset statefreqpr=fixed(equal)</code></pre>
+<p>K2P + G + I</p>
+<pre><code>lset nst=2 rates=invgamma</code></pre>
+<pre><code>prset statefreqpr=fixed(equal)</code></pre>
+<p>Additional alterations can be made on the sampling for example you can increase the number of generations.</p>
+<pre><code>mcmc ngen=1000000 samplefreq=500 printfreq=500 diagnfreq=5000</code></pre>
+<hr />
+</div>
+</div>
+<div id="web-server" class="section level1">
+<h1><a id="web-server">Web server</a></h1>
+<p>You can also use MrBayes via a web server, There is a variety to choose, check their limitations with regards to compute power to ensure it is going to work for you.</p>
+<p>We’ll use the sever by <a href="http://www.phylogeny.fr/one_task.cgi?task_type=mrbayes">MABL, MrBayes 3.2.6</a> for this example. Some limitations of this web server are:</p>
+<ul>
+<li>Max number of sequences = 30</li>
+<li>Max number of generations for MCMC analysis = 100,000</li>
+</ul>
+<p>The interface looks like this:</p>
+<div class="figure">
+<img src="image-mrbayes2.png" />
+
+</div>
+<div id="upload-data" class="section level2">
+<h2>1. Upload data</h2>
+<p>Upload your alignment either by pasting into box provided or uploading file. File formats accepted <code>FASTA</code>, <code>Phylip</code>, <code>Clustal</code>, <code>EMBL</code> or <code>NEXUS</code>.</p>
+</div>
+<div id="setting" class="section level2">
+<h2>2. Setting</h2>
+<p>Select your desired settings. If you are unsure below is a suggestions of where to start for analysing nucleotide data.</p>
+<p>Likelihood model</p>
+<ul>
+<li>Number of substitution types: <code>6 (GTR)</code></li>
+<li>Substitution model: <code>4by4</code></li>
+<li>Rates variation across sites: <code>invgamma</code></li>
+</ul>
+<p>Markov Chain Monte Carlo parameters</p>
+<ul>
+<li>Number of generations: <code>100 000</code></li>
+<li>Sample a tree every <code>100</code> generations</li>
+</ul>
+<p>Summarize results</p>
+<ul>
+<li>Discard first <code>500</code> trees sampled (burnin)</li>
+</ul>
+</div>
+<div id="submit" class="section level2">
+<h2>3. Submit</h2>
+<p>Enter your email to recieve a notification when analysis is complete and click <code>Submit</code></p>
+</div>
+<div id="output" class="section level2">
+<h2>4. Output</h2>
+<p>Click on the link in the email and it will take you to this screen</p>
+<div class="figure">
+<img src="image-mrbayes3.png" />
+
+</div>
+<p>Download the tree by right clicking on <code>Tree in Newick format</code> under the heading <strong>Outputs</strong> and select <code>Save link as...</code> with the <code>.tree</code> file format. You can open the file in something like <a href="http://tree.bio.ed.ac.uk/software/figtree/">FigTree</a>, node/branch labels reflect the poster probabilities of the analysis.</p>
+<p>The analysis information is available by downloading the <code>MrBayes logs</code> file under the <strong>Outputs</strong> heading.</p>
+</div>
+</div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -479,6 +970,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
