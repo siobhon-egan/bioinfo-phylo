@@ -8,3 +8,15 @@ output:
 
 Bookdown [here](https://bookdown.org/yihui/rmarkdown/document-templates.html)
 Books [here](https://bookdown.org/yihui/rmarkdown/books.html)
+
+[Oxford down](https://ulyngs.github.io/oxforddown/)
+
+[R Markdown for Scientists](https://rmd4sci.njtierney.com/figures-tables-captions-.html)
+
+[Latex line breaks and blank space overleaf](https://www.overleaf.com/learn/latex/line_breaks_and_blank_spaces)
+
+[knitr::kable and kableExtra](http://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf)
+
+[kableExtra](http://haozhu233.github.io/kableExtra/)
+
+[2.5 table](https://bookdown.org/yihui/bookdown/tables.html)

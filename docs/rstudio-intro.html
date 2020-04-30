@@ -11,7 +11,7 @@
 
 
 
-<title>RMarkdown Webpages</title>
+<title>Introduction</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -451,14 +451,82 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">RMarkdown Webpages</h1>
+<h1 class="title toc-ignore">Introduction</h1>
 
 </div>
 
 
-<p>Websites <a href="https://bookdown.org/yihui/rmarkdown/websites.html">Bookdown</a></p>
-<p>Icons for webpages <a href="https://www.r-bloggers.com/icon-web-icons-for-rmarkdown/">blog</a></p>
-<p><a href="https://fontawesome.com/">Font Awesome</a> icons</p>
+<p><i class="fab fa-r-project"></i> is a programming language that is especially powerful for data exploration, visualization, and statistical analysis. <a href="http://www.r-project.org/">“<code>R</code>”</a> is also a software that interprets the scipts written using it. The most popular way to interact with R is by using <a href="http://www.rstudio.com/">RStudio</a>. To get started you need to install R and RStudio on your computer.</p>
+<div class="figure">
+<img src="images/rstudio.png" alt="RStudio interface" />
+<p class="caption"><em>RStudio interface</em></p>
+</div>
+<ol style="list-style-type: decimal">
+<li>Source pane - for your scripts and document</li>
+<li>Environment/history - lists all your variables loaded</li>
+<li>Files/Plots/Helper etc - here you can navigate to find (and upload) files, this is where your plots will appear when you view them, and its also here any <code>?help</code> info will appear</li>
+<li>Console - this is running document of what code you have executed.</li>
+</ol>
+<p>Need further convincing to user R…<a href="https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html">read on</a></p>
+<hr />
+<div id="install-updates" class="section level2">
+<h2>Install (&amp; updates)</h2>
+<p><strong>Windows</strong></p>
+<p>If you already have R and RStudio installed:</p>
+<ul>
+<li>Open RStudio, and click on “Help” &gt; “Check for updates”. If a new version is available, quit RStudio, and download the latest version for RStudio.</li>
+<li>To check which version of R you are using, start RStudio and the first thing that appears in the console indicates the version of R you are running. Alternatively, you can type <code>sessionInfo()</code>, which will also display which version of R you are running. Go on the <a href="https://cran.r-project.org/bin/windows/base/">CRAN website</a> and check whether a more recent version is available. If so, please download and install it. You can <a href="https://cran.r-project.org/bin/windows/base/rw-FAQ.html#How-do-I-UNinstall-R_003f">check here</a> for more information on how to remove old versions from your system if you wish to do so.</li>
+</ul>
+<p>If you don’t have R and RStudio installed:</p>
+<ul>
+<li>Download R from the [CRAN website](<a href="http://cran.r-project.org/bin/windows/base/release.htm" class="uri">http://cran.r-project.org/bin/windows/base/release.htm</a>.</li>
+<li>Run the <code>.exe</code> file that was just downloaded</li>
+<li>Go to the <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio download page</a></li>
+<li>Under <em>Installers</em> select <strong>RStudio x.yy.zzz - Windows Vista/7/8/10</strong> (where x, y, and z represent version numbers)</li>
+<li>Double click the file to install it</li>
+<li>Once it’s installed, open RStudio to make sure it works and you don’t get any error messages.</li>
+</ul>
+<p><a href="https://www.youtube.com/watch?v=q0PjTAylwoU">Video Tutorial</a></p>
+<p><strong>MacOS</strong></p>
+<p>If you already have R and RStudio installed:</p>
+<ul>
+<li>Open RStudio, and click on “Help” &gt; “Check for updates”. If a new version is available, quit RStudio, and download the latest version for RStudio.</li>
+<li>To check the version of R you are using, start RStudio and the first thing that appears on the terminal indicates the version of R you are running. Alternatively, you can type <code>sessionInfo()</code>, which will also display which version of R you are running. Go on the <a href="https://cran.r-project.org/bin/macosx/">CRAN website</a> and check whether a more recent version is available. If so, please download and install it.</li>
+</ul>
+<p>If you don’t have R and RStudio installed:</p>
+<ul>
+<li>Download R from the <a href="http://cran.r-project.org/bin/macosx/">CRAN website</a>.</li>
+<li>Select the <code>.pkg</code> file for the latest R version</li>
+<li>Double click on the downloaded file to install R</li>
+<li>It is also a good idea to install <a href="https://www.xquartz.org/">XQuartz</a> (needed by some packages)</li>
+<li>Go to the <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio download page</a></li>
+<li>Under Installers select <strong>RStudio x.yy.zzz - Mac OS X 10.6+ (64-bit)</strong> (where x, y, and z represent version numbers)</li>
+<li>Double click the file to install RStudio</li>
+<li>Once it’s installed, open RStudio to make sure it works and you don’t get any error messages</li>
+</ul>
+<p><a href="https://www.youtube.com/watch?v=5-ly3kyxwEg">Video Tutorial</a></p>
+</div>
+<div id="welcome-to-r" class="section level2">
+<h2>Welcome to <code>R</code>!</h2>
+<p>R is much more than statistics, and making graphs, it is a never-ending tool that is constantly being updated. Before we know it R will be able to cook your dinner and go to the shops too! But for now check out its great range of features for project management. It can talk all types of coding languages, and is useful to keep track of exactly what you are doing. You can even make your own webpage to help keep track of all that code and information, just like I am doing here!</p>
+<p>Some links to get you started:</p>
+<ul>
+<li><a href="https://rmarkdown.rstudio.com/lesson-1.html">R markdown</a></li>
+<li><a href="https://shiny.rstudio.com/">R shiny</a></li>
+<li><a href="https://www.r-project.org/">R project for statistical computing</a></li>
+<li><a href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro/">Project management with RStudio</a></li>
+<li><a href="https://bookdown.org/">R bookdown</a></li>
+</ul>
+</div>
+<div id="an-extra-note" class="section level2">
+<h2>An extra note</h2>
+<style>
+div.blue { background-color:#db9671; border-radius: 5px; padding: 20px;}
+</style>
+<div class="blue">
+<p>As a general rule these pages on RStudio are not meant as a stand alone tutorial/workflow to learn coding. Generally they includes lots of links to people who have done the hard work, and I just have a small subset of code that is relevant to my workflow or some common code chunks I use. So please read on with caution - mostly this is just a place for me to collate <em>some</em> websites/tutorials/information that I have found useful during my research in one central location.</p>
+</div>
+</div>
 
 <p>Copyright &copy; Siobhon L. Egan.</p>
 

@@ -1,7 +1,7 @@
 ---
 title: "Phylogenetics Introduction"
 ---
-[![Generic badge](https://img.shields.io/badge/Siobhon Egan-August 2019-<COLOR>.svg)](https://shields.io/)
+
 
 There are four popular molecular phylogenetic methods.
 The following information is a summary of information provided by material from the Australian National Postgraduate Training Workshop in Systematics support by the [Society of Australian Systematic Biologists](https://www.sasb.org.au), [The Australian Biological Resources Study](http://www.environment.gov.au/science/abrs) and [Australian Centre for Evolutionary Biology and Biodiversity](https://www.adelaide.edu.au/environment/acebb/) *and* [Sydney Phylo Workshop](https://github.com/simon-ho/SydneyPhyloWorkshop) by Simon Ho.

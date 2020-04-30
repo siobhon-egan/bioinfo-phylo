@@ -11,7 +11,7 @@
 
 
 
-<title>RMarkdown Webpages</title>
+<title>Statistics</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -451,14 +451,83 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">RMarkdown Webpages</h1>
+<h1 class="title toc-ignore">Statistics</h1>
 
 </div>
 
 
-<p>Websites <a href="https://bookdown.org/yihui/rmarkdown/websites.html">Bookdown</a></p>
-<p>Icons for webpages <a href="https://www.r-bloggers.com/icon-web-icons-for-rmarkdown/">blog</a></p>
-<p><a href="https://fontawesome.com/">Font Awesome</a> icons</p>
+<p>Some commonly used statistics calculations for use in RStudio.</p>
+<div id="odds-ratio-relative-risk" class="section level1">
+<h1>Odds ratio &amp; Relative risk</h1>
+<p>Using epitools - <a href="https://cran.r-project.org/web/packages/epitools/epitools.pdf">manual here</a></p>
+<p><em>Reminder:</em> If you need more information on the tests use the help command in the console (e.g. <code>?riskratio</code>, <code>?oddsratio</code>).</p>
+<p><strong>Library</strong></p>
+<pre class="r"><code>library(epitools)
+# if you don&#39;t have this package, first install using `install.packages(&quot;epitools&quot;)`</code></pre>
+<p>Create a simple dataframe. In this case we’ll test effect of gender on parasite presence with a simple positive/negative summary. Of course if you have a your raw data in a spreadsheet you could make your own by summarising the releavnt information into a dataframe. (Need help tidying and summarising your data…check out <a href="https://datacarpentry.org/R-ecology-lesson/03-dplyr.html">this tutorial</a> to check you hooked on the <code>dplyr</code> and <code>tidyr</code> packages</p>
+<pre class="r"><code>factor1 &lt;- c(&quot;Female&quot;, &quot;Male&quot;)
+factor2 &lt;- c(&quot;Positive&quot;, &quot;Negative&quot;)</code></pre>
+<pre class="r"><code>dat &lt;- matrix(c(16, 30, 15, 34), nrow = 2, ncol = 2, byrow = TRUE)
+dimnames(dat) &lt;- list(&quot;Sex&quot; = factor1, &quot;Parasite present&quot; = factor2)</code></pre>
+<p>Your dataframe should look like this</p>
+<pre class="r"><code>dat</code></pre>
+<pre><code>##         Parasite present
+## Sex      Positive Negative
+##   Female       16       30
+##   Male         15       34</code></pre>
+<p>Now lets calculate our <strong>odds ratio</strong></p>
+<pre class="r"><code>oddsratio(dat)</code></pre>
+<pre><code>## $data
+##         Parasite present
+## Sex      Positive Negative Total
+##   Female       16       30    46
+##   Male         15       34    49
+##   Total        31       64    95
+## 
+## $measure
+##         odds ratio with 95% C.I.
+## Sex      estimate    lower    upper
+##   Female 1.000000       NA       NA
+##   Male   1.205696 0.506045 2.888357
+## 
+## $p.value
+##         two-sided
+## Sex      midp.exact fisher.exact chi.square
+##   Female         NA           NA         NA
+##   Male    0.6721372    0.8269438  0.6648308
+## 
+## $correction
+## [1] FALSE
+## 
+## attr(,&quot;method&quot;)
+## [1] &quot;median-unbiased estimate &amp; mid-p exact CI&quot;</code></pre>
+<p>and <strong>relative risk</strong></p>
+<pre class="r"><code>riskratio(dat)</code></pre>
+<pre><code>## $data
+##         Parasite present
+## Sex      Positive Negative Total
+##   Female       16       30    46
+##   Male         15       34    49
+##   Total        31       64    95
+## 
+## $measure
+##         risk ratio with 95% C.I.
+## Sex      estimate     lower    upper
+##   Female 1.000000        NA       NA
+##   Male   1.063946 0.8030739 1.409559
+## 
+## $p.value
+##         two-sided
+## Sex      midp.exact fisher.exact chi.square
+##   Female         NA           NA         NA
+##   Male    0.6721372    0.8269438  0.6648308
+## 
+## $correction
+## [1] FALSE
+## 
+## attr(,&quot;method&quot;)
+## [1] &quot;Unconditional MLE &amp; normal approximation (Wald) CI&quot;</code></pre>
+</div>
 
 <p>Copyright &copy; Siobhon L. Egan.</p>
 

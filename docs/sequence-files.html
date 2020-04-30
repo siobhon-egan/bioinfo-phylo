@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -237,6 +236,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -354,13 +354,26 @@ div.tocify {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-bookmark"></span>
+    <span class="fa fa-file-alt"></span>
      
-    RMarkdown
+    RStudio
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="rstudio-intro.html">Introduction</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Plots &amp; data</li>
+    <li>
+      <a href="rstudio-aesthetics.html">Aesthetics</a>
+    </li>
+    <li>
+      <a href="rstudio-statistics.html">Statistics</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">RMarkdown</li>
     <li>
       <a href="rmd-intro.html">Introduction</a>
     </li>
@@ -374,7 +387,7 @@ div.tocify {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-file-alt"></span>
+    <span class="fa fa-dna"></span>
      
     Sequence files
      
@@ -391,7 +404,7 @@ div.tocify {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-binoculars"></span>
+    <span class="fa fa-align-center"></span>
      
     Alignment
      
@@ -443,7 +456,6 @@ div.tocify {
 </div>
 
 
-<p><a href="https://shields.io/"><img src="https://img.shields.io/badge/Siobhon%20Egan-August%202019-%3CCOLOR%3E.svg" alt="Generic badge" /></a></p>
 <div id="basic-information-and-links" class="section level2">
 <h2>Basic information and links</h2>
 <p>This section first starts off with some quick useful commands that will be helpful to assess and manipulate your fasta and fastq file. They can be done locally in your command line and don’t require any clumsy dependancies.</p>
@@ -542,6 +554,7 @@ conda install -c bioconda/label/cf201901 bioawk</code></pre>
 </div>
 </div>
 
+<p>Copyright &copy; Siobhon L. Egan.</p>
 
 
 </div>

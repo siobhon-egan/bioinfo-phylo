@@ -17,6 +17,8 @@ Lets start with some of my favourite essential resources
 
 If are a R Markdown newbie I suggest starting at the offical lessons on [R Markdown by R Studio](https://rmarkdown.rstudio.com/).
 
+[Here is a presentation](https://docs.google.com/presentation/d/e/2PACX-1vRpQkv2wRcJILZ69i9H9z38XukVGi94XjdkTzwlVXhbHaG4aqVn2QZ3mo01xeixsw_SgtxnOkZ299Rm/pub?start=false&loop=false&delayms=3000) I have presented in the past to give you a give overview of using RMarkdown
+
 **Reference guides**
 
 
@@ -95,3 +97,6 @@ Use the following to underlink the link.
 
 [Tips and tricks for working with images and figures in R Markdown documents](http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/)
 
+## Icons! 
+
+[here](https://ropensci.org/technotes/2018/05/15/icon/)

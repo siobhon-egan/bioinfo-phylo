@@ -7,6 +7,8 @@ output:
 ---
 
 Websites [Bookdown](https://bookdown.org/yihui/rmarkdown/websites.html)
-Icons
+
+
 Icons for webpages [blog](https://www.r-bloggers.com/icon-web-icons-for-rmarkdown/)
+
 [Font Awesome](https://fontawesome.com/) icons

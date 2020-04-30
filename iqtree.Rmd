@@ -20,18 +20,53 @@ I like to use the [CIBID, Austria](http://iqtree.cibiv.univie.ac.at/).
 
 Reference for command line options are available [here](http://www.iqtree.org/doc/Command-Reference)
 
+![IQ-TREE webserver interface](images/iqtree-webserver.png)
+
 # 1. Input Data
 
-Your alignment file can be `.fasta.`, `.phylip`, `.nexus`
+Your alignment file can be `.fasta.`, `.phylip`, `.nexus`.
+
+Select the **`Sequence type`** (you can keep it as `Auto-detect` if you like, but this will save any issues incase it does not recognise your data correctly).
+
+Leave the **`Partion file`** blank
 
 # 2. Subtitution Model Options
 
 Details on subtitution models available [here](http://www.iqtree.org/doc/Substitution-Models)
 
+If you have not already chosen your model, under **`Substitution model`** leave it as `Auto` and it will perform model selection for you.
+
+I generally leave the **`FreeRate heterogeneity`** and **`Ascertainment bias correction`** options unchecked.
+
 # 3. Branch Support analysis
 
-...
+**`Bootstrap analysis`** select `Ultrafast`. This will perform bootstrap approximation using the UFBoot method [Minh et al. 2013](http://dx.doi.org/10.1093/molbev/mst024). 
+
+Check the box next to **`Create .ufboot file`** and select `10,000` for **`Maximum iterations`**. I leave **`Minimum correlation coefficient`** as `0.99` and **`SH-aLRT branch test`** as `Yes` with `1000` # replicates.
+Select the check box next to **`Approximate Bayes test`**
+
 
 # 4. IQ-TREE Search Parameters
 
-...
+I leave the **`Perturbation strength`** as `0.5` and **`IQ-TREE stopping rule`** as 100.
+
+Enter your email and **`SUBMIT JOB`**
+
+# 5. Output
+
+Either click on the **`Analysis`** tab long the top or follow the link in the email and you will find your results. I find this server is super quick, usually seconds/minutes for a basic gene alignment with <100 sequences.
+
+Select the box on the left hand side of your analysis and click the **`DOWNLOAD SELECTED JOBS`** at the bottom. 
+
+You can now open the trees for editing in your fave program - mine is [FigTree](http://tree.bio.ed.ac.uk/software/figtree/).
+
+
+Open the file ending in `.contree` to get the concensus tree. This will have the bootstrap supports (%) at the nodes.
+
+If you open the `.treefile` you will find the support nodes for the SH-aLRT support (%) / aBayes support / ultrafast bootstrap support (%). 
+
+Details on the analysis including the results from the model selection, parameters, and citations can be found in the `.log` and `.iqtree` files [open these files using a simple text reader such as `TextEdit` for MacOS or similar].
+
+Example of output from the `.iqtree` file showing that after model selection the phylogeny was based on the TIM + F + I + G4 subsitution model. Remember for more details on these model check out [details here](http://www.iqtree.org/doc/Substitution-Models)
+
+![IQ-TREE log](images/iqtree-log.png)

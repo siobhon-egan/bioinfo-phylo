@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -237,6 +236,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -354,13 +354,26 @@ div.tocify {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-bookmark"></span>
+    <span class="fa fa-file-alt"></span>
      
-    RMarkdown
+    RStudio
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="rstudio-intro.html">Introduction</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Plots &amp; data</li>
+    <li>
+      <a href="rstudio-aesthetics.html">Aesthetics</a>
+    </li>
+    <li>
+      <a href="rstudio-statistics.html">Statistics</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">RMarkdown</li>
     <li>
       <a href="rmd-intro.html">Introduction</a>
     </li>
@@ -374,7 +387,7 @@ div.tocify {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-file-alt"></span>
+    <span class="fa fa-dna"></span>
      
     Sequence files
      
@@ -391,7 +404,7 @@ div.tocify {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-binoculars"></span>
+    <span class="fa fa-align-center"></span>
      
     Alignment
      
@@ -449,23 +462,48 @@ div.tocify {
 <p>Personally I like to use the web interface, it saves one less program taking up memory on your computer and is super quick!</p>
 <p>I like to use the <a href="http://iqtree.cibiv.univie.ac.at/">CIBID, Austria</a>.</p>
 <p>Reference for command line options are available <a href="http://www.iqtree.org/doc/Command-Reference">here</a></p>
+<div class="figure">
+<img src="images/iqtree-webserver.png" alt="IQ-TREE webserver interface" />
+<p class="caption">IQ-TREE webserver interface</p>
+</div>
 <div id="input-data" class="section level1">
 <h1>1. Input Data</h1>
-<p>Your alignment file can be <code>.fasta.</code>, <code>.phylip</code>, <code>.nexus</code></p>
+<p>Your alignment file can be <code>.fasta.</code>, <code>.phylip</code>, <code>.nexus</code>.</p>
+<p>Select the <strong><code>Sequence type</code></strong> (you can keep it as <code>Auto-detect</code> if you like, but this will save any issues incase it does not recognise your data correctly).</p>
+<p>Leave the <strong><code>Partion file</code></strong> blank</p>
 </div>
 <div id="subtitution-model-options" class="section level1">
 <h1>2. Subtitution Model Options</h1>
 <p>Details on subtitution models available <a href="http://www.iqtree.org/doc/Substitution-Models">here</a></p>
+<p>If you have not already chosen your model, under <strong><code>Substitution model</code></strong> leave it as <code>Auto</code> and it will perform model selection for you.</p>
+<p>I generally leave the <strong><code>FreeRate heterogeneity</code></strong> and <strong><code>Ascertainment bias correction</code></strong> options unchecked.</p>
 </div>
 <div id="branch-support-analysis" class="section level1">
 <h1>3. Branch Support analysis</h1>
-<p>…</p>
+<p><strong><code>Bootstrap analysis</code></strong> select <code>Ultrafast</code>. This will perform bootstrap approximation using the UFBoot method <a href="http://dx.doi.org/10.1093/molbev/mst024">Minh et al. 2013</a>.</p>
+<p>Check the box next to <strong><code>Create .ufboot file</code></strong> and select <code>10,000</code> for <strong><code>Maximum iterations</code></strong>. I leave <strong><code>Minimum correlation coefficient</code></strong> as <code>0.99</code> and <strong><code>SH-aLRT branch test</code></strong> as <code>Yes</code> with <code>1000</code> # replicates. Select the check box next to <strong><code>Approximate Bayes test</code></strong></p>
 </div>
 <div id="iq-tree-search-parameters" class="section level1">
 <h1>4. IQ-TREE Search Parameters</h1>
-<p>…</p>
+<p>I leave the <strong><code>Perturbation strength</code></strong> as <code>0.5</code> and <strong><code>IQ-TREE stopping rule</code></strong> as 100.</p>
+<p>Enter your email and <strong><code>SUBMIT JOB</code></strong></p>
+</div>
+<div id="output" class="section level1">
+<h1>5. Output</h1>
+<p>Either click on the <strong><code>Analysis</code></strong> tab long the top or follow the link in the email and you will find your results. I find this server is super quick, usually seconds/minutes for a basic gene alignment with &lt;100 sequences.</p>
+<p>Select the box on the left hand side of your analysis and click the <strong><code>DOWNLOAD SELECTED JOBS</code></strong> at the bottom.</p>
+<p>You can now open the trees for editing in your fave program - mine is <a href="http://tree.bio.ed.ac.uk/software/figtree/">FigTree</a>.</p>
+<p>Open the file ending in <code>.contree</code> to get the concensus tree. This will have the bootstrap supports (%) at the nodes.</p>
+<p>If you open the <code>.treefile</code> you will find the support nodes for the SH-aLRT support (%) / aBayes support / ultrafast bootstrap support (%).</p>
+<p>Details on the analysis including the results from the model selection, parameters, and citations can be found in the <code>.log</code> and <code>.iqtree</code> files [open these files using a simple text reader such as <code>TextEdit</code> for MacOS or similar].</p>
+<p>Example of output from the <code>.iqtree</code> file showing that after model selection the phylogeny was based on the TIM + F + I + G4 subsitution model. Remember for more details on these model check out <a href="http://www.iqtree.org/doc/Substitution-Models">details here</a></p>
+<div class="figure">
+<img src="images/iqtree-log.png" alt="IQ-TREE log" />
+<p class="caption">IQ-TREE log</p>
+</div>
 </div>
 
+<p>Copyright &copy; Siobhon L. Egan.</p>
 
 
 </div>

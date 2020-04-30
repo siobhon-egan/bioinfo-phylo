@@ -1,0 +1,180 @@
+---
+title: "Mapping"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+# Maping option 1
+
+Website
+http://www.flutterbys.com.au/stats/tut/tut5.4.html
+
+## Load libraries
+```{r}
+library(maps)
+library(mapdata)
+library(sp)
+library(dplyr)
+library(viridis)
+library(readr)
+library(ggplot2)
+library(plotly)
+```
+
+<div class="alert alert-warning"
+  <strong>Make sure the `tidyverse` package is not loaded. `ggplot2` and `dplyr` are okay.</strong>
+</div>
+
+## Map your points
+Map your points (lat, lon) on a map of Australia
+
+Load your point data file
+```{r}
+obs.data <- read_csv(file = "data/sites.csv")
+```
+
+
+
+Load Australian made, and refine to include Tasmania only
+```{r}
+tas<-map("worldHires", "Australia", fill=TRUE, xlim=c(144,150),
+         ylim=c(-44,-40), mar=c(0,0,0,0))
+```
+Function to convert map data to SpatialPolygons
+```{r}
+map2SpatialPolygons <- function(df, proj4string=CRS("+proj=longlat")) {
+  Plys <- list()
+  i<-1
+  mtch <- which(is.na(df$x))
+  if(length(mtch)==0) {
+    mtch <- length(df$x)+1
+  } else {mtch <-mtch}
+  shps <- length(mtch)
+  #make sure the names are unique
+  nms <- df$names
+  nms[duplicated(nms)] <- paste(nms[duplicated(nms)],1:length(nms[duplicated(nms)]))
+  for (j in 1:shps){
+    Plys[[j]] <- Polygons(list(Polygon(cbind(df$x[i:(mtch[j]-1)],
+                                             df$y[i:(mtch[j]-1)]))),ID=nms[j])
+    i <- mtch[j]+1
+  }
+  SpatialPolygons(Plys,proj4string=proj4string)
+}
+tas.sp <- map2SpatialPolygons(tas)
+par(mar=c(0,0,0,0))
+plot(tas.sp, asp=1)
+```
+***
+
+
+Plotting via ggplot
+```{r}
+g1 = ggplot(fortify(tas.sp), aes(y=lat, x=long, group=group), fill = palegreen) + geom_polygon()
+g2 = ggplot(data = tas.sp) + 
+  geom_polygon(aes(x = long, y = lat, group = group), fill = NA, color = "black") + 
+  coord_fixed(1.3) + theme_classic() 
+```
+
+```{r}
+g3 <- g2 + geom_point(data = obs.data, aes (x=Lon, y=Lat, shape=Locality, stroke = 4)) + scale_colour_viridis_d(option = "inferno") + theme(
+  axis.text.x = element_blank(),
+  axis.text.y = element_blank(),
+  axis.ticks = element_blank(),
+  axis.line = element_blank(),
+  axis.title = element_blank())
+```
+
+View plot
+```{r}
+g3
+```
+
+Save plot
+```{r}
+pdf("tas_map.pdf")
+print(g3)
+dev.off()
+```
+
+***
+
+# Mapping option 2
+
+Here is a second option for Mapping Australia.
+
+In the above code the Australia map doesn't come with state lines. By downloading the mapping files below we can customise things a bit more.
+
+Here, lets just make a map of Australia
+
+Following tutorial at this [link](http://environmentalcomputing.net/making-maps-of-your-study-sites/)
+
+```{r}
+library(sp)
+library(dplyr)
+library(rgdal)
+library(raster)
+library(ggplot2)
+library(readr)
+```
+
+xlim=c(110,160),
+         ylim=c(-45,-5)
+
+Create buffer around your data points
+```{r}
+buffer <- 0.11
+min_lon <- 110
+max_lon <- 160
+min_lat <- -45
+max_lat <- -5
+
+geo_bounds <- c(left = min_lon, bottom = min_lat, right = max_lon, top = max_lat)
+```
+
+```{r}
+Sites.grid <- expand.grid(lon_bound = c(geo_bounds[1], geo_bounds[3]), 
+                       lat_bound = c(geo_bounds[2], geo_bounds[4]))
+coordinates(Sites.grid) <- ~ lon_bound + lat_bound
+```
+
+
+**Load mapping files**
+
+You will need to download the mapping files by following the link to website -[GEODATA COAST 100K 2004 [shapefiles](https://data.gov.au/dataset/geodata-coast-100k-2004/resource/455ee5c6-2862-445e-8fbe-604476926b4c)
+
+```{r}
+Aus <- readOGR(dsn = "~/Documents/Programs/R/Maps/Rpackage_Geodata-coast/australia",layer = "cstauscd_r")
+```
+
+Remove coastline clutter from map
+```{r}
+Aus_coast <- subset(Aus, FEAT_CODE != "sea")
+plot <- plot(Aus_coast)
+```
+
+```{r}
+Aus_crop <- crop(Aus_coast, extent(Sites.grid))
+plot(Aus_crop)
+```
+
+plot
+
+```{r}
+aus_plot1 <- ggplot() + 
+ geom_polygon(data = Aus_crop, aes(x=long, y=lat, group=group), fill = NA, colour="black") +
+ coord_equal() +
+ 
+ labs(x="Longitude", y="Latitude") +
+ theme_classic() +
+  theme_classic()
+```
+
+Save
+```{r}
+pdf("aus_map.pdf")
+print(aus_plot1)
+dev.off()
+```
+

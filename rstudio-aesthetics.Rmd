@@ -1,0 +1,39 @@
+---
+title: "Plot Aesthetics & Colour"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+Figures are an important part of any publication.
+They are often the first thing readers look at and will help usually are the deciders as to whether non-specialists are going to read on...a good figure goes a long way! If you can spend the time it is well worth it (*within reason of course*).
+A good read on some do and don'ts for figures by [Rougier et al. 2014 PLOS comp biol](https://doi.org/10.1371/journal.pcbi.1003833), while your at it check out this one by [Mensh and Kording 2017](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005619).
+
+
+I don't see the need to reinvent the wheel so see some useful pages: [`ggplot2` reference](https://ggplot2.tidyverse.org/reference/index.html) and this one from [STHDA](http://www.sthda.com/english/wiki/ggplot2-colors-how-to-change-colors-automatically-and-manually) and this one by [Selva Prabhakaran](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html)
+
+
+# Colour
+
+https://www.molecularecologist.com/2020/04/simple-tools-for-mastering-color-in-scientific-figures/
+
+[GeoDataViz Toolkit](https://github.com/OrdnanceSurvey/GeoDataViz-Toolkit/tree/master/Colours)
+[Your Friendly Guide to Colors in Data Visualisation](https://blog.datawrapper.de/colorguide/) by Lisa Charlotte Rost
+[Colorbrewer2](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3)
+[Color-hex](https://www.color-hex.com/)
+[Coloring for colorblindness](https://davidmathlogic.com/colorblind/#%23D81B60-%231E88E5-%23FFC107-%23004D40)
+[Viz palette](https://projects.susielu.com/viz-palette)
+
+One of my favourite colour palettes at the moment is [Viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html)
+
+```{r viridis install, eval=FALSE}
+install.packages("viridis")
+library(viridis)
+```
+
+Usage of this palette with various ggplots [here](https://ggplot2.tidyverse.org/reference/scale_viridis.html)
+
+
+
+# Axis and titles

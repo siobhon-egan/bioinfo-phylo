@@ -1,0 +1,34 @@
+---
+title: "Phylogenetic trees"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+Phylogenies in RStudio [here](https://yulab-smu.github.io/treedata-book/index.html)
+
+https://yulab-smu.github.io/treedata-book/chapter8.html#phylopic
+Load libraries
+```{r}
+library(ggtree)
+library(ape)
+library(Biostrings)
+library(ggplot2)
+library(ggtree)
+library(ggimage)
+```
+
+Make a simple newick tree
+```{r}
+newick <- "((Sarcophilus_harrisii,(Pongo_abelii,(Gorilla_gorilla_gorilla,(Pan_paniscus,Pan_troglodytes)Pan,Homo_sapiens)Homininae)Hominidae,Nomascus_leucogenys)Hominoidea)Mammalia;"
+tree <- read.tree(text=newick)
+```
+
+Plot tree using ggtree
+```{r}
+p <- ggtree(tree)
+# add image of tasmanian devil from phylopic
+p1 <- p + geom_tiplab(aes(image="/58cc56c2-5a36-4031-be9f-28c86f77963c", alpha=4, node=6), geom="phylopic", offset=2.5) + geom_tiplab(aes(label=label), offset = .2) + xlim(NA, 10)
+p1
+```

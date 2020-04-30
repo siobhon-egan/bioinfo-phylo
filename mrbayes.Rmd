@@ -73,7 +73,7 @@ This is where you start to set the parameters for your analysis. You will likely
 If your data are not DNA or RNA, if you want to invoke a different model, or if you want to use
 non-default priors, refer to the MrBayes manual and Appendix for more help.
 
-![DNA_EvolModel](image-mrbayes1.png)
+![DNA_EvolModel](images/mrbayes1.png)
 
 *DNA models support by MrBayes v3 (MrBayes Manual p164)*
 
@@ -279,7 +279,7 @@ Some limitations of this web server are:
 
 The interface looks like this:
 
-![](image-mrbayes2.png)
+![](images/mrbayes2.png)
 
 ## 1. Upload data
 
@@ -312,7 +312,7 @@ Enter your email to recieve a notification when analysis is complete and click `
 
 Click on the link in the email and it will take you to this screen
 
-![](image-mrbayes3.png)
+![](images/mrbayes3.png)
 
 Download the tree by right clicking on `Tree in Newick format` under the heading **Outputs** and select `Save link as...` with the `.tree` file format. You can open the file in something like [FigTree](http://tree.bio.ed.ac.uk/software/figtree/), node/branch labels reflect the poster probabilities of the analysis. 
 

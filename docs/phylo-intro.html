@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -234,6 +233,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -278,13 +278,26 @@ $(document).ready(function () {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-bookmark"></span>
+    <span class="fa fa-file-alt"></span>
      
-    RMarkdown
+    RStudio
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="rstudio-intro.html">Introduction</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Plots &amp; data</li>
+    <li>
+      <a href="rstudio-aesthetics.html">Aesthetics</a>
+    </li>
+    <li>
+      <a href="rstudio-statistics.html">Statistics</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">RMarkdown</li>
     <li>
       <a href="rmd-intro.html">Introduction</a>
     </li>
@@ -298,7 +311,7 @@ $(document).ready(function () {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-file-alt"></span>
+    <span class="fa fa-dna"></span>
      
     Sequence files
      
@@ -315,7 +328,7 @@ $(document).ready(function () {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-binoculars"></span>
+    <span class="fa fa-align-center"></span>
      
     Alignment
      
@@ -367,7 +380,6 @@ $(document).ready(function () {
 </div>
 
 
-<p><a href="https://shields.io/"><img src="https://img.shields.io/badge/Siobhon%20Egan-August%202019-%3CCOLOR%3E.svg" alt="Generic badge" /></a></p>
 <p>There are four popular molecular phylogenetic methods. The following information is a summary of information provided by material from the Australian National Postgraduate Training Workshop in Systematics support by the <a href="https://www.sasb.org.au">Society of Australian Systematic Biologists</a>, <a href="http://www.environment.gov.au/science/abrs">The Australian Biological Resources Study</a> and <a href="https://www.adelaide.edu.au/environment/acebb/">Australian Centre for Evolutionary Biology and Biodiversity</a> <em>and</em> <a href="https://github.com/simon-ho/SydneyPhyloWorkshop">Sydney Phylo Workshop</a> by Simon Ho.</p>
 <p><strong>1. Maximum parsimony</strong></p>
 <p>Identifies the tree topology that can explain the sequence data, using the smallest number of inferred substitution events. It is commonly used for morphological data, and now days is rarely used for analysing genetic data. It cannot estimate evolutionary rates or timescales and does not correct for multiple substitutions at the same site which leads to what is known as “long-branch attraction”.</p>
@@ -505,6 +517,7 @@ $(document).ready(function () {
 </ul>
 </div>
 
+<p>Copyright &copy; Siobhon L. Egan.</p>
 
 
 

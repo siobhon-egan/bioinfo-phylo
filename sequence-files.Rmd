@@ -7,7 +7,7 @@ output:
     toc_depth: 4
 ---
 
-[![Generic badge](https://img.shields.io/badge/Siobhon Egan-August 2019-<COLOR>.svg)](https://shields.io/)
+
 
 
 ## Basic information and links

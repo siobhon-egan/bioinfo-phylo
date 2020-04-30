@@ -1,0 +1,48 @@
+---
+title: "Statistics"
+output:
+    html_document:
+      toc: true
+      toc_float: true
+
+---
+
+Some commonly used statistics calculations for use in RStudio.
+
+# Odds ratio & Relative risk
+
+Using epitools - [manual here](https://cran.r-project.org/web/packages/epitools/epitools.pdf)
+
+*Reminder:* If you need more information on the tests use the help command in the console (e.g. `?riskratio`, `?oddsratio`).
+
+**Library**
+```{r odds-ratio1, message=FALSE, warning=FALSE}
+library(epitools)
+# if you don't have this package, first install using `install.packages("epitools")`
+```
+
+Create a simple dataframe. In this case we'll test effect of gender on parasite presence with a simple positive/negative summary. Of course if you have a your raw data in a spreadsheet you could make your own by summarising the releavnt information into a dataframe. (Need help tidying and summarising your data...check out [this tutorial](https://datacarpentry.org/R-ecology-lesson/03-dplyr.html) to check you hooked on the `dplyr` and `tidyr` packages 
+```{r odds-ratio2, message=FALSE, warning=FALSE}
+factor1 <- c("Female", "Male")
+factor2 <- c("Positive", "Negative")
+```
+
+```{r odds-ratio3, message=FALSE, warning=FALSE}
+dat <- matrix(c(16, 30, 15, 34), nrow = 2, ncol = 2, byrow = TRUE)
+dimnames(dat) <- list("Sex" = factor1, "Parasite present" = factor2)
+```
+
+Your dataframe should look like this
+```{r odds-ratio4}
+dat
+```
+
+Now lets calculate our **odds ratio**
+```{r odds-ratio5}
+oddsratio(dat)
+```
+
+and **relative risk**
+```{r odds-ratio6}
+riskratio(dat)
+```

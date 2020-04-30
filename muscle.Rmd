@@ -2,7 +2,6 @@
 title: "Muscle"
 ---
 
-[![Generic badge](https://img.shields.io/badge/Siobhon Egan-August 2019-<COLOR>.svg)](https://shields.io/)
 
 MUSCLE is one of the most common tools to align sequences. In most cases, only a few command line options are needed.
 

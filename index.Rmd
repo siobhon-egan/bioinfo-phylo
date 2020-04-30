@@ -2,26 +2,32 @@
 title: "Home"
 ---
 
-My guide to some useful sequencing and phylogenetics tools.
+My guide to some useful data analysis, statistics, coding, sequencing, phylogenetics...anything related to my research really.
 
 I also maintain the Cryptick lab NGS analysis webpage [here](https://cryptick-lab.github.io/NGS-Analysis/_site/index.html) 
 
 **Contact details**
 
-Email: siobhon.egan@murdoch.edu.au
+<i class="fas fa-envelope"></i> Email: siobhon.egan@murdoch.edu.au
 
-Email: siobhonegan@hotmail.com
+<i class="fas fa-envelope"></i> Email: siobhonegan@hotmail.com
+
+<i class="fas fa-map-marker-alt"></i> Murdoch University, Perth, Western Australia
 
 ***
 
+
 **Some links**
 
-[Webpage](https://siobhonegan.wordpress.com/)
 
-[Researchgate](https://www.researchgate.net/profile/Siobhon_Egan)
+<i class="fas fa-home"></i> [Webpage](https://siobhon-egan.github.io/)
 
-[Github](https://github.com/siobhon-egan)
+<i class="fab fa-researchgate"></i> [Researchgate](https://www.researchgate.net/profile/Siobhon_Egan)
 
-[Orcid](http://orcid.org/0000-0003-4395-4069)
+<i class="fab fa-github"></i> [Github](https://github.com/siobhon-egan)
 
-[Scopus](https://www.scopus.com/authid/detail.uri?authorId=57202210372&amp;eid=2-s2.0-85047463715)
+<i class="fas fa-address-card"></i> [Orcid](http://orcid.org/0000-0003-4395-4069)
+
+<i class="fas fa-glasses"></i> [Scopus](https://www.scopus.com/authid/detail.uri?authorId=57202210372&amp;eid=2-s2.0-85047463715)
+
+<i class="fab fa-google"></i> [Google Scholar](https://scholar.google.com/citations?user=BrX5o08AAAAJ&hl=en&oi=ao)

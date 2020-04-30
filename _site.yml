@@ -5,9 +5,19 @@ navbar:
   left:
   - text: "Home"
     href: index.html
-  - text: "RMarkdown"
-    icon: fa-bookmark
+  - text: "RStudio"
+    icon: fa-file-alt
     menu:
+      - text: Introduction
+        href: rstudio-intro.html
+      - text: "---------"
+      - text: "Plots & data"
+      - text: Aesthetics
+        href: rstudio-aesthetics.html
+      - text: Statistics
+        href: rstudio-statistics.html
+      - text: "---------"
+      - text: "RMarkdown"
       - text: Introduction
         href: rmd-intro.html
       - text: Bookdown
@@ -15,14 +25,14 @@ navbar:
       - text: Websites
         href: rmd-webpages.html
   - text: "Sequence files"
-    icon: fa-file-alt
+    icon: fa-dna
     menu:
       - text: Command line
         href: sequence-files.html
       - text: Visualising and editing
         href: visualise.html
   - text: "Alignment"
-    icon: fa-binoculars
+    icon: fa-align-center
     menu: 
       - text: "Muscle"
         href: muscle.html
@@ -41,3 +51,5 @@ output:
   html_document:
     theme: lumen
     highlight: textmate
+    include:
+      after_body: footer.html

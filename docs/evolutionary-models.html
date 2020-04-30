@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -234,6 +233,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -278,13 +278,26 @@ $(document).ready(function () {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-bookmark"></span>
+    <span class="fa fa-file-alt"></span>
      
-    RMarkdown
+    RStudio
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="rstudio-intro.html">Introduction</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Plots &amp; data</li>
+    <li>
+      <a href="rstudio-aesthetics.html">Aesthetics</a>
+    </li>
+    <li>
+      <a href="rstudio-statistics.html">Statistics</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">RMarkdown</li>
     <li>
       <a href="rmd-intro.html">Introduction</a>
     </li>
@@ -298,7 +311,7 @@ $(document).ready(function () {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-file-alt"></span>
+    <span class="fa fa-dna"></span>
      
     Sequence files
      
@@ -315,7 +328,7 @@ $(document).ready(function () {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-binoculars"></span>
+    <span class="fa fa-align-center"></span>
      
     Alignment
      
@@ -367,7 +380,6 @@ $(document).ready(function () {
 </div>
 
 
-<p><a href="https://shields.io/"><img src="https://img.shields.io/badge/Siobhon%20Egan-August%202019-%3CCOLOR%3E.svg" alt="Generic badge" /></a></p>
 <p>An excellent summary of the different models (listed below) is directly sourced from Evolution and Geonomics Workshop (<a href="http://evomics.org/resources/substitution-models/nucleotide-substitution-models/">link here</a>).</p>
 <p>Highly recommend you check out the rest of the website for some great resources and detailed information &amp; tutorials.</p>
 <p>The use of maximum likelihood (ML) algorithms in developing phylogenetic hypotheses requires a model of evolution. The frequently used General Time Reversible (GTR) family of nested models encompasses 64 models with different combinations of parameters for DNA site substitution. The models are listed here from the least complex to the most parameter rich.</p>
@@ -378,10 +390,10 @@ $(document).ready(function () {
 <li><a href="http://www.beast2.org">BEAST v2</a></li>
 <li><a href="http://www.atgc-montpellier.fr/phyml/">PhyML v3</a></li>
 <li><a href="http://evomics.org/resources/software/molecular-evolution-software/paml/">PAML</a></li>
-<li><a href="https://sco.h-its.org/exelixis/software.html">RAxML</a> generally only utilises the GTR model, although you can use JC and K80 models for DNA partitions.</li>
+<li><a href="https://sco.h-its.org/exelixis/software.html">RAxML</a></li>
+<li><a href="http://www.iqtree.org/">IQ-TREE</a></li>
 </ul>
-<p>The below also include the settings if the model is available in these programs.</p>
-<p><a href="http://phylobotanist.blogspot.com/2016/06/implementation-of-substitution-models.html" class="uri">http://phylobotanist.blogspot.com/2016/06/implementation-of-substitution-models.html</a></p>
+<p>The below also include the settings if the model is available in these programs. <a href="http://phylobotanist.blogspot.com/2016/06/implementation-of-substitution-models.html">Some good info here</a>.</p>
 <p><strong>Jukes-Cantor (JC/JC69)</strong> equal base frequencies, all substitutions equally likely (Jukes and Cantor 1969)</p>
 <ul>
 <li>[x] MrBayes <code>nst=1</code></li>
@@ -389,6 +401,7 @@ $(document).ready(function () {
 <li>[x] PAML <code>aaaaaa</code></li>
 <li>[x] BEAST</li>
 <li>[x] PhyML</li>
+<li>[x] IQ-TREE</li>
 </ul>
 <p><strong>Felsenstein 1981 (F81)</strong> variable base frequencies, all substitutions equally likely (Felsenstein 1981)</p>
 <ul>
@@ -397,6 +410,7 @@ $(document).ready(function () {
 <li>[x] PAML <code>aaaaaa</code></li>
 <li>[x] BEAST (check)</li>
 <li>[x] PhyML</li>
+<li>[x] IQ-TREE</li>
 </ul>
 <p><strong>Kimura 2-parameter (K80/K2)</strong> equal base frequencies, one transition rate and one transversion rate (Kimura 1980)</p>
 <ul>
@@ -405,6 +419,7 @@ $(document).ready(function () {
 <li>[x] PAML <code>abbbba</code></li>
 <li>[x] BEAST</li>
 <li>[x] PhyML</li>
+<li>[x] IQ-TREE</li>
 </ul>
 <p><strong>Hasegawa-Kishino-Yano (HKY)</strong> variable base frequencies, one transition rate and one transversion rate (Hasegawa et. al. 1985). Note this model is very similar to K80 however allows for variable base frequencies. It is also commonly the default model in many programs.</p>
 <ul>
@@ -413,6 +428,7 @@ $(document).ready(function () {
 <li>[x] PAML <code>abbbba</code></li>
 <li>[x] BEAST</li>
 <li>[x] PhyML</li>
+<li>[x] IQ-TREE</li>
 </ul>
 <p><strong>Tamura-Nei (TrN/TN93)</strong> variable base frequencies, equal transversion rates, variable transition rates (Tamura Nei 1993)</p>
 <ul>
@@ -421,6 +437,7 @@ $(document).ready(function () {
 <li>[x] PAML <code>abbbbf</code></li>
 <li>[x] BEAST</li>
 <li>[x] PhyML</li>
+<li>[x] IQ-TREE</li>
 </ul>
 <p><strong>Kimura 3-parameter (K3P)</strong> variable base frequencies, equal transition rates, two transversion rates (Kimura 1981)</p>
 <ul>
@@ -429,8 +446,9 @@ $(document).ready(function () {
 <li>[x] PAML (<code>abccba</code>)</li>
 <li>[ ] BEAST</li>
 <li>[ ] PhyML</li>
+<li>[x] IQ-TREE</li>
 </ul>
-<p><strong>transition model (TIM)</strong> variable base frequencies, variable transition rates, two transversion rates</p>
+<p><strong>Transition model (TIM)</strong> variable base frequencies, variable transition rates, two transversion rates</p>
 <ul>
 <li>[ ] MrBayes</li>
 <li>[x] PAUP <code>abccea</code></li>
@@ -438,22 +456,25 @@ $(document).ready(function () {
 <li>[x] BEAST</li>
 <li>[ ] RAxML (check)</li>
 <li>[ ] PhyML</li>
+<li>[x] IQ-TREE</li>
 </ul>
-<p><strong>transversion model (TVM)</strong> variable base frequencies, variable transversion rates, transition rates equal</p>
+<p><strong>Transversion model (TVM)</strong> variable base frequencies, variable transversion rates, transition rates equal</p>
 <ul>
 <li>[ ] MrBayes</li>
 <li>[x] PAUP (<code>abcdbe</code>)</li>
 <li>[x] PAML (<code>abcdea</code>)</li>
 <li>[x] BEAST</li>
 <li>[ ] PhyML</li>
+<li>[x] IQ-TREE</li>
 </ul>
-<p><strong>symmetrical model (SYM)</strong> equal base frequencies, symmetrical substitution matrix (A to T = T to A) (Zharkikh 1994)</p>
+<p><strong>Symmetrical model (SYM)</strong> equal base frequencies, symmetrical substitution matrix (A to T = T to A) (Zharkikh 1994)</p>
 <ul>
 <li>[x] MrBayes <code>nst=6</code></li>
 <li>[x] PAUP <code>abcdef</code></li>
 <li>[x] PAML <code>abcdef</code></li>
 <li>[x] BEAST</li>
 <li>[ ] PhyML</li>
+<li>[x] IQ-TREE</li>
 </ul>
 <p><strong>general time reversible (GTR)</strong> variable base frequencies, symmetrical substitution matrix (e.g., Lanave et al. 1984, Tavare 1986, Rodriguez et. al. 1990)</p>
 <ul>
@@ -462,6 +483,7 @@ $(document).ready(function () {
 <li>[x] PAML <code>abcdef</code></li>
 <li>[x] BEAST</li>
 <li>[x] PhyML</li>
+<li>[x] IQ-TREE</li>
 </ul>
 <div id="rate-variation" class="section level3">
 <h3>Rate variation</h3>
@@ -472,11 +494,18 @@ $(document).ready(function () {
 </div>
 <div id="programs" class="section level1">
 <h1>Programs</h1>
-<p>Some well resourced programs to carry out model selection include: - <a href="https://www.megasoftware.net/">MEGA</a> - <a href="http://www.atgc-montpellier.fr/phyml/">PhyML</a> - <a href="https://github.com/ddarriba/jmodeltest2">jmodeltest</a></p>
+<p>Some well resourced programs to carry out model selection include:</p>
+<ul>
+<li><a href="https://www.megasoftware.net/">MEGA</a></li>
+<li><a href="http://www.atgc-montpellier.fr/phyml/">PhyML</a></li>
+<li><a href="https://github.com/ddarriba/jmodeltest2">jmodeltest</a></li>
+<li><a href="https://doi.org/10.1038/nmeth.4285">ModelFinder</a> which is implemented in <a href="http://www.iqtree.org/">IQ-TREE</a></li>
+</ul>
 <p>Depending on the program most will produce two sets of ‘scores’ to assess the models. the Akaike information criterion (AIC) and Bayesian information criterion (BIC). The lower the score the more support there is for a particular model. There are different reasons for choosing the best model based on the AIC or BIC scores. Generally the BIC score is used in most cases, however if in doubt its always best to do some more research to understand why you chose that value. Some references for more information on these criterion available here <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2925852/">Luo A. <em>et al.</em> 2010</a>; <a href="https://www.annualreviews.org/doi/pdf/10.1146/annurev.ecolsys.36.102003.152633">Sullivan J. and Joyce P. 2005</a>,<a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12541">Brewer M. J. <em>et al.</em> 2016</a>.</p>
-<p>Example output from MEGA7 using Model Selection feature <img src="MEGA7_ModelSelection.png" alt="MEGA7_ModelSelection" /></p>
+<p>Example output from MEGA7 using Model Selection feature <img src="images/mega7-ml.png" alt="MEGA7_ModelSelection" /></p>
 </div>
 
+<p>Copyright &copy; Siobhon L. Egan.</p>
 
 
 
