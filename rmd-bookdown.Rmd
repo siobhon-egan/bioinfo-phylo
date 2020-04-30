@@ -6,10 +6,11 @@ output:
     toc_float: true
 ---
 
-Bookdown [here](https://bookdown.org/yihui/rmarkdown/document-templates.html)
-Books [here](https://bookdown.org/yihui/rmarkdown/books.html)
+[Document Templates](https://bookdown.org/yihui/rmarkdown/document-templates.html)
 
-[Oxford down](https://ulyngs.github.io/oxforddown/)
+[Bookdown](https://bookdown.org/yihui/rmarkdown/books.html)
+
+[Oxforddown](https://ulyngs.github.io/oxforddown/)
 
 [R Markdown for Scientists](https://rmd4sci.njtierney.com/figures-tables-captions-.html)
 
@@ -19,4 +20,3 @@ Books [here](https://bookdown.org/yihui/rmarkdown/books.html)
 
 [kableExtra](http://haozhu233.github.io/kableExtra/)
 
-[2.5 table](https://bookdown.org/yihui/bookdown/tables.html)

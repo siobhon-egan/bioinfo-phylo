@@ -6,9 +6,21 @@ output:
     toc_float: true
 ---
 
-Websites [Bookdown](https://bookdown.org/yihui/rmarkdown/websites.html)
+[Chapter 10 Websites](https://bookdown.org/yihui/rmarkdown/websites.html) from [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
+
+[Happy Git and GitHub for the useR](https://happygitwithr.com/)
+
+Great tutorial to follow on getting started with [GitHub and RStudio](https://resources.github.com/whitepapers/github-and-rstudio/)
+
+Offical [R Markdown Websites](https://rmarkdown.rstudio.com/lesson-13.html) lesson from RStudio
+
+An [R Markdown Website Template](https://github.com/yutannihilation/rmarkdown-website-template) available here
 
 
-Icons for webpages [blog](https://www.r-bloggers.com/icon-web-icons-for-rmarkdown/)
 
-[Font Awesome](https://fontawesome.com/) icons
+
+**Icons for webpages**
+
+[A blog here](https://www.r-bloggers.com/icon-web-icons-for-rmarkdown/)
+
+[Font Awesome icons](https://fontawesome.com/)

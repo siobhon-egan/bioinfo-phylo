@@ -35,11 +35,7 @@ install.packages("rmarkdown")
 
 Below are some useful bits of code that you can use to change font. For basic Rmd syntax see offical [Reference Guide](https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf?_ga=2.203245073.1802232962.1587452707-209816525.1575608236).
 
-It is also handy to have colour guides/convertors at the ready, for example
-
-* [CSS Colours](https://www.w3schools.com/cssref/css_colors.asp)
-* [HTML colour names](https://www.w3schools.com/colors/colors_names.asp)
-* [HTML colour codes](https://htmlcolorcodes.com/)
+It is also handy to have colour guides/convertors at the ready, checkout the my section on colour in [Plot Aesthetics & Colour](https://siobhon-egan.github.io/bioinfo-phylo/rstudio-aesthetics.html#colour).
 
 ### For `Rmd` -> `PDF` docs
 

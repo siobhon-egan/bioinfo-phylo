@@ -16,14 +16,16 @@ I don't see the need to reinvent the wheel so see some useful pages: [`ggplot2` 
 
 # Colour
 
-https://www.molecularecologist.com/2020/04/simple-tools-for-mastering-color-in-scientific-figures/
 
-[GeoDataViz Toolkit](https://github.com/OrdnanceSurvey/GeoDataViz-Toolkit/tree/master/Colours)
-[Your Friendly Guide to Colors in Data Visualisation](https://blog.datawrapper.de/colorguide/) by Lisa Charlotte Rost
-[Colorbrewer2](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3)
-[Color-hex](https://www.color-hex.com/)
-[Coloring for colorblindness](https://davidmathlogic.com/colorblind/#%23D81B60-%231E88E5-%23FFC107-%23004D40)
-[Viz palette](https://projects.susielu.com/viz-palette)
+* [GeoDataViz Toolkit](https://github.com/OrdnanceSurvey/GeoDataViz-Toolkit/tree/master/Colours)
+* [Your Friendly Guide to Colors in Data Visualisation](https://blog.datawrapper.de/colorguide/) by Lisa Charlotte Rost
+* [Colorbrewer2](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3)
+* [Color-hex](https://www.color-hex.com/)
+* [Coloring for colorblindness](https://davidmathlogic.com/colorblind/#%23D81B60-%231E88E5-%23FFC107-%23004D40)
+* [Viz palette](https://projects.susielu.com/viz-palette) - love this resource!
+* [CSS Colours](https://www.w3schools.com/cssref/css_colors.asp)
+* [HTML colour names](https://www.w3schools.com/colors/colors_names.asp)
+* [HTML colour codes](https://htmlcolorcodes.com/)
 
 One of my favourite colour palettes at the moment is [Viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html)
 
@@ -36,4 +38,6 @@ Usage of this palette with various ggplots [here](https://ggplot2.tidyverse.org/
 
 
 
-# Axis and titles
+# Axis, titles and legends
+
+# Plotting
