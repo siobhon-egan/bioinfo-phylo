@@ -42,6 +42,8 @@ navbar:
       - text: "RMarkdown"
       - text: Introduction
         href: rmd-intro.html
+      - text: Syntax
+        href: rmd-syntax.html
       - text: Bookdown
         href: rmd-bookdown.html
       - text: Websites
