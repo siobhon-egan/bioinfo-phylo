@@ -7,7 +7,7 @@ MUSCLE is one of the most common tools to align sequences. In most cases, only a
 
 Free download available [here](https://www.drive5.com/muscle/manual/install.html)
 
-[Muscle documentation](https://www.drive5.com/muscle/manual/)
+<i class="fas fa-link"></i> [Muscle documentation](https://www.drive5.com/muscle/manual/)
 
 ### Alignments 
 Make an alignment and save to a file in FASTA format:

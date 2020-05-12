@@ -6,17 +6,75 @@ output:
     toc_float: true
 ---
 
-[Chapter 10 Websites](https://bookdown.org/yihui/rmarkdown/websites.html) from [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
+<i class="fas fa-link"></i> Documentation on authoring webpages using RMarkdown and Github (to host the site)
 
-[Happy Git and GitHub for the useR](https://happygitwithr.com/)
+* [Chapter 10 Websites](https://bookdown.org/yihui/rmarkdown/websites.html) from [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
+* [Happy Git and GitHub for the useR](https://happygitwithr.com/)
+* Great tutorial to follow on getting started with [GitHub and RStudio](https://resources.github.com/whitepapers/github-and-rstudio/)
+* Offical [R Markdown Websites](https://rmarkdown.rstudio.com/lesson-13.html) lesson from RStudio
+* An [R Markdown Website Template](https://github.com/yutannihilation/rmarkdown-website-template) available here
 
-Great tutorial to follow on getting started with [GitHub and RStudio](https://resources.github.com/whitepapers/github-and-rstudio/)
+# YAML
 
-Offical [R Markdown Websites](https://rmarkdown.rstudio.com/lesson-13.html) lesson from RStudio
-
-An [R Markdown Website Template](https://github.com/yutannihilation/rmarkdown-website-template) available here
+Example `_site.yml` doc
 
 
+```
+name: "Bioinformatics & Phylogenetics"
+output_dir: "docs"
+navbar:
+  title: "Code"
+  left:
+  - text: "Home"
+    href: index.html
+  - text: "RStudio"
+    icon: fa-file-alt
+    menu:
+      - text: Introduction
+        href: rstudio-intro.html
+      - text: "---------"
+      - text: "Plots & data"
+      - text: Aesthetics
+        href: rstudio-aesthetics.html
+      - text: Plots
+        href: rstudio-plots.html
+      - text: Statistics
+        href: rstudio-statistics.html
+      - text: "---------"
+      - text: "RMarkdown"
+      - text: Introduction
+        href: rmd-intro.html
+      - text: Bookdown
+        href: rmd-bookdown.html
+      - text: Websites
+        href: rmd-webpages.html
+  - text: "Sequence files"
+    icon: fa-dna
+    menu:
+      - text: Command line
+        href: sequence-files.html
+      - text: Visualising and editing
+        href: visualise.html
+      - text: "Muscle"
+        href: muscle.html
+  - text: "Phylogenetics"
+    icon: fa-code-branch
+    menu:
+      - text: "Introduction"
+        href: phylo-intro.html
+      - text: "Evolutionary models"
+        href: evolutionary-models.html
+      - text: "IQ-TREE"
+        href: iqtree.html
+      - text: "MrBayes"
+        href: mrbayes.html
+output:
+  html_document:
+    theme: yeti
+    highlight: monochrome
+    include:
+      after_body: footer.html
+```
 
 
 **Icons for webpages**
@@ -24,3 +82,56 @@ An [R Markdown Website Template](https://github.com/yutannihilation/rmarkdown-we
 [A blog here](https://www.r-bloggers.com/icon-web-icons-for-rmarkdown/)
 
 [Font Awesome icons](https://fontawesome.com/)
+
+# Themes
+
+If using the `Simple R Markdown website` option to create a website then the default available themes options include:   
+“cerulean”, “cosmo”, “cyborg”, “darkly”, “flatly”, “journal”, “lumen”, “paper”, “readable”, “sandstone”, “simplex”, “slate”, “spacelab”, “superhero”, “united”, “yeti”...check them out [here](https://bootswatch.com/).    
+Highlight options include:    
+“default”, “tango”, “pygments”, “kate”, “monochrome”, “espresso”, “zenburn”, “haddock”, “breezedark”, “textmate”.
+
+They can be changed by including the following in the 'YAML'
+```
+output:
+  html_document:
+    theme: united
+    highlight: monochrome
+```
+
+## Bootswatch
+
+[Library here](https://bootswatch.com/)
+
+[Bootstraplibs](https://rstudio.github.io/bootstraplib/)
+
+```
+remotes::install_github("rstudio/bootstraplib")
+library(bootstraplib)
+```
+To start using bootstraplib in your rmarkdown::html_documents, install the following:
+```
+remotes::install_github("rstudio/rmarkdown#1706")
+```
+
+Use `bootstrap_version` and `theme` to choose the Bootstrap version and a Bootswatch theme. These arguments are currently supported only in `html_document` and `html_document_base`.
+```
+---
+output:
+  html_document:
+    bootstrap_version: 4+3
+    theme: minty
+---
+```
+
+You can also add theme customizations inside any R code chunk (these customizations end up influencing the Bootstrap CSS included in the output document).
+
+```
+library(bootstraplib)
+bs_theme_accent_colors(primary = 'green')
+```
+
+Some extra info [here](https://community.rstudio.com/t/in-rstudio-rmarkdown-how-to-add-new-html-themes-from-bootswatch/15791)
+
+## Extra
+
+Get extra bits of html from the bootswatch theme webpages. E.g. [minty](https://bootswatch.com/minty/)

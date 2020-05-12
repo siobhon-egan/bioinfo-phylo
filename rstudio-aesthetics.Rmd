@@ -11,11 +11,16 @@ They are often the first thing readers look at and will help usually are the dec
 A good read on some do and don'ts for figures by [Rougier et al. 2014 PLOS comp biol](https://doi.org/10.1371/journal.pcbi.1003833), while your at it check out this one by [Mensh and Kording 2017](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005619).
 
 
-I don't see the need to reinvent the wheel so see some useful pages: [`ggplot2` reference](https://ggplot2.tidyverse.org/reference/index.html) and this one from [STHDA](http://www.sthda.com/english/wiki/ggplot2-colors-how-to-change-colors-automatically-and-manually) and this one by [Selva Prabhakaran](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html)
+<i class="fas fa-link"></i> I don't see the need to reinvent the wheel so see some useful pages: 
+
+* [`ggplot2` reference](https://ggplot2.tidyverse.org/reference/index.html)
+* [STHDA](http://www.sthda.com/english/wiki/ggplot2-colors-how-to-change-colors-automatically-and-manually)
+* [Selva Prabhakaran](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html)
 
 
 # Colour
 
+<i class="fas fa-link"></i> Handy links for colour
 
 * [GeoDataViz Toolkit](https://github.com/OrdnanceSurvey/GeoDataViz-Toolkit/tree/master/Colours)
 * [Your Friendly Guide to Colors in Data Visualisation](https://blog.datawrapper.de/colorguide/) by Lisa Charlotte Rost

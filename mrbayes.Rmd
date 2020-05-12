@@ -12,7 +12,7 @@ MrBayes is a program for Bayesian inference and model choice across a wide range
 
 
 
-**Useful resources**
+<i class="fas fa-link"></i> **Useful resources**
 
 - [Homepage](http://nbisweden.github.io/MrBayes/)
 - [Manual v3.2](http://mrbayes.sourceforge.net/mb3.2_manual.pdf)
@@ -73,13 +73,14 @@ This is where you start to set the parameters for your analysis. You will likely
 If your data are not DNA or RNA, if you want to invoke a different model, or if you want to use
 non-default priors, refer to the MrBayes manual and Appendix for more help.
 
-![DNA_EvolModel](images/mrbayes1.png)
+![DNA models support by MrBayes v3 (MrBayes Manual p164)](images/mrbayes1.png)
 
-*DNA models support by MrBayes v3 (MrBayes Manual p164)*
 
 
 **Specifying a model**
+
 Type `help lset` for more information
+
 
 | Parameter | Options                                          | Current setting |
 | --------- |:------------------------------------------------:| ---------------:|
@@ -101,6 +102,7 @@ To set a  General Time Reversible (GTR) model with Gamma (+G) invariable (+I) di
 ```
 lset nst=6 rates=invgamma
 ```
+
 
 ## 4. Setting the Priors
 
@@ -178,7 +180,7 @@ The analysis is started by issuing the mcmc command. However, before doing this,
 | Savetrees       | Yes/No                          | No |
 | Checkpoint      | Yes/No                          | Yes |
 | Checkfreq       | number                          | 100000 |
-| Filename        | name                            | primates.nex.<p/t>  |
+| Filename        | name                            | primates.nex |
 | Startparams     | Current/Reset                   | Current |
 | Starttree       | Current/Random/Parsimony        | Current |
 | Nperts          | number                          | 0 |
@@ -192,8 +194,9 @@ The analysis is started by issuing the mcmc command. However, before doing this,
 *Example* 
 
 ```
-mcmc ngen=1000000 samplefreq=500 printfreq=500 diagnfreq=5000
+mcmc ngen=1100000 samplefreq=200 printfreq=200 diagnfreq=2000
 ```
+
 
 If the standard deviation of split frequencies is below 0.01 the specific number of generations, stop the run by answering no when the program asks `Continue the analysis? (yes/no)`.
 Otherwise, keep adding generations until the value falls below `0.01`. If you are interested mainly in the well-supported parts of the tree, a standard deviation below `0.05` may be adequate.
@@ -205,9 +208,10 @@ Summarize the trees using the same burn-in as the mcmc command by typing `sumt`.
 
 It does not have to be more complicated than this; however, as you get more proficient you will probably want to know more about what is happening behind the scenes. The rest of this section explains each of the steps in more detail and introduces you to all the implicit assumptions you are making and the machinery that MrBayes uses in order to perform your analysis.
 
-## Altering the model
+## Altering the model {.tabset}
 
-**GTR**
+
+### GTR
 
 GTR
 ```
@@ -226,9 +230,11 @@ GTR + G + I
 lset nst=6 rates=gammainv
 ```
 
-**K2P**
+***
 
-> Use the HKY model and set the stationary state frequencies to be equal, this will give you a K2P model
+### K2P
+
+Use the HKY model and set the stationary state frequencies to be equal, this will give you a K2P model
 
 K2P
 ```
@@ -259,11 +265,27 @@ lset nst=2 rates=invgamma
 prset statefreqpr=fixed(equal)
 ```
 
-Additional alterations can be made on the sampling for example you can increase the number of generations.
+***
 
+### HKY
+
+HKY
 ```
-mcmc ngen=1000000 samplefreq=500 printfreq=500 diagnfreq=5000
+lset nst=2
 ```
+HKY + G 
+```
+lset nst=2 rates=gamma
+```
+HKY + I
+```
+lset nst=2 rates=inv
+```
+HKY + G + I
+```
+lset nst=2 rates=gammainv
+```
+
 
 ***
 
@@ -279,7 +301,7 @@ Some limitations of this web server are:
 
 The interface looks like this:
 
-![](images/mrbayes2.png)
+![MABL Webserver for MyBayes](images/mrbayes2.png)
 
 ## 1. Upload data
 

@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Journals</title>
+
+<script src="site_libs/jquery-3.5.0/jquery-3.5.0.min.js"></script>
+<meta name="name" content="viewport" />
+<meta name="content" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link href="site_libs/bootstrap-3.4.1/bootstrap-custom.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.4.1/bootstrap.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: .5rem;
+  }
+  pre:not([class]) {
+    background-color: white;
+  }
+  pre code {
+    background-color: transparent;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* TODO: remove this padding CSS when we drop BS3 */
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!--
+  Note that .tabset-dropdown was initially implemented using Glyphicons, which were dropped
+  in BS4. The idea behind the "equivalent" BS4 CSS derives from how carets are implemented
+  https://github.com/twbs/bootstrap/blob/099860/scss/mixins/_caret.scss#L1
+-->
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active-dropdown-tab:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active-dropdown-tab:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active-dropdown-tab {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Research</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-paper-plane"></span>
+     
+    Research tips
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="research.html">Introduction</a>
+    </li>
+    <li>
+      <a href="writing.html">Writing</a>
+    </li>
+    <li>
+      <a href="referencing.html">Referencing</a>
+    </li>
+    <li>
+      <a href="journals.html">Journals</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-terminal"></span>
+     
+    Code &amp; data
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="code.html">Introduction</a>
+    </li>
+    <li>
+      <a href="unix.html">Unix</a>
+    </li>
+    <li>
+      <a href="github.html">GitHub</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-file-alt"></span>
+     
+    RStudio
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="rstudio-intro.html">Introduction</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Plots &amp; data</li>
+    <li>
+      <a href="rstudio-aesthetics.html">Aesthetics</a>
+    </li>
+    <li>
+      <a href="rstudio-plots.html">Plots</a>
+    </li>
+    <li>
+      <a href="rstudio-statistics.html">Statistics</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">RMarkdown</li>
+    <li>
+      <a href="rmd-intro.html">Introduction</a>
+    </li>
+    <li>
+      <a href="rmd-bookdown.html">Bookdown</a>
+    </li>
+    <li>
+      <a href="rmd-webpages.html">Websites</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-dna"></span>
+     
+    Sequence files
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="sequence-files.html">Command line</a>
+    </li>
+    <li>
+      <a href="visualise.html">Visualising and editing</a>
+    </li>
+    <li>
+      <a href="muscle.html">Muscle</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-code-branch"></span>
+     
+    Phylogenetics
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="phylo-intro.html">Introduction</a>
+    </li>
+    <li>
+      <a href="phylogenetics-methods.html">Methods</a>
+    </li>
+    <li>
+      <a href="evolutionary-models.html">Evolutionary models</a>
+    </li>
+    <li>
+      <a href="iqtree.html">IQ-TREE</a>
+    </li>
+    <li>
+      <a href="mrbayes.html">MrBayes</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/siobhon-egan">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Journals</h1>
+
+</div>
+
+
+<p><a href="https://www.scimagojr.com/">SCIMAGOJR</a></p>
+<div id="journal-suggestion-tools" class="section level1">
+<h1>Journal suggestion tools</h1>
+<ul>
+<li><a href="https://journalfinder-elsevier-com.libproxy.murdoch.edu.au/">Elsevier Journal</a></li>
+<li><a href="https://journalfinder.wiley.com/search?type=match">Wiley Journals</a></li>
+<li><a href="https://journalsuggester-springer-com.libproxy.murdoch.edu.au/">Springer Journals</a></li>
+<li><a href="https://journalsuggester-springer-com.libproxy.murdoch.edu.au/">JANE: Journal/Author Name Estimator (PubMed)</a></li>
+<li><a href="https://www.edanzediting.com/journal-selector">Edanz Journal Selector</a></li>
+<li><a href="http://publication-recommender.ieee.org/home">IEEE Publication Recommender</a></li>
+<li><a href="https://www.journalguide.com/journals/search">Journal Guide</a></li>
+<li><a href="http://www.sjfinder.com/journals/home">SJFinder</a></li>
+<li><a href="https://www.doaj.org/">Directory of open access journals</a></li>
+<li><a href="https://aoasg.org.au/">Australasian open access strategy group</a></li>
+</ul>
+</div>
+<div id="overview-of-selected-journals" class="section level1">
+<h1>Overview of selected journals</h1>
+<p>^ represents free option to publish available</p>
+<div id="infection-genetics-and-evolution" class="section level2">
+<h2>Infection, Genetics and Evolution^</h2>
+<p><a href="https://www-elsevier-com.libproxy.murdoch.edu.au/journals/infection-genetics-and-evolution/1567-1348/guide-for-authors">Author guide</a></p>
+<p><strong>Publishes the following types of papers:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Research papers, that deal with original results that have not been published before.</li>
+<li>Short communications, which show preliminary results of interest. It is not necessary to follow the standard article structure recommended for research papers. Recommended length is 1,200 words at most.</li>
+<li>Discussions, which are articles discussing works previously published in the journal.</li>
+<li>Opinions/position papers, which give an opiniated view of the author on a particular theme and may present new challenging concepts.</li>
+<li>Letters to the Editor, which are articles shortly discussing works previously published in the journal. It is not necessary to follow the standard article structure recommended for research papers. Recommended length is 1,200 words at most.</li>
+<li>Review Articles, which are state-of-the-art examination of a given topic. Review articles are either invited by the editor-in-chief or spontaneously submitted.</li>
+<li>Technical notes, which is technological information of interest to the readership of the journal.</li>
+<li>Meeting Reports, which report on meeting and congresses in the topics of interest to the readership of IGE.</li>
+<li>Book Reviews, on books whose topics are of interest to the readership of IGE.</li>
+<li>Special issue submissions. They can be any of the types listed above, upon invitation by the guest editor. Spontaneous submissions in the framework of a special issue are also accepted, provided that they fit the scope of the SI.</li>
+</ol>
+<p><strong>COST</strong></p>
+<p><a href="https://www-elsevier-com.libproxy.murdoch.edu.au/journals/infection-genetics-and-evolution/1567-1348/open-access-options">Dual</a></p>
+<ul>
+<li>Gold open access - USD 2630</li>
+<li>Subscription - no fee, available to subscribers</li>
+</ul>
+</div>
+<div id="the-international-journal-for-parasitology" class="section level2">
+<h2>The International Journal for Parasitology^</h2>
+<p><a href="https://www-elsevier-com.libproxy.murdoch.edu.au/journals/international-journal-for-parasitology/0020-7519/guide-for-authors">Author guide</a></p>
+<p><strong>Publishes the following types of papers:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Original Research Papers</li>
+<li>‘Succinctus’ - The journal offers an avenue for publishing succinct papers that describe significant research findings of broad interest. Articles are limited to 3,000 words, not divided into sections, and contain not more than three display items (figures or tables). The manuscript should be marked <code>Succinctus</code> on the top left-hand corner of the title page. The first page should show title, author and address details. A short Abstract of not more than 100 words in the same style as for full papers plus up to six Keywords should follow. The body of the paper should be written with a minimum number of paragraphs and unstructured (i.e. no headings).</li>
+</ol>
+<p><strong>COST</strong></p>
+<p><a href="https://www-elsevier-com.libproxy.murdoch.edu.au/journals/international-journal-for-parasitology/0020-7519/open-access-options">Dual</a></p>
+<ul>
+<li>Gold open access - USD 2200 (20% off for ASP mebers USD 1760)</li>
+<li>Subscription - no fee, available to subscribers</li>
+</ul>
+</div>
+<div id="veterinary-parasitology" class="section level2">
+<h2>Veterinary Parasitology^</h2>
+<p><a href="https://www.elsevier.com/journals/veterinary-parasitology/0304-4017/guide-for-authors">Author guide</a></p>
+<p><strong>Publishes the following types of papers:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Original research papers (Regular Papers)</li>
+<li>Review articles</li>
+<li>Letters to the Editor</li>
+<li>Book reviews</li>
+</ol>
+<p><strong>COST</strong></p>
+<p><a href="https://www-elsevier-com.libproxy.murdoch.edu.au/journals/international-journal-for-parasitology/0020-7519/open-access-options">Dual</a></p>
+<ul>
+<li>Subscription - no fee, available to subscribers</li>
+<li>Gold open access via <a href="https://www-journals-elsevier-com.libproxy.murdoch.edu.au/veterinary-parasitology-x">Veterinary Parasitology X</a> USD 3200</li>
+</ul>
+</div>
+<div id="biological-conservation" class="section level2">
+<h2>Biological Conservation^</h2>
+<p><a href="https://www-elsevier-com.libproxy.murdoch.edu.au/journals/biological-conservation/0006-3207/guide-for-authors">Author guide</a></p>
+<p><strong>Publishes the following types of papers:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Full length articles (Research papers)</li>
+<li>Review articles</li>
+<li>Perspectives</li>
+<li>Short communications</li>
+<li>Policy Analysis</li>
+<li>Fast-Tracked Papers</li>
+<li>Book Reviews</li>
+<li>Editorials</li>
+<li>Correspondence</li>
+</ol>
+<p><strong>COST</strong></p>
+<p><a href="https://www-elsevier-com.libproxy.murdoch.edu.au/journals/biological-conservation/0006-3207/open-access-optionss">Dual</a></p>
+<ul>
+<li>Gold open access - USD 3150</li>
+<li>Subscription - no fee, available to subscribers</li>
+</ul>
+</div>
+<div id="ecology-and-evolution" class="section level2">
+<h2>Ecology and evolution</h2>
+<p><a href="https://onlinelibrary-wiley-com.libproxy.murdoch.edu.au/page/journal/20457758/homepage/forauthors.html">Author guide</a></p>
+<p><strong>Publishes the following types of papers:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Original Research</li>
+<li>Reviews</li>
+<li>Hypotheses</li>
+<li>Nature Notes</li>
+<li>Academic Practice in Ecology and Evolution</li>
+<li>Registered Reports</li>
+<li>Letter to the Editor (Invitation only)</li>
+<li>Reply to Letter to the Editor (Invitation only)</li>
+<li>Commentary (Invitation only)</li>
+</ol>
+<p><strong>COST</strong></p>
+<p><a href="https://onlinelibrary-wiley-com.libproxy.murdoch.edu.au/page/journal/20457758/homepage/article_publication_charges.htm">Paid</a></p>
+<ul>
+<li>Open access only - USD 2,200. Discounts avilable for supporting society membbers (10%, USD 1,980), or for authors referred with peer review reports from another Wiley journal (20% off, USD 1,760)</li>
+</ul>
+</div>
+<div id="the-international-journal-for-parasitology-parasites-and-wildlife" class="section level2">
+<h2>The International Journal for Parasitology: Parasites and Wildlife</h2>
+<p><a href="https://www-elsevier-com.libproxy.murdoch.edu.au/journals/international-journal-for-parasitology-parasites-and-wildlife/2213-2244/guide-for-authors">Author guide</a></p>
+<p><strong>Publishes the following types of papers:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Original research</li>
+<li>Short communication</li>
+</ol>
+<p><strong>COST</strong></p>
+<p><a href="https://www-elsevier-com.libproxy.murdoch.edu.au/journals/international-journal-for-parasitology-parasites-and-wildlife/2213-2244/open-access-journal">Paid</a></p>
+<ul>
+<li>The gold open access publication fee for this journal is USD 1838, excluding taxes.There is a 20% discount off the open access publication fee for members of the Australian Society for Parasitology (USD 1460).</li>
+</ul>
+</div>
+<div id="proceedings-of-the-royal-society-b-biological-sciences" class="section level2">
+<h2>Proceedings of the Royal Society B (Biological Sciences)^</h2>
+<p><a href="https://royalsocietypublishing-org.libproxy.murdoch.edu.au/rspb/for-authors">Author information</a></p>
+<p><a href="https://royalsociety-org.libproxy.murdoch.edu.au/journals/authors/author-guidelines/">Author guidelines</a></p>
+<p><strong>Publishes the following types of papers:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Reviews</li>
+<li>Perspectives</li>
+<li>Evidence Synthesis</li>
+<li>Comments and invited replies</li>
+<li>Research articles</li>
+<li>Commentaries</li>
+<li>Biological Science Practices</li>
+</ol>
+<p><strong>COST</strong></p>
+<p><a href="https://royalsocietypublishing-org.libproxy.murdoch.edu.au/rspb/for-authors#question11">Dual</a></p>
+<ul>
+<li>Publication is free for research articles which are under 6 printed pages when published in the journal. We can consider articles that exceed this limit, up to 10 printed pages of the journal, however page charges will then apply. We currently charge EUR 200 per page or part page (plus VAT where applicable). Review articles do not incur page charges but are subject to length restrictions.</li>
+<li>Authors may have their article made freely available to all, immediately upon publication. <a href="https://royalsociety-org.libproxy.murdoch.edu.au/journals/authors/which-journal/open-access/">Article processing chargers for open access</a> are USD 1,260 for Royal Society Open Science.</li>
+</ul>
+</div>
+<div id="pnas-proceedings-of-the-national-academy-of-sciences-of-the-united-states-of-america" class="section level2">
+<h2>PNAS (Proceedings of the National Academy of Sciences of the United States of America)</h2>
+<p><a href="https://www-pnas-org.libproxy.murdoch.edu.au/page/authors/authors">Author information</a></p>
+<p><strong>Publishes the following types of papers:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Research Reports</li>
+<li>Brief reports</li>
+<li>Letters</li>
+<li>Front Matter</li>
+<li>Commentaries</li>
+<li>Perspectives</li>
+<li>Colloquium Papers</li>
+</ol>
+<p><strong>COST</strong></p>
+<p><a href="https://www-pnas-org.libproxy.murdoch.edu.au/page/authors/fees">Paid</a></p>
+<ul>
+<li>Regular research articles: USD 1,590 per article up to 6 pages, with no additional fees for color figures or SI. Any fraction of a page over 6 and up to 9 will cost an additional USD 375 per page, and any fraction of a page over 9 and up to 12 will cost an additional USD 500 per page.Articles longer than 12 pages are not permitted.</li>
+<li>Brief Report articles: USD 2,200 per article, with no additional fees for color figures, SI, or open access. All Brief Report articles are published open access.</li>
+<li>Open access: Authors of research articles may pay a surcharge to make their article freely available through the open access option. All articles are free within 6 months of publication. Corresponding authors from institutions with current-year site licenses will be assessed a discounted open access fee of USD 1,300 (compared to our regular fee of USD 1,700) for a CC BY-NC-ND license. The CC BY license is available for authors whose funders require it, for a fee of USD 2,200.</li>
+</ul>
+</div>
+<div id="parasites-and-vectors" class="section level2">
+<h2>Parasites and Vectors</h2>
+<p><a href="https://parasitesandvectors.biomedcentral.com/submission-guidelines">Author guide</a></p>
+<p><strong>Publishes the following types of papers:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Research</li>
+<li>Book review</li>
+<li>Letter to the Editor</li>
+<li>Meeting report</li>
+<li>Primer</li>
+<li>Review</li>
+<li>Short report</li>
+<li>Methodology</li>
+</ol>
+<p><strong>COST</strong></p>
+<p><a href="https://parasitesandvectors.biomedcentral.com/submission-guidelines/fees-and-funding">Paid</a></p>
+<ul>
+<li>Open access - USD 2,380</li>
+</ul>
+</div>
+<div id="journal-of-wildlife-diseases" class="section level2">
+<h2>Journal of Wildlife Diseases</h2>
+<p><a href="https://www.wildlifedisease.org/wda/Portals/0/JWD_Supplement/JWD_ITAR_080813.pdf">Author guide</a></p>
+<p><strong>Publishes the following types of papers:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Full length manuscripts</li>
+<li>Short communications</li>
+<li>Letters</li>
+<li>Reviews</li>
+<li>Book reviews</li>
+<li>Normal hematology and biochemistry</li>
+</ol>
+<p><strong>COST</strong></p>
+<p><a href="https://wildlifedisease.org/wda/PUBLICATIONS/JournalofWildlifeDiseases/AuthorChargesandPaymentInformation.aspx">Paid</a></p>
+<ul>
+<li>Full length manuscript for non-members USD 1,580. Where the first author is a member of Wildlife Disease Association cost is USD 1,220</li>
+</ul>
+</div>
+<div id="plos-one" class="section level2">
+<h2>PLOS One</h2>
+<p><a href="https://journals.plos.org/plosone/s/journal-information">Author guide</a></p>
+<p><strong>Publishes the following types of papers:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Primary research</li>
+<li>Systematic reviews</li>
+<li>Submissions describing methods, software, databases etc</li>
+<li>Qualitative research</li>
+</ol>
+<p><strong>COST</strong></p>
+<p><a href="https://plos.org/publish/fees/">Paid</a></p>
+<ul>
+<li>Research article USD 1,695</li>
+</ul>
+</div>
+<div id="plos-biology" class="section level2">
+<h2>PLOS Biology</h2>
+<p><a href="https://journals.plos.org/plosbiology/s/journal-information">Author guide</a></p>
+<p><strong>Publishes the following types of papers:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Research articles</li>
+<li>Methods and resources article</li>
+<li>Meta-research article</li>
+<li>Short report</li>
+<li>Discovery report</li>
+<li>Update article</li>
+</ol>
+<p><strong>COST</strong></p>
+<p><a href="https://plos.org/publish/fees/">Paid</a></p>
+<ul>
+<li>Research article USD 3,000</li>
+</ul>
+</div>
+<div id="plos-pathogens" class="section level2">
+<h2>PLOS Pathogens</h2>
+<p><a href="https://journals.plos.org/plospathogens/s/journal-information">Author guide</a></p>
+<p><strong>Publishes the following types of papers:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Primary research articles</li>
+<li>informative Pearls</li>
+<li>Research Matters</li>
+<li>Reviews and monthly Opinions</li>
+<li>Editorials and Viewpoints</li>
+</ol>
+<p><strong>COST</strong></p>
+<p><a href="https://plos.org/publish/fees/">Paid</a></p>
+<ul>
+<li>Research article USD 2,500</li>
+</ul>
+</div>
+<div id="parasitology-research" class="section level2">
+<h2>Parasitology research^</h2>
+<p><a href="https://www-springer-com.libproxy.murdoch.edu.au/journal/436/submission-guidelines">Author guide</a></p>
+<p><strong>Publishes the following types of papers:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Original papers</li>
+<li>Reviews</li>
+<li>Short communications</li>
+</ol>
+<p><strong>COST</strong></p>
+<p><a href="https://plos.org/publish/fees/">Dual</a></p>
+<ul>
+<li>Subscription - Articles are made available to subscribers. No publication fee.</li>
+<li><a href="https://www-springer-com.libproxy.murdoch.edu.au/gp/open-access/springer-open-choice?wt_mc=Internal.Internal.1.AUT642.OpenChoice_IFA&amp;utm_medium=internal&amp;utm_source=internal&amp;utm_content=5282018&amp;utm_campaign=1_barz01_openchoice_ifa">Open Choice</a> - USD 3,860.</li>
+</ul>
+</div>
+<div id="ticks-and-tick-borne-diseases" class="section level2">
+<h2>Ticks and tick-borne diseases^</h2>
+<p><a href="https://www-elsevier-com.libproxy.murdoch.edu.au/journals/ticks-and-tick-borne-diseases/1877-959x/guide-for-authors">Author guide</a></p>
+<p><strong>Publishes the following types of papers:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Original research papers</li>
+<li>Short communications</li>
+<li>State-of-the-art mini-reviews</li>
+<li>Letters to the editor</li>
+<li>Clinical-case studies</li>
+<li>Announcements of pertinent international meetings</li>
+<li>Editorials</li>
+</ol>
+<p><strong>COST</strong></p>
+<p><a href="https://www-elsevier-com.libproxy.murdoch.edu.au/journals/ticks-and-tick-borne-diseases/1877-959x/open-access-options">Dual</a></p>
+<ul>
+<li>Subscription - Articles are made available to subscribers as well as developing countries and patient groups through our access programs. No publication fee.</li>
+<li>Gold open access - Articles are freely available to both subscribers and the wider public with permitted reuse, fee USD 2,820.</li>
+</ul>
+</div>
+<div id="scientific-reports" class="section level2">
+<h2>Scientific Reports</h2>
+<p><a href="https://www-nature-com.libproxy.murdoch.edu.au/srep/author-instructions/submission-guidelines">Author guide</a></p>
+<p><strong>Publishes the following types of papers:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Original research articles</li>
+</ol>
+<p><strong>COST</strong></p>
+<p><a href="https://www-nature-com.libproxy.murdoch.edu.au/srep/about/open-access-funding-and-payment">Paid</a></p>
+<ul>
+<li>Open access - EUR 1,570 (plus VAT or local tax if applicable)</li>
+</ul>
+</div>
+<div id="acta-tropica" class="section level2">
+<h2>Acta Tropica^</h2>
+<p><a href="https://www-elsevier-com.libproxy.murdoch.edu.au/journals/acta-tropica/0001-706X/guide-for-authors">Author guide</a></p>
+<p><strong>Publishes the following types of papers:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Original research articles</li>
+<li>Short Communications</li>
+<li>Review articles</li>
+<li>Opinion articles</li>
+<li>Letters to the Editor</li>
+</ol>
+<p><strong>COST</strong></p>
+<p><a href="https://www-springernature-com.libproxy.murdoch.edu.au/gp/open-research/journals-books/journals">Dual</a></p>
+<ul>
+<li>Subscription - Articles are made available to subscribers as well as developing countries and patient groups through our access programs. No publication fee.</li>
+<li>Gold open access - Articles are freely available to both subscribers and the wider public with permitted reuse, fee USD 2,290.</li>
+</ul>
+</div>
+<div id="experimental-and-applied-acarology" class="section level2">
+<h2>Experimental and applied acarology^</h2>
+<p><a href="https://www-springer-com.libproxy.murdoch.edu.au/journal/10493/submission-guidelines">Author guide</a></p>
+<p><strong>Publishes the following types of papers:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Original research articles</li>
+<li>Short Communications</li>
+<li>Review articles</li>
+<li>Opinion articles</li>
+<li>Letters to the Editor</li>
+</ol>
+<p><strong>COST</strong></p>
+<p><a href="">Dual</a></p>
+<ul>
+<li>Subscription - Articles are made available to subscribers as well as developing countries and patient groups through our access programs. No publication fee.</li>
+<li>Gold open access - Articles are freely available to both subscribers and the wider public with permitted reuse, fee USD 2,290.</li>
+</ul>
+</div>
+<div id="acta-parasitologica" class="section level2">
+<h2>Acta Parasitologica^</h2>
+<p><a href="https://www-springer-com.libproxy.murdoch.edu.au/journal/11686/submission-guidelines">Author guide</a></p>
+<p><strong>Publishes the following types of papers:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Original research articles</li>
+<li>Short Communications</li>
+<li>Comments</li>
+<li>Reviews - mini-reviews or full reviews</li>
+</ol>
+<p><strong>COST</strong></p>
+<p><a href="">Dual</a></p>
+<ul>
+<li>Subscription - Articles are made available to subscribers as well as developing countries and patient groups through our access programs. No publication fee.</li>
+<li>Gold open access - Articles are freely available to both subscribers and the wider public with permitted reuse, fee USD 1,990.</li>
+</ul>
+</div>
+<div id="molecular-ecology" class="section level2">
+<h2>Molecular Ecology^</h2>
+<p><a href="https://onlinelibrary-wiley-com.libproxy.murdoch.edu.au/page/journal/1365294x/homepage/forauthors.html">Author guide</a></p>
+<p><strong>Publishes the following types of papers:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Orginal articles (primary research papers)</li>
+<li>Invited review</li>
+<li>Syntheses</li>
+<li>Opinions</li>
+<li>Comments</li>
+<li>Meeting reviews</li>
+<li>Corrigendum</li>
+</ol>
+<p><strong>COST</strong></p>
+<p><a href="https://onlinelibrary-wiley-com.libproxy.murdoch.edu.au/page/journal/1365294x/homepage/forauthors.html#license">Dual</a></p>
+<ul>
+<li>Subscription - no fee, available to subscribers</li>
+<li>Open access - author can choose Wiley <a href="https://authorservices-wiley-com.libproxy.murdoch.edu.au/author-resources/Journal-Authors/open-access/affiliation-policies-payments/funder-agreements.html">OnlineOpen</a> option USD 4,250</li>
+</ul>
+<hr />
+<p>```{md, include=FALSE ## Journal</p>
+<p><a href="">Author guide</a></p>
+<p><strong>Publishes the following types of papers:</strong></p>
+<ol style="list-style-type: decimal">
+<li></li>
+<li></li>
+</ol>
+<p><strong>COST</strong></p>
+<p><a href="">TYPE</a></p>
+<ul>
+<li>Open access - USD</li>
+<li>Subscription - no fee, available to subscribers ```</li>
+</ul>
+</div>
+</div>
+
+<p>Copyright &copy; Siobhon L. Egan.</p>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+    $(this).siblings().removeClass("active-dropdown-tab");
+    $(this).addClass("active-dropdown-tab");
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

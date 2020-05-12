@@ -13,25 +13,33 @@
 
 <title>Introduction</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
-<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jquery-3.5.0/jquery-3.5.0.min.js"></script>
+<meta name="name" content="viewport" />
+<meta name="content" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link href="site_libs/bootstrap-3.4.1/bootstrap-custom.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.4.1/bootstrap.min.js"></script>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
+  pre {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: .5rem;
+  }
   pre:not([class]) {
     background-color: white;
+  }
+  pre code {
+    background-color: transparent;
   }
 </style>
 <script type="text/javascript">
@@ -68,6 +76,7 @@ h5 {
 h6 {
   font-size: 12px;
 }
+
 .table th:not([align]) {
   text-align: left;
 }
@@ -105,36 +114,38 @@ summary {
 
 
 <style type="text/css">
+/* TODO: remove this padding CSS when we drop BS3 */
 /* padding for bootstrap navbar */
 body {
-  padding-top: 54px;
+  padding-top: 60px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 59px;
-  margin-top: -59px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h2 {
-  padding-top: 59px;
-  margin-top: -59px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h3 {
-  padding-top: 59px;
-  margin-top: -59px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h4 {
-  padding-top: 59px;
-  margin-top: -59px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h5 {
-  padding-top: 59px;
-  margin-top: -59px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h6 {
-  padding-top: 59px;
-  margin-top: -59px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
+
 .dropdown-submenu {
   position: relative;
 }
@@ -185,27 +196,29 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
 });
 </script>
 
-<!-- tabsets -->
-
+<!--
+  Note that .tabset-dropdown was initially implemented using Glyphicons, which were dropped
+  in BS4. The idea behind the "equivalent" BS4 CSS derives from how carets are implemented
+  https://github.com/twbs/bootstrap/blob/099860/scss/mixins/_caret.scss#L1
+-->
 <style type="text/css">
 .tabset-dropdown > .nav-tabs {
   display: inline-table;
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
+.tabset-dropdown > .nav-tabs > li.active-dropdown-tab:before {
   content: "";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
@@ -213,7 +226,7 @@ $(document).ready(function () {
   border-right: 1px solid #ddd;
 }
 
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active-dropdown-tab:before {
   content: "&#xe258;";
   border: none;
 }
@@ -226,7 +239,7 @@ $(document).ready(function () {
   border-right: 1px solid #ddd;
 }
 
-.tabset-dropdown > .nav-tabs > li.active {
+.tabset-dropdown > .nav-tabs > li.active-dropdown-tab {
   display: block;
 }
 
@@ -326,13 +339,13 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -345,12 +358,55 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Code</a>
+      <a class="navbar-brand" href="index.html">Research</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
   <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-paper-plane"></span>
+     
+    Research tips
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="research.html">Introduction</a>
+    </li>
+    <li>
+      <a href="writing.html">Writing</a>
+    </li>
+    <li>
+      <a href="referencing.html">Referencing</a>
+    </li>
+    <li>
+      <a href="journals.html">Journals</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-terminal"></span>
+     
+    Code &amp; data
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="code.html">Introduction</a>
+    </li>
+    <li>
+      <a href="unix.html">Unix</a>
+    </li>
+    <li>
+      <a href="github.html">GitHub</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -368,6 +424,9 @@ div.tocify {
     <li class="dropdown-header">Plots &amp; data</li>
     <li>
       <a href="rstudio-aesthetics.html">Aesthetics</a>
+    </li>
+    <li>
+      <a href="rstudio-plots.html">Plots</a>
     </li>
     <li>
       <a href="rstudio-statistics.html">Statistics</a>
@@ -400,17 +459,6 @@ div.tocify {
     <li>
       <a href="visualise.html">Visualising and editing</a>
     </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-align-center"></span>
-     
-    Alignment
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
     <li>
       <a href="muscle.html">Muscle</a>
     </li>
@@ -429,6 +477,9 @@ div.tocify {
       <a href="phylo-intro.html">Introduction</a>
     </li>
     <li>
+      <a href="phylogenetics-methods.html">Methods</a>
+    </li>
+    <li>
       <a href="evolutionary-models.html">Evolutionary models</a>
     </li>
     <li>
@@ -441,13 +492,18 @@ div.tocify {
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/siobhon-egan">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -456,70 +512,58 @@ div.tocify {
 </div>
 
 
-<p>Lets start with some of my favourite essential resources</p>
+<p><i class="fas fa-link"></i> Lets start with some of my favourite essential resources</p>
 <ul>
 <li><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a> by Yihui Xie, J. J. Allaire, Garrett Grolemund.</li>
 <li><a href="https://bookdown.org/yihui/rmarkdown-cookbook/">R Markdown Cookbook</a> by Yihui Xie and Christophe Dervieux</li>
 <li><a href="https://holtzy.github.io/Pimp-my-rmd/">Pimp by RMD: a few tips for R Markdown</a> by Yan Holtz.</li>
 <li><a href="https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf?_ga=2.203245073.1802232962.1587452707-209816525.1575608236">Reference Guide</a></li>
 <li><a href="https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf">R Markdown Cheat Sheet</a></li>
+<li><a href="https://r4ds.had.co.nz/r-markdown-formats.html">R Markdown formats - R for data science</a></li>
+<li><a href="https://rmarkdown.rstudio.com/docs/">RMarkdown overview/references</a></li>
 </ul>
 <p>If are a R Markdown newbie I suggest starting at the offical lessons on <a href="https://rmarkdown.rstudio.com/">R Markdown by R Studio</a>.</p>
 <p><a href="https://docs.google.com/presentation/d/e/2PACX-1vRpQkv2wRcJILZ69i9H9z38XukVGi94XjdkTzwlVXhbHaG4aqVn2QZ3mo01xeixsw_SgtxnOkZ299Rm/pub?start=false&amp;loop=false&amp;delayms=3000">Here is a presentation</a> I have presented in the past to give you a give overview of using RMarkdown</p>
-<p><strong>Reference guides</strong></p>
 <p><strong>INSTALL</strong> Just like the rest of R packages, get started with R Markdown by executing the following from the console</p>
 <pre><code>install.packages(&quot;rmarkdown&quot;)</code></pre>
-<div id="useful-bits-of-code" class="section level1">
-<h1>Useful bits of code</h1>
-<div id="text-colour" class="section level2">
-<h2>Text colour</h2>
-<p>Below are some useful bits of code that you can use to change font. For basic Rmd syntax see offical <a href="https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf?_ga=2.203245073.1802232962.1587452707-209816525.1575608236">Reference Guide</a>.</p>
-<p>It is also handy to have colour guides/convertors at the ready, checkout the my section on colour in <a href="https://siobhon-egan.github.io/bioinfo-phylo/rstudio-aesthetics.html#colour">Plot Aesthetics &amp; Colour</a>.</p>
-<div id="for-rmd---pdf-docs" class="section level3">
-<h3>For <code>Rmd</code> -&gt; <code>PDF</code> docs</h3>
-<p><strong>Font colour</strong></p>
-<p>The quickest option is this <code>\textcolor{olive}{This text is olive}</code>. It will look like this “<span style="color: olive;">This text is olive</span>” in your PDF document.</p>
-<p>If you want a more customisable option you can use the following to first choose your font colour, and then apply it. Define text colour (this won’t appear in your Knitted PDF)</p>
-<pre><code>\definecolor{fancyTextColor}{HTML}{FF0000}</code></pre>
-<p>Then use the following syntax to change font colour <code>\colorbox{hightlightColor}{This text is red}</code> It will look like this “<span style="color: red;">This text is red</span>” in your PDF document.</p>
-</div>
-<div id="for-rmd---html-docs" class="section level3">
-<h3>For <code>Rmd</code> -&gt; <code>html</code> docs</h3>
-<p><strong>For coloured text blocks.</strong></p>
-<pre><code>&lt;style&gt;
-div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
-&lt;/style&gt;
-&lt;div class = &quot;blue&quot;&gt;
-
-- This is my first conclusion
-- This is my second conclusion
-
-&lt;/div&gt;</code></pre>
-<style>
-div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
-</style>
-<div class="blue">
+<p>Create a new RMarkdown document by selecting <code>File &gt; New File &gt; R Markdown... &gt; Document &gt; HTML &gt; Open</code> This will open the default <code>RMarkdown</code> document that will knit to html, however you can change to PDF, word etc.</p>
+<div id="templates" class="section level1">
+<h1>Templates</h1>
+<p>To get the most out of RMarkdown there are a number of various templates to suit whatever document and style you need. Below are some links to get you started.</p>
+<p><i class="fas fa-link"></i> General links on RMarkdown templates</p>
 <ul>
-<li>This is my first conclusion</li>
-<li>This is my second conclusion</li>
+<li><a href="https://bookdown.org/yihui/rmarkdown/document-templates.html">Document templates</a></li>
+<li><a href="https://pandoc.org/MANUAL.html">Pandoc</a></li>
+<li><a href="https://rmarkdown.rstudio.com/docs/">RMarkdown overview/references</a></li>
+</ul>
+<div id="cv" class="section level2">
+<h2>CV</h2>
+<p><a href="https://ropensci.org/blog/2019/01/10/vitae/"><code>vitae</code></a>, <a href="https://pkg.mitchelloharawild.com/vitae/">pkg</a></p>
+</div>
+<div id="articles" class="section level2">
+<h2>Articles</h2>
+<p><a href="https://github.com/rstudio/rticles"><code>rticles</code></a></p>
+</div>
+</div>
+<div id="thesis" class="section level1">
+<h1>Thesis</h1>
+<p>Write your thesis with ease <a href="https://github.com/ismayc/thesisdown">Thesisdown</a></p>
+<div id="websites" class="section level2">
+<h2>Websites</h2>
+<ul>
+<li><a href="https://bookdown.org/yihui/blogdown/">blogdown</a></li>
+<li><a href="https://github.com/gcushen/hugo-academic">hugo academic</a></li>
+<li><a href="https://georgecushen.com/create-your-website-with-hugo/">hugo academic</a></li>
+<li><a href="https://themes.gohugo.io/">hugo themes</a></li>
 </ul>
 </div>
-<p><a href="https://community.rstudio.com/t/custom-fonts-in-rmarkdown-pdf/2098">Custom Fonts in R Markdown PDF</a> <a href="https://edpflager.com/?p=4002">Font Formatting - coloring and emphasis</a></p>
-</div>
-</div>
-<div id="hyperlinks" class="section level2">
-<h2>Hyperlinks</h2>
-<p><strong>Underlink links in <code>PDF</code> documents</strong> By default hyperlinks on PDF knitted documents are not underlined. Use the following to underlink the link.</p>
-<pre><code>[\underline{R Markdown: The Definitive Guide}](https://bookdown.org/yihui/rmarkdown/)</code></pre>
-<p><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a></p>
-</div>
-<div id="images-and-figures" class="section level2">
-<h2>Images and Figures</h2>
-<p><a href="http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/">Tips and tricks for working with images and figures in R Markdown documents</a></p>
-</div>
-<div id="icons" class="section level2">
-<h2>Icons!</h2>
-<p><a href="https://ropensci.org/technotes/2018/05/15/icon/">here</a></p>
+<div id="other-themes" class="section level2">
+<h2>Other themes</h2>
+<p><a href="https://github.com/holtzy/epuRate">EpuRate</a></p>
+<ul>
+<li><a href="http://jianghao.wang/post/2017-12-08-rmarkdown-templates/">Blog post by Dr. Jianghao Wang</a></li>
+<li><a href="https://github.com/robjhyndman/MonashEBSTemplates">Rob Hyndman</a></li>
+</ul>
 </div>
 </div>
 
@@ -553,7 +597,9 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
+    $(this).siblings().removeClass("active-dropdown-tab");
+    $(this).addClass("active-dropdown-tab");
   });
 });
 </script>
@@ -574,7 +620,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0

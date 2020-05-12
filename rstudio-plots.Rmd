@@ -1,0 +1,16 @@
+---
+title: "Plots"
+output:
+    html_document:
+      toc: true
+      toc_float: true
+
+---
+
+<i class="fas fa-link"></i> When making your plots there are two **must haves** you need to bookmark:
+
+* [ggplot2](https://ggplot2.tidyverse.org/)
+* [R graph gallery](https://www.r-graph-gallery.com/)
+* [R for data science](https://r4ds.had.co.nz/)
+* [Interactive data viz in R - plotly and shiny](https://plotly-r.com/index.html)
+* [Plotly in ggplot2](https://plotly.com/ggplot2/getting-started/)

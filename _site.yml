@@ -1,10 +1,30 @@
 name: "Bioinformatics & Phylogenetics"
 output_dir: "docs"
 navbar:
-  title: "Code"
+  title: "Research"
   left:
   - text: "Home"
     href: index.html
+  - text: "Research tips"
+    icon: fa-paper-plane
+    menu:
+      - text: Introduction
+        href: research.html
+      - text: Writing
+        href: writing.html
+      - text: Referencing
+        href: referencing.html
+      - text: Journals
+        href: journals.html
+  - text: "Code & data"
+    icon: fa-terminal
+    menu:
+      - text: Introduction
+        href: code.html
+      - text: Unix
+        href: unix.html
+      - text: GitHub
+        href: github.html
   - text: "RStudio"
     icon: fa-file-alt
     menu:
@@ -14,6 +34,8 @@ navbar:
       - text: "Plots & data"
       - text: Aesthetics
         href: rstudio-aesthetics.html
+      - text: Plots
+        href: rstudio-plots.html
       - text: Statistics
         href: rstudio-statistics.html
       - text: "---------"
@@ -31,9 +53,6 @@ navbar:
         href: sequence-files.html
       - text: Visualising and editing
         href: visualise.html
-  - text: "Alignment"
-    icon: fa-align-center
-    menu: 
       - text: "Muscle"
         href: muscle.html
   - text: "Phylogenetics"
@@ -41,15 +60,19 @@ navbar:
     menu:
       - text: "Introduction"
         href: phylo-intro.html
+      - text: "Methods"
+        href: phylogenetics-methods.html
       - text: "Evolutionary models"
         href: evolutionary-models.html
       - text: "IQ-TREE"
         href: iqtree.html
       - text: "MrBayes"
         href: mrbayes.html
+  right:
+    - icon: fa-github
+      href: https://github.com/siobhon-egan
 output:
   html_document:
-    theme: lumen
-    highlight: textmate
+    theme: flatly
     include:
       after_body: footer.html

@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Rmd Syntax</title>
+
+<script src="site_libs/jquery-3.5.0/jquery-3.5.0.min.js"></script>
+<meta name="name" content="viewport" />
+<meta name="content" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link href="site_libs/bootstrap-3.4.1/bootstrap-custom.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.4.1/bootstrap.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/font-awesome-5.13.0/js/script.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: .5rem;
+  }
+  pre:not([class]) {
+    background-color: white;
+  }
+  pre code {
+    background-color: transparent;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* TODO: remove this padding CSS when we drop BS3 */
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!--
+  Note that .tabset-dropdown was initially implemented using Glyphicons, which were dropped
+  in BS4. The idea behind the "equivalent" BS4 CSS derives from how carets are implemented
+  https://github.com/twbs/bootstrap/blob/099860/scss/mixins/_caret.scss#L1
+-->
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active-dropdown-tab:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active-dropdown-tab:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active-dropdown-tab {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Research</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-paper-plane"></span>
+     
+    Research tips
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="research.html">Introduction</a>
+    </li>
+    <li>
+      <a href="writing.html">Writing</a>
+    </li>
+    <li>
+      <a href="referencing.html">Referencing</a>
+    </li>
+    <li>
+      <a href="journals.html">Journals</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-terminal"></span>
+     
+    Code &amp; data
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="code.html">Introduction</a>
+    </li>
+    <li>
+      <a href="unix.html">Unix</a>
+    </li>
+    <li>
+      <a href="github.html">GitHub</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-file-alt"></span>
+     
+    RStudio
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="rstudio-intro.html">Introduction</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Plots &amp; data</li>
+    <li>
+      <a href="rstudio-aesthetics.html">Aesthetics</a>
+    </li>
+    <li>
+      <a href="rstudio-plots.html">Plots</a>
+    </li>
+    <li>
+      <a href="rstudio-statistics.html">Statistics</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">RMarkdown</li>
+    <li>
+      <a href="rmd-intro.html">Introduction</a>
+    </li>
+    <li>
+      <a href="rmd-bookdown.html">Bookdown</a>
+    </li>
+    <li>
+      <a href="rmd-webpages.html">Websites</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-dna"></span>
+     
+    Sequence files
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="sequence-files.html">Command line</a>
+    </li>
+    <li>
+      <a href="visualise.html">Visualising and editing</a>
+    </li>
+    <li>
+      <a href="muscle.html">Muscle</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-code-branch"></span>
+     
+    Phylogenetics
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="phylo-intro.html">Introduction</a>
+    </li>
+    <li>
+      <a href="phylogenetics-methods.html">Methods</a>
+    </li>
+    <li>
+      <a href="evolutionary-models.html">Evolutionary models</a>
+    </li>
+    <li>
+      <a href="iqtree.html">IQ-TREE</a>
+    </li>
+    <li>
+      <a href="mrbayes.html">MrBayes</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/siobhon-egan">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore"><code>Rmd</code> Syntax</h1>
+
+</div>
+
+
+<div id="syntax" class="section level2">
+<h2>Syntax</h2>
+<ul>
+<li><a href="https://rmarkdown.rstudio.com/authoring_basics.html">RStudio Markdown Basics</a></li>
+<li><a href="https://ourcodingclub.github.io/tutorials/rmarkdown/">tutorial here</a>, <a href="https://ourcodingclub.github.io/tutorials.html">homepage here</a></li>
+<li><a href="https://rmarkdown.rstudio.com/docs/">RMarkdown overview/references</a></li>
+<li><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html">Bookdown - rmarkdown syntax</a></li>
+</ul>
+<p><strong>Italics</strong></p>
+<p>Can be producted by either <code>_text1_</code> or <code>*text1*</code> which will look this <em>text1</em> or <em>text2</em>.</p>
+<p><strong>Bold</strong></p>
+<p>Produced using a pair of double asterisks <code>**text3**</code> or <code>__text4__</code> which will look like this <strong>text3</strong> or <strong>text4</strong>.</p>
+<p><strong>Headers</strong></p>
+<pre><code># Header 1
+## Header 2
+### Header 3
+etc...</code></pre>
+<p><strong>Numbered list</strong></p>
+<pre><code>1. Item 1
+2. Item 2
+3. Item 3
+    + part a
+    + part b</code></pre>
+<ol style="list-style-type: decimal">
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3
+<ul>
+<li>part a</li>
+<li>part b</li>
+</ul></li>
+</ol>
+<p><strong>Unnumbered list</strong></p>
+<pre><code>* Item 1
+* Item 2
+* Item 3
+    + part a
+    + part b</code></pre>
+<ul>
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3
+<ul>
+<li>part a</li>
+<li>part b</li>
+</ul></li>
+</ul>
+<p><strong>Script</strong></p>
+<p>A pair of tildes (<code>~</code>) turn text to a subscript (e.g., <code>H~3~PO~4~</code> renders H<sub>3</sub>PO<sub>4</sub>). A pair of carets (<code>^</code>) produce a superscript (e.g., <code>Cu^2+^</code> renders Cu<sup>2+</sup>). To get strike through <code>~~strike~~</code> renders to this <del>strike</del></p>
+<p><strong>Images</strong></p>
+<pre><code>![](http://example.com/logo.png)
+![optional caption text](figures/img.png)</code></pre>
+<p><strong>Hyperlinks</strong></p>
+<pre><code>http://example.com
+[linked phrase](http://example.com)</code></pre>
+<p><strong>Horizontal rule</strong></p>
+<p>Three or more asterisks or dashes <code>***</code> or <code>---</code></p>
+<p><strong>Tables</strong></p>
+<pre><code>First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell</code></pre>
+<div id="math-and-symbols" class="section level3">
+<h3>Math and symbols</h3>
+<p><a href="https://www.calvin.edu/~rpruim/courses/s341/S17/from-class/MathinRmd.html">Math in RMarkdown</a></p>
+<p><code>$x = y $</code> $x = y $ <code>$x &lt; y $</code> $x &lt; y $ <code>$x \le y $</code> $x y $ <code>$x^{n}$</code> <span class="math inline">\(x^{n}\)</span> <code>$\hat{x}$</code> <span class="math inline">\(\hat{x}\)</span> <code>$\tilde{x}$</code> <span class="math inline">\(\tilde{x}\)</span> <code>$\frac{a}{b}$</code> <span class="math inline">\(\frac{a}{b}\)</span> <code>$\mu M$</code> <span class="math inline">\(\mu M\)</span> <code>$\alpha A$</code> <span class="math inline">\(\alpha A\)</span> <code>$\beta B$</code> <span class="math inline">\(\beta B\)</span> <code>$\pi \Pi$</code> <span class="math inline">\(\pi \Pi\)</span> <code>$^\circ C$</code> <span class="math inline">\(^\circ C\)</span></p>
+</div>
+</div>
+<div id="code-chunks-output" class="section level2">
+<h2>Code chunks &amp; output</h2>
+<p><a href="https://bookdown.org/yihui/rmarkdown-cookbook/hide-one.html">here</a></p>
+</div>
+<div id="text-colour" class="section level2">
+<h2>Text colour</h2>
+<p>Below are some useful bits of code that you can use to change font. For basic Rmd syntax see offical <a href="https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf?_ga=2.203245073.1802232962.1587452707-209816525.1575608236">Reference Guide</a>.</p>
+<p>It is also handy to have colour guides/convertors at the ready, checkout the my section on colour in <a href="https://siobhon-egan.github.io/bioinfo-phylo/rstudio-aesthetics.html#colour">Plot Aesthetics &amp; Colour</a>.</p>
+<div id="for-rmd---pdf-docs" class="section level3">
+<h3>For <code>Rmd</code> -&gt; <code>PDF</code> docs</h3>
+<p><strong>Font colour</strong></p>
+<p>The quickest option is this <code>\textcolor{olive}{This text is olive}</code>. It will look like this “<span style="color: olive;">This text is olive</span>” in your PDF document.</p>
+<p>If you want a more customisable option you can use the following to first choose your font colour, and then apply it. Define text colour (this won’t appear in your Knitted PDF)</p>
+<pre><code>\definecolor{fancyTextColor}{HTML}{FF0000}</code></pre>
+<p>Then use the following syntax to change font colour <code>\colorbox{hightlightColor}{This text is red}</code> It will look like this “<span style="color: red;">This text is red</span>” in your PDF document.</p>
+</div>
+<div id="for-rmd---html-docs" class="section level3">
+<h3>For <code>Rmd</code> -&gt; <code>html</code> docs</h3>
+<p><strong>Font colour and text</strong></p>
+<p>the following html code</p>
+<pre><code>Roses are &lt;span style=&quot;color:red; font-family:Georgia; font-size:2em;&quot;&gt;red.&lt;/span&gt;</code></pre>
+<p>Will give you this output</p>
+<blockquote>
+<p>Roses are <span style="color:red; font-family:Georgia; font-size:2em;">red.</span></p>
+</blockquote>
+<p><strong>For coloured text blocks.</strong></p>
+<pre><code>&lt;style&gt;
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+&lt;/style&gt;
+&lt;div class = &quot;blue&quot;&gt;
+
+- This is my first conclusion
+- This is my second conclusion
+
+&lt;/div&gt;</code></pre>
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class="blue">
+<ul>
+<li>This is my first conclusion</li>
+<li>This is my second conclusion</li>
+</ul>
+</div>
+<p><a href="https://community.rstudio.com/t/custom-fonts-in-rmarkdown-pdf/2098">Custom Fonts in R Markdown PDF</a> <a href="https://edpflager.com/?p=4002">Font Formatting - coloring and emphasis</a></p>
+</div>
+</div>
+<div id="hyperlinks" class="section level2">
+<h2>Hyperlinks</h2>
+<p><strong>Underlink links in <code>PDF</code> documents</strong> By default hyperlinks on PDF knitted documents are not underlined. Use the following to underlink the link.</p>
+<pre><code>[\underline{R Markdown: The Definitive Guide}](https://bookdown.org/yihui/rmarkdown/)</code></pre>
+<p><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a></p>
+</div>
+<div id="images-and-figures" class="section level2">
+<h2>Images and Figures</h2>
+<p><a href="http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/">Tips and tricks for working with images and figures in R Markdown documents</a></p>
+</div>
+<div id="fun-stuff" class="section level2">
+<h2>Fun stuff</h2>
+<p><i class="ai ai-google-scholar-square ai-3x"></i></p>
+<div id="icons" class="section level3">
+<h3>Icons</h3>
+<p>Depending on the type of RMarkdown document you are working with (i.e. what are you “knitting” to), will depend on which code works for you. As always there is more than one way to this.</p>
+<p>To start with the most commonly used icons are from <code>font awesome</code> suite - so <a href="https://fontawesome.com/icons?d=gallery&amp;m=free">head here</a> to pick your (<em>free</em>) icons.</p>
+<p><strong>HTML docs</strong></p>
+<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+<p>For HTML docs (including webpages), I have found the following works best <code>&lt;i class=&quot;fab fa-r-project&quot;&gt;&lt;/i&gt;</code> this will give you a beautiful RStudio icon <i class="fab fa-r-project"></i>.</p>
+<p>If you want to use <a href="https://ionicons.com/"><code>Ionicons</code></a> then include you will first need to make sure the following line appears within your Rmarkdown doc (don’t worry it wont appear in the knitted product) <code>&lt;script src=&quot;https://unpkg.com/ionicons@5.0.0/dist/ionicons.js&quot;&gt;&lt;/script&gt;</code>. Then use the following code to insert your icons, for example this <code>&lt;ion-icon name=&quot;bug-outline&quot;&gt;&lt;/ion-icon&gt;</code> produces a lovely bug for you <ion-icon name="bug"></ion-icon>. You can customise the icons, <a href="https://ionicons.com/usage">see here</a></p>
+<p><strong>Webpages (HTML) - nav bar</strong></p>
+<p>You can add icons to the nav bar on your webpage, just like on this one. In the YAML doc add the following bit of code under the relevent section <code>icon: fa-icon</code> e.g. for the rstudio icon use <code>fa-r-project</code> for this icon <i class="fab fa-r-project"></i></p>
+<p><em>Example</em> - partial YAML doc, for more info on RMarkdown webpages/YAML head to <a href="https://siobhon-egan.github.io/bioinfo-phylo/rmd-webpages.html">RMarkdown Webpages</a> section</p>
+<pre><code>navbar:
+  title: &quot;Code&quot;
+  left:
+  - text: &quot;Home&quot;
+    href: index.html
+  - text: &quot;RStudio&quot;
+    icon: fa-file-alt</code></pre>
+<p><strong>PDF docs</strong></p>
+<p>When knitting to PDF I have found the easiest way using the <a href="https://github.com/ropenscilabs/icon"><code>icon</code> package</a>.</p>
+<p>Install developer version from github</p>
+<pre><code># install.packages(&quot;devtools&quot;)
+devtools::install_github(&quot;ropenscilabs/icon&quot;)</code></pre>
+<p>Then add the following bit of code in your RMarkdown document.</p>
+<pre class="r"><code>library(icon)
+icon::fa(&quot;rocket&quot;) # equivalent to icon::fa_rocket()</code></pre>
+<i class="fas  fa-rocket "></i>
+<p>and you’ll get this <i class="fas fa-rocket"></i>. Got some extra tips and trick <a href="https://slides.mitchelloharawild.com/icon/#1">see here</a>.</p>
+<p>Some more info on <code>icon</code> available <a href="https://ropensci.org/technotes/2018/05/15/icon/">here</a> and <a href="https://slides.mitchelloharawild.com/icon/#1">here</a>.</p>
+</div>
+<div id="download-button" class="section level3">
+<h3>Download button</h3>
+<p>The <a href="https://github.com/fmmattioni/downloadthis"><code>downloadthis</code></a> package is to implement download buttons in HTML outputs from RMarkdown without need for <code>runtime::shiny</code></p>
+<p>Install</p>
+<pre><code>install.packages(&quot;downloadthis&quot;)</code></pre>
+<p>Then add the following to your Rmarkdown document - this example will give you a red download button with a link to the <code>downloadthis</code> pdf manual (remember to hide the code so only the output appears using <code>{r echo=FALSE}</code> at the start of your code chunk).</p>
+<pre class="r"><code>library(downloadthis)
+download_link(
+  link = &quot;https://github.com/fmmattioni/downloadthis/raw/master/inst/example/file_1.pdf&quot;,
+  button_label = &quot;Download pdf file&quot;,
+  button_type = &quot;danger&quot;,
+  has_icon = TRUE,
+  icon = &quot;fa fa-save&quot;,
+  self_contained = FALSE
+)</code></pre>
+<a href="https://github.com/fmmattioni/downloadthis/raw/master/inst/example/file_1.pdf">
+<button class="btn btn-danger"><i class="fa fa-save"></i> Download pdf file</button>
+</a>
+</div>
+<div id="diagram" class="section level3">
+<h3>Diagram</h3>
+<p><a href="https://mikeyharper.uk/flowcharts-in-r-using-diagrammer/">diagrams</a></p>
+</div>
+<div id="videos" class="section level3">
+<h3>Videos</h3>
+<p><strong>Embed video</strong></p>
+<p><code>vebmedr</code> is a package that makes embedding video into Rmarkdown simple.</p>
+<p>Install the package from CRAN</p>
+<pre><code>install.packages(&quot;vembedr&quot;)</code></pre>
+<p><em>Example</em></p>
+<pre class="r"><code>library(&quot;htmltools&quot;)
+library(&quot;vembedr&quot;)</code></pre>
+<pre class="r"><code>embed_url(&quot;https://www.youtube.com/watch?v=uV4UpCq2azs&quot;)</code></pre>
+<iframe src="https://www.youtube.com/embed/uV4UpCq2azs" width="420" height="315" frameborder="0" allowfullscreen=""></iframe>
+</div>
+</div>
+<div id="table" class="section level2">
+<h2>Table</h2>
+<p>In additional to using basic RMarkdown syntax for tables</p>
+<pre><code>First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell</code></pre>
+<p>Which look like this</p>
+<table>
+<thead>
+<tr class="header">
+<th>First Header</th>
+<th>Second Header</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Content Cell</td>
+<td>Content Cell</td>
+</tr>
+<tr class="even">
+<td>Content Cell</td>
+<td>Content Cell</td>
+</tr>
+</tbody>
+</table>
+<p>You can use <a href="http://haozhu233.github.io/kableExtra/awesome_table_in_html.html">KableExtra</a></p>
+</div>
+<div id="headings-and-navigation" class="section level2">
+<h2>Headings and navigation</h2>
+<p><a href="https://bookdown.org/yihui/rmarkdown/html-document.html">bookdown</a> includes tabbed sections</p>
+</div>
+<div id="themes" class="section level2">
+<h2>Themes</h2>
+<p><a href="https://www.datadreaming.org/post/r-markdown-theme-gallery/">RMarkdown theme gallery</a></p>
+</div>
+
+<p>Copyright &copy; Siobhon L. Egan.</p>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+    $(this).siblings().removeClass("active-dropdown-tab");
+    $(this).addClass("active-dropdown-tab");
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

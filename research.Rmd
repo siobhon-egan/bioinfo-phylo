@@ -1,0 +1,43 @@
+---
+title: "Research"
+output:
+    html_document:
+      toc: true
+      toc_float: true
+---
+
+# Project planning
+
+Hugh Kearns [ThinkWell](https://www.ithinkwell.com.au/hugh-kearns) is an excellent source of information for researchers. He also runs workshops and regularly visits universities and insitutions around Australia so keep an eye on his calendar.
+
+# Storage & back ups
+
+This is a critical step when doing any type of research.
+If you are an undergraduate or post graduate research student it is likely that you will have to organise your own data storage/back up system. Universities will give staff (and sometimes post-graduates) access to a server where you can store your data on, however even then you may still like to have your own back up of things.
+
+I strongly advise against relying solely on hard-drives. Altough these can be an enticing offer with their one-off payment and physical nature in my experience they are unreliable, not good for transport and you can run into issues with file types & different systems. 
+
+I recommend a cloud based storage system - ideally two if you can!
+
+Usually they come with a monthly fee where you can pick the plan that suits your needs and upgrade/down easily when your storage needs change.
+
+My recommendation is to pick a cloud based system you don't have to think too much about. It maybe tempting to find an obsecure third party system for your computer but if you have to constantly manage it will become a hassel.
+
+# Data repositories
+
+[review here](https://www.teamscopeapp.com/blog/6-repositories-to-share-your-research-data)
+
+## [Figshare](https://figshare.com/features)
+
+Free accounts include
+
+* 20 GB of free private space
+* Unlimited public space
+* Get DOI for your work
+
+## [Mendeley Data](https://data.mendeley.com/)
+
+## [Dyrad Digital Repository](http://datadryad.org/)
+
+## [Open Science Framework](http://osf.io/)
+

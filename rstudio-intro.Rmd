@@ -66,13 +66,25 @@ If you don’t have R and RStudio installed:
 
 R is much more than statistics, and making graphs, it is a never-ending tool that is constantly being updated. Before we know it R will be able to cook your dinner and go to the shops too! But for now check out its great range of features for project management. It can talk all types of coding languages, and is useful to keep track of exactly what you are doing. You can even make your own webpage to help keep track of all that code and information, just like I am doing here!
 
-Some links to get you started:
+<i class="fas fa-link"></i> Some links to get you started:
 
 - [R markdown](https://rmarkdown.rstudio.com/lesson-1.html)
 - [R shiny](https://shiny.rstudio.com/)
 - [R project for statistical computing](https://www.r-project.org/)
 - [Project management with RStudio](https://swcarpentry.github.io/r-novice-gapminder/02-project-intro/)
 - [R bookdown](https://bookdown.org/)
+
+## Packages
+
+No matter what you use RStudio for you'll need to install some packages. Think of these as like add ins, there are loads out there. If they are available on [CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html) you can install using `install.packages("package")`, if not on CRAN most will be downloading using `devtools::install_github("package/repo")`, just make sure you `install.packages("devtools")` first. You only need to install once so usually do this by typing straight into the `Console` and then you will need to load your packages using `library(package)`, you can save the R environment so when you reopen it should be there but its a good idea to ensure you always load libraries you will need at the start of the session.
+
+Here's some good places to start find packages:
+
+* [CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html)
+* [ROpenSci](https://ropensci.org/packages/)
+* [RStudio packages homepage](https://rstudio.com/products/rpackages/)
+* [Rstudio quick list of useful packages](https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages)
+
 
 ## An extra note
 
@@ -81,7 +93,7 @@ div.blue { background-color:#db9671; border-radius: 5px; padding: 20px;}
 </style>
 <div class = "blue">
 
-As a general rule these pages on RStudio are not meant as a stand alone tutorial/workflow to learn coding. 
+As a general rule these pages on RStudio are not meant as a stand alone tutorial/workflow to learn coding.
 Generally they includes lots of links to people who have done the hard work, and I just have a small subset of code that is relevant to my workflow or some common code chunks I use.
 So please read on with caution - mostly this is just a place for me to collate *some* websites/tutorials/information that I have found useful during my research in one central location.
 </div>

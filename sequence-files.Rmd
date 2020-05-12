@@ -13,7 +13,7 @@ output:
 ## Basic information and links
 This section first starts off with some quick useful commands that will be helpful to assess and manipulate your fasta and fastq file. They can be done locally in your command line and don't require any clumsy dependancies.
 
-Credit to some helpful inspiration
+<i class="fas fa-link"></i> Credit to some helpful inspiration
 
 * [Bioinformatics I/O by Joseph Hughes](http://bioinformatics.cvr.ac.uk/blog/short-command-lines-for-manipulation-fastq-and-fasta-sequence-files/)
 * [Bioinformatic one-liners by Stephen Turner](https://github.com/stephenturner/oneliners#basic-awk--sed)

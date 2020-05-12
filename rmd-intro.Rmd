@@ -2,24 +2,25 @@
 title: "Introduction"
 output:
   html_document:
-    toc: true
-    toc_float: true
+    toc: yes
+    toc_float: yes
 ---
 
-Lets start with some of my favourite essential resources
+<i class="fas fa-link"></i> Lets start with some of my favourite essential resources
 
 * [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) by Yihui Xie, J. J. Allaire, Garrett Grolemund.
 * [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/) by Yihui Xie and Christophe Dervieux
 * [Pimp by RMD: a few tips for R Markdown](https://holtzy.github.io/Pimp-my-rmd/) by Yan Holtz.
 * [Reference Guide](https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf?_ga=2.203245073.1802232962.1587452707-209816525.1575608236)
 * [R Markdown Cheat Sheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf)
+* [R Markdown formats - R for data science](https://r4ds.had.co.nz/r-markdown-formats.html)
+* [RMarkdown overview/references](https://rmarkdown.rstudio.com/docs/)
+
 
 
 If are a R Markdown newbie I suggest starting at the offical lessons on [R Markdown by R Studio](https://rmarkdown.rstudio.com/).
 
 [Here is a presentation](https://docs.google.com/presentation/d/e/2PACX-1vRpQkv2wRcJILZ69i9H9z38XukVGi94XjdkTzwlVXhbHaG4aqVn2QZ3mo01xeixsw_SgtxnOkZ299Rm/pub?start=false&loop=false&delayms=3000) I have presented in the past to give you a give overview of using RMarkdown
-
-**Reference guides**
 
 
 **INSTALL**
@@ -28,71 +29,44 @@ Just like the rest of R packages, get started with R Markdown by executing the f
 install.packages("rmarkdown")
 ```
 
+Create a new RMarkdown document by selecting `File > New File > R Markdown... > Document > HTML > Open`
+This will open the default `RMarkdown` document that will knit to html, however you can change to PDF, word etc.
 
-# Useful bits of code
+# Templates
 
-## Text colour
+To get the most out of RMarkdown there are a number of various templates to suit whatever document and style you need. Below are some links to get you started.
 
-Below are some useful bits of code that you can use to change font. For basic Rmd syntax see offical [Reference Guide](https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf?_ga=2.203245073.1802232962.1587452707-209816525.1575608236).
+<i class="fas fa-link"></i> General links on RMarkdown templates
 
-It is also handy to have colour guides/convertors at the ready, checkout the my section on colour in [Plot Aesthetics & Colour](https://siobhon-egan.github.io/bioinfo-phylo/rstudio-aesthetics.html#colour).
-
-### For `Rmd` -> `PDF` docs
-
-**Font colour**
-
-The quickest option is this `\textcolor{olive}{This text is olive}`. It will look like this "<span style="color: olive;">This text is olive</span>" in your PDF document.
+* [Document templates](https://bookdown.org/yihui/rmarkdown/document-templates.html)
+* [Pandoc](https://pandoc.org/MANUAL.html)
+* [RMarkdown overview/references](https://rmarkdown.rstudio.com/docs/)
 
 
-If you want a more customisable option you can use the following to first choose your font colour, and then apply it.
-Define text colour (this won't appear in your Knitted PDF)
-```
-\definecolor{fancyTextColor}{HTML}{FF0000}
-```
 
-Then use the following syntax to change font colour `\colorbox{hightlightColor}{This text is red}` It will look like this "<span style="color: red;">This text is red</span>" in your PDF document.
+## CV
 
-### For `Rmd` -> `html` docs
+[`vitae`](https://ropensci.org/blog/2019/01/10/vitae/), [pkg](https://pkg.mitchelloharawild.com/vitae/)
 
-**For coloured text blocks.**
-```
-<style>
-div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
-</style>
-<div class = "blue">
+## Articles
 
-- This is my first conclusion
-- This is my second conclusion
+[`rticles`](https://github.com/rstudio/rticles)
 
-</div>
-```
-<style>
-div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
-</style>
-<div class = "blue">
+# Thesis
 
-- This is my first conclusion
-- This is my second conclusion
+Write your thesis with ease [Thesisdown](https://github.com/ismayc/thesisdown)
 
-</div>
+## Websites
 
-[Custom Fonts in R Markdown PDF](https://community.rstudio.com/t/custom-fonts-in-rmarkdown-pdf/2098)
-[Font Formatting - coloring and emphasis](https://edpflager.com/?p=4002)
+* [blogdown](https://bookdown.org/yihui/blogdown/)
+* [hugo academic](https://github.com/gcushen/hugo-academic)
+* [hugo academic](https://georgecushen.com/create-your-website-with-hugo/)
+* [hugo themes](https://themes.gohugo.io/)
 
-## Hyperlinks
+## Other themes
 
-**Underlink links in `PDF` documents**
-By default hyperlinks on PDF knitted documents are not underlined.
-Use the following to underlink the link.
-```
-[\underline{R Markdown: The Definitive Guide}](https://bookdown.org/yihui/rmarkdown/)
-```
-[R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
+[EpuRate](https://github.com/holtzy/epuRate)
 
-## Images and Figures
+* [Blog post by Dr. Jianghao Wang](http://jianghao.wang/post/2017-12-08-rmarkdown-templates/)
+* [Rob Hyndman](https://github.com/robjhyndman/MonashEBSTemplates)
 
-[Tips and tricks for working with images and figures in R Markdown documents](http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/)
-
-## Icons! 
-
-[here](https://ropensci.org/technotes/2018/05/15/icon/)

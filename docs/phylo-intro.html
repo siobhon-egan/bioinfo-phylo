@@ -13,22 +13,33 @@
 
 <title>Phylogenetics Introduction</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
-<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jquery-3.5.0/jquery-3.5.0.min.js"></script>
+<meta name="name" content="viewport" />
+<meta name="content" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link href="site_libs/bootstrap-3.4.1/bootstrap-custom.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.4.1/bootstrap.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
+  pre {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: .5rem;
+  }
   pre:not([class]) {
     background-color: white;
+  }
+  pre code {
+    background-color: transparent;
   }
 </style>
 <script type="text/javascript">
@@ -65,6 +76,7 @@ h5 {
 h6 {
   font-size: 12px;
 }
+
 .table th:not([align]) {
   text-align: left;
 }
@@ -102,36 +114,38 @@ summary {
 
 
 <style type="text/css">
+/* TODO: remove this padding CSS when we drop BS3 */
 /* padding for bootstrap navbar */
 body {
-  padding-top: 54px;
+  padding-top: 60px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 59px;
-  margin-top: -59px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h2 {
-  padding-top: 59px;
-  margin-top: -59px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h3 {
-  padding-top: 59px;
-  margin-top: -59px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h4 {
-  padding-top: 59px;
-  margin-top: -59px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h5 {
-  padding-top: 59px;
-  margin-top: -59px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h6 {
-  padding-top: 59px;
-  margin-top: -59px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
+
 .dropdown-submenu {
   position: relative;
 }
@@ -182,27 +196,29 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
 });
 </script>
 
-<!-- tabsets -->
-
+<!--
+  Note that .tabset-dropdown was initially implemented using Glyphicons, which were dropped
+  in BS4. The idea behind the "equivalent" BS4 CSS derives from how carets are implemented
+  https://github.com/twbs/bootstrap/blob/099860/scss/mixins/_caret.scss#L1
+-->
 <style type="text/css">
 .tabset-dropdown > .nav-tabs {
   display: inline-table;
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
+.tabset-dropdown > .nav-tabs > li.active-dropdown-tab:before {
   content: "";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
@@ -210,7 +226,7 @@ $(document).ready(function () {
   border-right: 1px solid #ddd;
 }
 
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active-dropdown-tab:before {
   content: "&#xe258;";
   border: none;
 }
@@ -223,7 +239,7 @@ $(document).ready(function () {
   border-right: 1px solid #ddd;
 }
 
-.tabset-dropdown > .nav-tabs > li.active {
+.tabset-dropdown > .nav-tabs > li.active-dropdown-tab {
   display: block;
 }
 
@@ -250,6 +266,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -257,6 +336,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -269,12 +358,55 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Code</a>
+      <a class="navbar-brand" href="index.html">Research</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
   <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-paper-plane"></span>
+     
+    Research tips
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="research.html">Introduction</a>
+    </li>
+    <li>
+      <a href="writing.html">Writing</a>
+    </li>
+    <li>
+      <a href="referencing.html">Referencing</a>
+    </li>
+    <li>
+      <a href="journals.html">Journals</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-terminal"></span>
+     
+    Code &amp; data
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="code.html">Introduction</a>
+    </li>
+    <li>
+      <a href="unix.html">Unix</a>
+    </li>
+    <li>
+      <a href="github.html">GitHub</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -292,6 +424,9 @@ $(document).ready(function () {
     <li class="dropdown-header">Plots &amp; data</li>
     <li>
       <a href="rstudio-aesthetics.html">Aesthetics</a>
+    </li>
+    <li>
+      <a href="rstudio-plots.html">Plots</a>
     </li>
     <li>
       <a href="rstudio-statistics.html">Statistics</a>
@@ -324,17 +459,6 @@ $(document).ready(function () {
     <li>
       <a href="visualise.html">Visualising and editing</a>
     </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-align-center"></span>
-     
-    Alignment
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
     <li>
       <a href="muscle.html">Muscle</a>
     </li>
@@ -353,6 +477,9 @@ $(document).ready(function () {
       <a href="phylo-intro.html">Introduction</a>
     </li>
     <li>
+      <a href="phylogenetics-methods.html">Methods</a>
+    </li>
+    <li>
       <a href="evolutionary-models.html">Evolutionary models</a>
     </li>
     <li>
@@ -365,13 +492,18 @@ $(document).ready(function () {
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/siobhon-egan">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -380,133 +512,7 @@ $(document).ready(function () {
 </div>
 
 
-<p>There are four popular molecular phylogenetic methods. The following information is a summary of information provided by material from the Australian National Postgraduate Training Workshop in Systematics support by the <a href="https://www.sasb.org.au">Society of Australian Systematic Biologists</a>, <a href="http://www.environment.gov.au/science/abrs">The Australian Biological Resources Study</a> and <a href="https://www.adelaide.edu.au/environment/acebb/">Australian Centre for Evolutionary Biology and Biodiversity</a> <em>and</em> <a href="https://github.com/simon-ho/SydneyPhyloWorkshop">Sydney Phylo Workshop</a> by Simon Ho.</p>
-<p><strong>1. Maximum parsimony</strong></p>
-<p>Identifies the tree topology that can explain the sequence data, using the smallest number of inferred substitution events. It is commonly used for morphological data, and now days is rarely used for analysing genetic data. It cannot estimate evolutionary rates or timescales and does not correct for multiple substitutions at the same site which leads to what is known as “long-branch attraction”.</p>
-<p><strong>2. Distance-based methods</strong></p>
-<p>Clustering algorithms - Unweighted Pair Group Method with Arithmetic Mean (UPGMA) - Neighbour joining (NJ)</p>
-<p>Tree searching using optimality criteria - Minimum evolution - Least-squares inference</p>
-<p><em>Pros</em></p>
-<ul>
-<li>Able to take into account multiple substitutions and long-branch attraction</li>
-<li>Useful for analysing very large data sets with a lot of taxa (1000’s +)</li>
-</ul>
-<p><em>Cons</em></p>
-<ul>
-<li>Does not use all information in alignment</li>
-<li>Loss of information in pairwise comparisons</li>
-<li>Unable to implement sophisticated evolutionary models</li>
-</ul>
-<p><strong>3. Maximum likelihood (ML)</strong></p>
-<ul>
-<li>Search through the space of possible trees and parameter values</li>
-<li>Calculate the likelihood for these</li>
-<li>Find best tree and model parameter values</li>
-<li>Multivariate optimisation</li>
-</ul>
-<p><em>Pros</em></p>
-<ul>
-<li>Rigorous statistical method</li>
-<li>Deals with multiple substitutions and long-branch attraction</li>
-<li>Highly robust to violations of assumptions</li>
-</ul>
-<p><em>Cons</em></p>
-<ul>
-<li>Not feasible to implement very parameter-rich models</li>
-<li>Searching tree space can be difficult</li>
-</ul>
-<p><em>ML Analysis</em></p>
-<ul>
-<li>RAxML = Randomized Axelerated Maximum Likelihood. Rapid bootstrapping and can run sequentially or in parallel.</li>
-<li>PhyML</li>
-<li>MEGA</li>
-<li>PAML</li>
-<li>IQ-Tree</li>
-</ul>
-<p><strong>4. Bayesian inference</strong></p>
-<p>Bayesian phylogenetic analysis was developed in the mid 1990s, and it now one of the most widely used methods for molecular phylogenetics.</p>
-<p>Key features of Bayesian paradigm</p>
-<ul>
-<li>Contrast with frequentist statistics (likelihood)</li>
-<li>Parameters have distributions</li>
-<li>Before the data are observed, each parameter has a prior distribution</li>
-<li>The likelihood of the data is computed</li>
-<li>The prior distribution is combined (updated) with the likelihood to yield the posterior distribution</li>
-</ul>
-<p><em>Priors</em></p>
-<ul>
-<li>Priors are chosen in the form of probability distributions</li>
-<li>Reflect our prior expectations (and uncertainty) about values of parameters (without knowledge of the data)
-<ul>
-<li>Past observations</li>
-<li>Personal beliefs</li>
-<li>Use of a biological model</li>
-</ul></li>
-<li>Uninformative priors</li>
-</ul>
-<p><em>‘Prior options’</em></p>
-<ol style="list-style-type: decimal">
-<li>Use a flat prior for tree topology (MrBayes)
-<ul>
-<li>All trees have equal probability</li>
-<li>Also need a prior for branch lengths or node times</li>
-</ul></li>
-<li>Use a biological model to generate prior distribution (BEAST and MrBayes)
-<ul>
-<li>Among species: speciation model</li>
-<li>Within species: coalescent model</li>
-</ul></li>
-</ol>
-<p><em>Markov Chain Monte Carlo Sampling</em></p>
-<p>It is impossible to obtain the posterior directly. Instead, the posterior can be estimated using Markov chain Monte Carlo simulation. This is usually done using the Metropolis-Hastings algorithm. There is a wealth of literature available for more information on this topic. It can get super technical - we’ve just covered the basics.</p>
-<p><em>Pros</em></p>
-<ul>
-<li>Able to implement highly parameterised models</li>
-<li>Estimating tree uncertainty is straightforward</li>
-<li>Can only do this indirectly in likelihood (via bootstrapping)</li>
-<li>Posterior probabilities have an intuitive interpretation</li>
-<li>Can incorporate independent information (in the prior)</li>
-</ul>
-<p><em>Popular software and programs for Bayesian analysis</em></p>
-<ul>
-<li>MrBayes
-<ul>
-<li>Primarily designed for species-level data</li>
-<li>Simultaneous estimation of tree and node times</li>
-<li>Range of clock models</li>
-<li>Range of tree priors</li>
-<li>Multiple chains and MCMC diagnostics</li>
-</ul></li>
-<li>RevBayes
-<ul>
-<li>Uses its own R-like language, Rev</li>
-<li>Interactive construction of graphical model</li>
-<li>Flexible and can be used for simulation and inference</li>
-<li>Ongoing development</li>
-</ul></li>
-<li>BEAST1 = Bayesian Evolutionary Analysis by Sampling Trees
-<ul>
-<li>Analyse population- or species-level data</li>
-<li>Simultaneous estimation of tree and node times</li>
-<li>Range of clock models</li>
-<li>Range of tree priors and demographic models</li>
-</ul></li>
-<li>BEAST2
-<ul>
-<li>Re-write of BEAST to increase modularity</li>
-<li>Users can extend BEAST by adding packages</li>
-<li>Additional tree priors not available in BEAST 1</li>
-<li>Capacity to perform simulations</li>
-<li>For a comparison of BEAST 1 and 2: www.beast2.org/beast-features</li>
-</ul></li>
-</ul>
-<div id="bootstrapping" class="section level5">
-<h5>Bootstrapping</h5>
-<p>Felsenstein (1985) Evolution 39(4):783-791 (<a href="https://www.ncbi.nlm.nih.gov/pubmed/28561359">Pub med</a>) Bootstrapping provides a confidence interval that contains the phylogeny that would be estimated from repeated sampling of many characters from the underlying set of all characters. Bootstrap values are measures of repeatability. High when the data set is large. Not meaningful when analysing genome-scale data.</p>
-<hr />
-</div>
-<div id="useful-resources-for-molecular-phylogenetics" class="section level2">
-<h2>Useful resources for molecular Phylogenetics</h2>
+<p><i class="fas fa-link"></i> <strong>Useful resources for molecular phylogenetics</strong></p>
 <ul>
 <li><a href="https://github.com/simon-ho/SydneyPhyloWorkshop">Sydney Phylo Workshop</a> by Simon Ho provides some excellent lecture notes and workshops with dataset</li>
 <li><a href="https://github.com/Phylogenetics-Brown-BIOL1425/phylogeneticbiology">Phylogenetic Biology</a> by Casey Dunn at Brown University is a great source of lecture and practical material. It also has a an extensive list of extra resources and useful links to reading material</li>
@@ -515,11 +521,37 @@ $(document).ready(function () {
 <li><a href="https://github.com/thednainus/Bayesian_tutorial">Bayesian MCMC phylogenetics tutorial in R</a> - for those wanting an R interface for their Phylogenetics</li>
 <li><a href="https://github.com/mmatschiner/tutorials">Collection of tutorials on phylogenetics</a> by Michael Matschiner. This goes through the workflow from sequence analysis through to dating and more</li>
 </ul>
-</div>
+<p>Broadly conducting a phylogenetic analysis can be broken down in the following steps:</p>
+<ol style="list-style-type: decimal">
+<li>Obtain sequences (e.g. your own sequences - ensure you perform approriate QC methods, or reference sequences from Genbank etc)
+<ul>
+<li><a href="https://www.ncbi.nlm.nih.gov/genbank/">NCBI Genbank</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/genome/">NCBI Genome</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/protein/">NCBI Protein</a></li>
+</ul></li>
+<li>Align sequences
+<ul>
+<li><a href="https://drive5.com/muscle/">MUSCLE, Edgar</a></li>
+<li><a href="https://mafft.cbrc.jp/alignment/software/">MAFFT</a></li>
+<li><a href="http://www.clustal.org/">Clustal</a></li>
+</ul></li>
+<li>Decide on appropriate method and model - this will differ depending on your study question, data available, gene(s), length of sequence, type of data (i.e. nucleotide, amino acid etc)
+<ul>
+<li>You will likely need to use some program to help you decide on most appropriate model</li>
+</ul></li>
+<li>Conduct phylogeny recontsruction (with or without bootstrap/node support)</li>
+<li>Visualize and edit tree
+<ul>
+<li><a href="http://tree.bio.ed.ac.uk/software/figtree/">FigTree</a></li>
+<li><a href="https://inkscape.org/">InkScape</a> - free open source graphics editor</li>
+</ul></li>
+</ol>
 
 <p>Copyright &copy; Siobhon L. Egan.</p>
 
 
+</div>
+</div>
 
 </div>
 
@@ -545,13 +577,41 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
+    $(this).siblings().removeClass("active-dropdown-tab");
+    $(this).addClass("active-dropdown-tab");
   });
 });
 </script>
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

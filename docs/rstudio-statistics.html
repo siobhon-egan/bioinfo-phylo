@@ -13,25 +13,30 @@
 
 <title>Statistics</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
-<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/jquery-3.5.0/jquery-3.5.0.min.js"></script>
+<meta name="name" content="viewport" />
+<meta name="content" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link href="site_libs/bootstrap-3.4.1/bootstrap-custom.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.4.1/bootstrap.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
+  pre {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: .5rem;
+  }
   pre:not([class]) {
     background-color: white;
+  }
+  pre code {
+    background-color: transparent;
   }
 </style>
 <script type="text/javascript">
@@ -68,6 +73,7 @@ h5 {
 h6 {
   font-size: 12px;
 }
+
 .table th:not([align]) {
   text-align: left;
 }
@@ -105,36 +111,38 @@ summary {
 
 
 <style type="text/css">
+/* TODO: remove this padding CSS when we drop BS3 */
 /* padding for bootstrap navbar */
 body {
-  padding-top: 54px;
+  padding-top: 60px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 59px;
-  margin-top: -59px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h2 {
-  padding-top: 59px;
-  margin-top: -59px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h3 {
-  padding-top: 59px;
-  margin-top: -59px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h4 {
-  padding-top: 59px;
-  margin-top: -59px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h5 {
-  padding-top: 59px;
-  margin-top: -59px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
 .section h6 {
-  padding-top: 59px;
-  margin-top: -59px;
+  padding-top: 65px;
+  margin-top: -65px;
 }
+
 .dropdown-submenu {
   position: relative;
 }
@@ -185,27 +193,29 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
 });
 </script>
 
-<!-- tabsets -->
-
+<!--
+  Note that .tabset-dropdown was initially implemented using Glyphicons, which were dropped
+  in BS4. The idea behind the "equivalent" BS4 CSS derives from how carets are implemented
+  https://github.com/twbs/bootstrap/blob/099860/scss/mixins/_caret.scss#L1
+-->
 <style type="text/css">
 .tabset-dropdown > .nav-tabs {
   display: inline-table;
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
+.tabset-dropdown > .nav-tabs > li.active-dropdown-tab:before {
   content: "";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
@@ -213,7 +223,7 @@ $(document).ready(function () {
   border-right: 1px solid #ddd;
 }
 
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active-dropdown-tab:before {
   content: "&#xe258;";
   border: none;
 }
@@ -226,7 +236,7 @@ $(document).ready(function () {
   border-right: 1px solid #ddd;
 }
 
-.tabset-dropdown > .nav-tabs > li.active {
+.tabset-dropdown > .nav-tabs > li.active-dropdown-tab {
   display: block;
 }
 
@@ -253,69 +263,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
 
 </head>
 
@@ -323,16 +270,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -345,12 +282,55 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Code</a>
+      <a class="navbar-brand" href="index.html">Research</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
   <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-paper-plane"></span>
+     
+    Research tips
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="research.html">Introduction</a>
+    </li>
+    <li>
+      <a href="writing.html">Writing</a>
+    </li>
+    <li>
+      <a href="referencing.html">Referencing</a>
+    </li>
+    <li>
+      <a href="journals.html">Journals</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-terminal"></span>
+     
+    Code &amp; data
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="code.html">Introduction</a>
+    </li>
+    <li>
+      <a href="unix.html">Unix</a>
+    </li>
+    <li>
+      <a href="github.html">GitHub</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -368,6 +348,9 @@ div.tocify {
     <li class="dropdown-header">Plots &amp; data</li>
     <li>
       <a href="rstudio-aesthetics.html">Aesthetics</a>
+    </li>
+    <li>
+      <a href="rstudio-plots.html">Plots</a>
     </li>
     <li>
       <a href="rstudio-statistics.html">Statistics</a>
@@ -400,17 +383,6 @@ div.tocify {
     <li>
       <a href="visualise.html">Visualising and editing</a>
     </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-align-center"></span>
-     
-    Alignment
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
     <li>
       <a href="muscle.html">Muscle</a>
     </li>
@@ -429,6 +401,9 @@ div.tocify {
       <a href="phylo-intro.html">Introduction</a>
     </li>
     <li>
+      <a href="phylogenetics-methods.html">Methods</a>
+    </li>
+    <li>
       <a href="evolutionary-models.html">Evolutionary models</a>
     </li>
     <li>
@@ -441,13 +416,18 @@ div.tocify {
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/siobhon-egan">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -456,9 +436,157 @@ div.tocify {
 </div>
 
 
+<div id="section" class="section level1 tabset">
+<h1></h1>
+<p><i class="fas fa-link"></i> As always it’s only fair links go first</p>
+<ul>
+<li><a href="https://rcompanion.org/handbook/C_03.html">Statistics &amp; analysis RCompanion</a></li>
+<li><a href="https://github.com/shearer/PropCIs">PropCIs</a></li>
+<li><a href="https://cran.rstudio.com/web/packages/binom/binom.pdf">binom</a></li>
+</ul>
 <p>Some commonly used statistics calculations for use in RStudio.</p>
-<div id="odds-ratio-relative-risk" class="section level1">
-<h1>Odds ratio &amp; Relative risk</h1>
+<p><strong>Load data</strong></p>
+<p>We’ll load some data on Tasmanian devils and presence of DFTD (cancer) and <em>Trypanosoma</em> presence. The data is coded so that 0 is negative and 1 is positive.</p>
+<pre class="r"><code>library(readr)
+# Load data
+tasdevil &lt;- read_csv(&quot;data/tasdevil-parasite.csv&quot;)</code></pre>
+<div id="basics" class="section level2">
+<h2>Basics</h2>
+<p>Sructure of data set</p>
+<pre class="r"><code>str(tasdevil)</code></pre>
+<pre><code>## tibble [95 × 17] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ Microchip   : num [1:95] 9.82e+14 9.82e+14 9.82e+14 9.82e+14 9.82e+14 ...
+##  $ Site_name   : chr [1:95] &quot;Takone&quot; &quot;Takone&quot; &quot;Takone&quot; &quot;Takone&quot; ...
+##  $ Site_code   : chr [1:95] &quot;TKN&quot; &quot;TKN&quot; &quot;TKN&quot; &quot;TKN&quot; ...
+##  $ Sex         : chr [1:95] &quot;Male&quot; &quot;Female&quot; &quot;Male&quot; &quot;Male&quot; ...
+##  $ YOB         : num [1:95] 2017 2016 2017 2016 2013 ...
+##  $ BloodNumber : chr [1:95] &quot;TKN-215&quot; &quot;TKN-178&quot; &quot;TKN-213&quot; &quot;TKN-192&quot; ...
+##  $ TrappingDate: chr [1:95] &quot;May-18&quot; &quot;May-18&quot; &quot;May-18&quot; &quot;May-18&quot; ...
+##  $ DFTDScore   : num [1:95] 1 5 1 5 1 1 1 5 1 1 ...
+##  $ DFTDStatus  : num [1:95] 0 1 0 1 0 0 0 1 0 0 ...
+##  $ Blood_lid_id: chr [1:95] &quot;A1&quot; &quot;A10&quot; &quot;A2&quot; &quot;A3&quot; ...
+##  $ TrypStatus  : num [1:95] 0 0 1 0 0 1 0 0 0 0 ...
+##  $ TrypCope    : num [1:95] 0 0 1 0 0 1 0 0 0 0 ...
+##  $ TrypNov     : num [1:95] 0 0 0 0 0 0 0 0 0 0 ...
+##  $ TrypSpp     : chr [1:95] &quot;Neg&quot; &quot;Neg&quot; &quot;T.cope&quot; &quot;Neg&quot; ...
+##  $ TickStatus  : num [1:95] 1 1 1 1 1 1 1 0 1 1 ...
+##  $ TickNos     : num [1:95] 1 1 1 1 1 1 1 0 1 1 ...
+##  $ TickSpp.    : chr [1:95] &quot;ITaF&quot; &quot;ITaF&quot; &quot;ITaF&quot; &quot;ITaF&quot; ...
+##  - attr(*, &quot;spec&quot;)=
+##   .. cols(
+##   ..   Microchip = col_double(),
+##   ..   Site_name = col_character(),
+##   ..   Site_code = col_character(),
+##   ..   Sex = col_character(),
+##   ..   YOB = col_double(),
+##   ..   BloodNumber = col_character(),
+##   ..   TrappingDate = col_character(),
+##   ..   DFTDScore = col_double(),
+##   ..   DFTDStatus = col_double(),
+##   ..   Blood_lid_id = col_character(),
+##   ..   TrypStatus = col_double(),
+##   ..   TrypCope = col_double(),
+##   ..   TrypNov = col_double(),
+##   ..   TrypSpp = col_character(),
+##   ..   TickStatus = col_double(),
+##   ..   TickNos = col_double(),
+##   ..   TickSpp. = col_character()
+##   .. )</code></pre>
+<p>How many had DFTD</p>
+<pre class="r"><code>sum(tasdevil$DFTDStatus)</code></pre>
+<pre><code>## [1] 21</code></pre>
+</div>
+<div id="proportion-and-cis" class="section level2">
+<h2>Proportion and CIs</h2>
+<p><strong>Load libraries</strong></p>
+<pre class="r"><code># Install first if you need
+#
+# install.packages(&quot;DescTools&quot;)
+# install.packages(&quot;PropCIs&quot;)
+# install.packages(&quot;binom&quot;)
+# install.package(&quot;rcompanion&quot;)
+# install.package(&quot;tidyverse&quot;)</code></pre>
+<pre class="r"><code>library(DescTools)
+library(PropCIs)
+library(binom)
+library(rcompanion)
+library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.0     ✓ dplyr   0.8.5
+## ✓ tibble  3.0.1     ✓ stringr 1.4.0
+## ✓ tidyr   1.0.2     ✓ forcats 0.5.0
+## ✓ purrr   0.3.4</code></pre>
+<pre><code>## ── Conflicts ────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<p>Calculate different in <em>Trypanosoma</em> prevalence between males and females with 95% CIs</p>
+<pre class="r"><code>groupwiseMean(TrypStatus ~ Sex,
+              data = tasdevil,
+              conf = 0.95,
+              digits = 3)</code></pre>
+<pre><code>##      Sex  n  Mean Conf.level Trad.lower Trad.upper
+## 1 Female 46 0.348       0.95      0.205      0.491
+## 2   Male 49 0.306       0.95      0.172      0.440</code></pre>
+<p>We could plot the values above using this…</p>
+<pre class="r"><code>#save values to a data.frame
+CI &lt;- groupwiseMean(TrypStatus ~ Sex,
+              data = tasdevil,
+              conf = 0.95,
+              digits = 3)
+#plot
+qplot(x= Sex,
+      y = Mean,
+      data = CI,
+      shape= Sex) +
+  
+  geom_point(size=2.5) +
+  
+  geom_errorbar(aes(
+    ymin = Trad.lower,
+    ymax = Trad.upper,
+    width = 0.15)) + theme_bw() + ylim(0,1)</code></pre>
+<p><img src="rstudio-statistics_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Calculate different in <em>Trypanosoma</em> prevalence between males and females and 4 different sites with 95% CIs</p>
+<pre class="r"><code>groupwiseMean(TrypStatus ~ Sex + Site_code,
+              data   = tasdevil,
+              conf   = 0.95,
+              digits = 3)</code></pre>
+<pre><code>##      Sex Site_code  n  Mean Conf.level Trad.lower Trad.upper
+## 1 Female       BRI 16 0.438       0.95     0.1640      0.711
+## 2 Female       FNP 12 0.000       0.95     0.0000      0.000
+## 3 Female       TKN 10 0.200       0.95    -0.1020      0.502
+## 4 Female       WPP  8 0.875       0.95     0.5790      1.170
+## 5   Male       BRI 15 0.267       0.95     0.0132      0.520
+## 6   Male       FNP 15 0.200       0.95    -0.0293      0.429
+## 7   Male       TKN 13 0.308       0.95     0.0174      0.598
+## 8   Male       WPP  6 0.667       0.95     0.1250      1.210</code></pre>
+<div id="simple-stuff" class="section level4">
+<h4>Simple stuff</h4>
+<p>If you need here are some simple bits of code where you have basic numbers such as…7 positive out of sample size of 21.</p>
+<pre class="r"><code>binom.test(7, 21,
+           0.5,
+           alternative=&quot;two.sided&quot;,
+           conf.level=0.95)</code></pre>
+<pre><code>## 
+##  Exact binomial test
+## 
+## data:  7 and 21
+## number of successes = 7, number of trials = 21, p-value = 0.1892
+## alternative hypothesis: true probability of success is not equal to 0.5
+## 95 percent confidence interval:
+##  0.1458769 0.5696755
+## sample estimates:
+## probability of success 
+##              0.3333333</code></pre>
+<p>Now we’ll calculate the 95% CIs using the Jeffreys method.</p>
+<pre class="r"><code>BinomCI(7, 21,
+        conf.level=0.95,
+        method=&quot;jeffreys&quot;)</code></pre>
+<pre><code>##            est    lwr.ci    upr.ci
+## [1,] 0.3333333 0.1632227 0.5459686</code></pre>
+</div>
+<div id="odds-ratio-relative-risk" class="section level3">
+<h3>Odds ratio &amp; Relative risk</h3>
 <p>Using epitools - <a href="https://cran.r-project.org/web/packages/epitools/epitools.pdf">manual here</a></p>
 <p><em>Reminder:</em> If you need more information on the tests use the help command in the console (e.g. <code>?riskratio</code>, <code>?oddsratio</code>).</p>
 <p><strong>Library</strong></p>
@@ -528,12 +656,16 @@ dimnames(dat) &lt;- list(&quot;Sex&quot; = factor1, &quot;Parasite present&quot;
 ## attr(,&quot;method&quot;)
 ## [1] &quot;Unconditional MLE &amp; normal approximation (Wald) CI&quot;</code></pre>
 </div>
+</div>
+<div id="modelling" class="section level2">
+<h2>Modelling</h2>
+<p><a href="http://users.stat.ufl.edu/~aa/cda/R_web.pdf">Manual here</a> and <a href="http://users.stat.ufl.edu/~aa/cda2/cda.html">webpage</a></p>
+</div>
+</div>
 
 <p>Copyright &copy; Siobhon L. Egan.</p>
 
 
-</div>
-</div>
 
 </div>
 
@@ -559,39 +691,15 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
+    $(this).siblings().removeClass("active-dropdown-tab");
+    $(this).addClass("active-dropdown-tab");
   });
 });
 </script>
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
