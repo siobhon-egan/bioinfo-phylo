@@ -48,18 +48,18 @@ navbar:
         href: rmd-bookdown.html
       - text: Websites
         href: rmd-webpages.html
-  - text: "Sequence files"
-    icon: fa-dna
+  - text: "Phylogenetics"
+    icon: fa-code-branch
     menu:
+      - text: "Sequence"
       - text: Command line
         href: sequence-files.html
       - text: Visualising and editing
         href: visualise.html
       - text: "Muscle"
         href: muscle.html
-  - text: "Phylogenetics"
-    icon: fa-code-branch
-    menu:
+      - text: "---------"
+      - text: "Building phylogeny"
       - text: "Introduction"
         href: phylo-intro.html
       - text: "Methods"
@@ -72,7 +72,6 @@ navbar:
         href: mrbayes.html
 output:
   html_document:
-    theme: spacelab
-    highlight: monochrome
+    theme: united
     include:
       after_body: footer.html
