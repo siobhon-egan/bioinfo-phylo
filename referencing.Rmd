@@ -6,6 +6,9 @@ output:
       toc_float: true
 ---
 
+<span class="badge badge-info">A brief guide to referencing</span>
+
+
 # Copyright
 
 [Murdoch Library - Copyright basics](https://www.murdoch.edu.au/library/help-support/copyright)

@@ -6,6 +6,9 @@ output:
       toc_float: true
 ---
 
+<span class="badge badge-info">Useful information for those new to research</span>
+
+
 # Project planning
 
 Hugh Kearns [ThinkWell](https://www.ithinkwell.com.au/hugh-kearns) is an excellent source of information for researchers. He also runs workshops and regularly visits universities and insitutions around Australia so keep an eye on his calendar.

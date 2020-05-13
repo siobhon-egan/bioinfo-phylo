@@ -8,6 +8,7 @@ output:
 ---
 
 
+<span class="badge badge-info">Quick commands for manipulating sequence files</span>
 
 
 ## Basic information and links

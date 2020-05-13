@@ -6,6 +6,8 @@ aoutput:
       toc_float: true
 ---
 
+<span class="badge badge-info">A brief guide to bash code from the Unix terminal</span>
+
 # Get started
 
 The following install insctructions are courtesy of [Software carpentry lesson - the Unix Shell](http://swcarpentry.github.io/shell-novice/setup.html)

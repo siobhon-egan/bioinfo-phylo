@@ -70,9 +70,6 @@ navbar:
         href: iqtree.html
       - text: "MrBayes"
         href: mrbayes.html
-  right:
-    - icon: fa-github
-      href: https://github.com/siobhon-egan
 output:
   html_document:
     theme: spacelab
