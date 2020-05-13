@@ -2,6 +2,8 @@
 title: "Muscle"
 ---
 
+<span class="badge badge-info">Sequence alignment with MUSCLE</span>
+
 
 MUSCLE is one of the most common tools to align sequences. In most cases, only a few command line options are needed.
 

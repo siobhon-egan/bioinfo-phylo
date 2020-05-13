@@ -2,6 +2,9 @@
 title: "Evolutionary models"
 ---
 
+<span class="badge badge-info">Phylogenetics - overview of model types</span>
+
+
 An excellent summary of the different models (listed below) is directly sourced from Evolution and Geonomics Workshop ([link here](http://evomics.org/resources/substitution-models/nucleotide-substitution-models/)).
 
 Highly recommend you check out the rest of the website for some great resources and detailed information & tutorials.

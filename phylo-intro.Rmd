@@ -6,6 +6,9 @@ output:
     toc_float: yes
 ---
 
+<span class="badge badge-info">A quick overview on phylogenetics</span>
+
+
 <i class="fas fa-link"></i> **Useful resources for molecular phylogenetics**
 
 * [Sydney Phylo Workshop](https://github.com/simon-ho/SydneyPhyloWorkshop) by Simon Ho provides some excellent lecture notes and workshops with dataset

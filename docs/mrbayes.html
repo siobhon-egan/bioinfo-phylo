@@ -22,36 +22,53 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre {
-    background-color: #f5f5f5;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: .5rem;
-  }
-  pre:not([class]) {
-    background-color: white;
-  }
-  pre code {
-    background-color: transparent;
-  }
-</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { font-weight: bold; } /* Keyword */
+code > span.dt { text-decoration: underline; } /* DataType */
+code > span.co { font-style: italic; } /* Comment */
+code > span.al { font-weight: bold; } /* Alert */
+code > span.er { font-weight: bold; } /* Error */
+code > span.wa { font-style: italic; } /* Warning */
+code > span.cf { font-weight: bold; } /* ControlFlow */
+code > span.pp { font-weight: bold; } /* Preprocessor */
+code > span.do { font-style: italic; } /* Documentation */
+code > span.an { font-style: italic; } /* Annotation */
+code > span.cv { font-style: italic; } /* CommentVar */
+code > span.in { font-style: italic; } /* Information */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 <style type="text/css">
@@ -117,33 +134,33 @@ summary {
 /* TODO: remove this padding CSS when we drop BS3 */
 /* padding for bootstrap navbar */
 body {
-  padding-top: 60px;
+  padding-top: 52px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 57px;
+  margin-top: -57px;
 }
 .section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 57px;
+  margin-top: -57px;
 }
 .section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 57px;
+  margin-top: -57px;
 }
 .section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 57px;
+  margin-top: -57px;
 }
 .section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 57px;
+  margin-top: -57px;
 }
 .section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 57px;
+  margin-top: -57px;
 }
 
 .dropdown-submenu {
@@ -515,6 +532,7 @@ div.tocify {
 </div>
 
 
+<p><span class="badge badge-info">Phylogenetic analysis using Bayesian method</span></p>
 <p>MrBayes is a program for Bayesian inference and model choice across a wide range of phylogenetic and evolutionary models. MrBayes uses Markov chain Monte Carlo (MCMC) methods to estimate the posterior distribution of model parameters. Here I have described two options of using MrBayes (i) command line and (ii) webserver.</p>
 <p><i class="fas fa-link"></i> <strong>Useful resources</strong></p>
 <ul>
@@ -530,12 +548,12 @@ div.tocify {
 <p>Instructions on how to installl MrBayes are available <a href="https://nbisweden.github.io/MrBayes/download.html">here</a> and <a href="http://mrbayes.sourceforge.net/wiki/index.php/Introduction_3.2">here</a>.</p>
 <p>Download source code for compliation on Unix machines <a href="https://github.com/NBISweden/MrBayes/archive/v3.2.7a.tar.gz">3.2.7a</a>.</p>
 <p>Open a terminal window and execute the following, remember you may need to navigate to change directory or move download file to currently working directory.</p>
-<pre class="bash"><code>~ $ tar zxf mrbayes-3.2.tar.gz
-~ $ cd mrbayes-3.2
-~/mrbayes-3.2 $ ./configure
-~/mrbayes-3.2 $ make
-~/mrbayes-3.2 $ export CC=MyCompiler
-~/mrbayes-3.2 % ./configure</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">~</span> $ <span class="fu">tar</span> zxf mrbayes-3.2.tar.gz
+<span class="ex">~</span> $ <span class="bu">cd</span> mrbayes-3.2
+<span class="ex">~/mrbayes-3.2</span> $ ./configure
+<span class="ex">~/mrbayes-3.2</span> $ make
+<span class="ex">~/mrbayes-3.2</span> $ export CC=MyCompiler
+<span class="ex">~/mrbayes-3.2</span> % ./configure</code></pre></div>
 <p>You should now be ready to start!</p>
 <div id="nexus-file-format" class="section level2">
 <h2>1. Nexus file format</h2>

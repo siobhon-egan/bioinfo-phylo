@@ -90,6 +90,8 @@ If using the `Simple R Markdown website` option to create a website then the def
 Highlight options include:    
 “default”, “tango”, “pygments”, “kate”, “monochrome”, “espresso”, “zenburn”, “haddock”, “breezedark”, “textmate”.
 
+[Overiew here](https://www.datadreaming.org/post/r-markdown-theme-gallery/)
+
 They can be changed by including the following in the 'YAML'
 ```
 output:

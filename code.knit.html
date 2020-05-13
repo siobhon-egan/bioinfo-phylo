@@ -11,7 +11,7 @@
 
 
 
-<title>Methods</title>
+<title>Introduction</title>
 
 <script src="site_libs/jquery-3.5.0/jquery-3.5.0.min.js"></script>
 <meta name="name" content="viewport" />
@@ -22,9 +22,33 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: .5rem;
+  }
+  pre:not([class]) {
+    background-color: white;
+  }
+  pre code {
+    background-color: transparent;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
 
 
 
@@ -484,147 +508,31 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Methods</h1>
+<h1 class="title toc-ignore">Introduction</h1>
 
 </div>
 
 
-<p>There are four popular molecular phylogenetic methods.</p>
-<p><i class="fas fa-link"></i> The following is a summary of information from a number of resources, workshops and other bits I have come across during my data analysis learning. As with the rest of this webpage it is certainly not extensive and written in a context relevent to the work I do (i.e. parasite identification and a dabble in taxonomy and systematics).</p>
+<div id="text-editors" class="section level1">
+<h1>Text editors</h1>
+<p>The first step in your coding journey is to download yourself a good text editor. While you most systems come with a basic built-in editor (e.g. <code>TextEdit</code> for MacOS or <code>notepad</code> for windows) its best to find one you like early one.</p>
+<p>My favourite is <a href="https://atom.io/">atom</a> - which is <strong>FREE</strong>.</p>
+<p>Others include:</p>
 <ul>
-<li>Australian National Postgraduate Training Workshop in Systematics support by the <a href="https://www.sasb.org.au">Society of Australian Systematic Biologists</a>, <a href="http://www.environment.gov.au/science/abrs">The Australian Biological Resources Study</a> and <a href="https://www.adelaide.edu.au/environment/acebb/">Australian Centre for Evolutionary Biology and Biodiversity</a></li>
-<li><a href="https://github.com/simon-ho/SydneyPhyloWorkshop">Sydney Phylo Workshop</a> by Simon Ho.</li>
-</ul>
-<div id="maximum-parsimony" class="section level2">
-<h2>1. Maximum parsimony</h2>
-<p>Identifies the tree topology that can explain the sequence data, using the smallest number of inferred substitution events. It is commonly used for morphological data, and now days is rarely used for analysing genetic data. It cannot estimate evolutionary rates or timescales and does not correct for multiple substitutions at the same site which leads to what is known as “long-branch attraction”.</p>
-</div>
-<div id="distance-based-methods" class="section level2">
-<h2>2. Distance-based methods</h2>
-<p>Clustering algorithms - Unweighted Pair Group Method with Arithmetic Mean (UPGMA) - Neighbour joining (NJ)</p>
-<p>Tree searching using optimality criteria - Minimum evolution - Least-squares inference</p>
-<p><em>Pros</em></p>
-<ul>
-<li>Able to take into account multiple substitutions and long-branch attraction</li>
-<li>Useful for analysing very large data sets with a lot of taxa (1000’s +)</li>
-</ul>
-<p><em>Cons</em></p>
-<ul>
-<li>Does not use all information in alignment</li>
-<li>Loss of information in pairwise comparisons</li>
-<li>Unable to implement sophisticated evolutionary models</li>
+<li><a href="https://www.sublimetext.com/">Sublime Text</a> - <strong>PAID</strong></li>
+<li><a href="https://notepad-plus-plus.org/">Notepad++</a></li>
+<li><a href="https://macromates.com/">TextMate</a></li>
 </ul>
 </div>
-<div id="maximum-likelihood-ml" class="section level2">
-<h2>3. Maximum likelihood (ML)</h2>
+<div id="etherpad" class="section level1">
+<h1>Etherpad</h1>
+<p>An etherpad is an excellent tool to use for teaching and workshops. It provides a communal notepad that everyone can access - provide a single link and you can drop in any information, bits of code, webpage links, resources etc in this central place rather than having people rely on copying code correctly from a screen.</p>
 <ul>
-<li>Search through the space of possible trees and parameter values</li>
-<li>Calculate the likelihood for these</li>
-<li>Find best tree and model parameter values</li>
-<li>Multivariate optimisation</li>
+<li><a href="https://etherpad.wikimedia.org/">etherpad wikimedia</a></li>
+<li><a href="https://pad.carpentries.org/">pad carpentries</a></li>
+<li><a href="https://pad.riseup.net/">pad riseup</a></li>
+<li><a href="https://pad.carpentries.org/">pad carpentries</a></li>
 </ul>
-<p><em>Pros</em></p>
-<ul>
-<li>Rigorous statistical method</li>
-<li>Deals with multiple substitutions and long-branch attraction</li>
-<li>Highly robust to violations of assumptions</li>
-</ul>
-<p><em>Cons</em></p>
-<ul>
-<li>Not feasible to implement very parameter-rich models</li>
-<li>Searching tree space can be difficult</li>
-</ul>
-<p><em>ML Analysis</em></p>
-<ul>
-<li>RAxML = Randomized Axelerated Maximum Likelihood. Rapid bootstrapping and can run sequentially or in parallel.</li>
-<li>PhyML</li>
-<li>MEGA</li>
-<li>PAML</li>
-<li>IQ-Tree</li>
-</ul>
-</div>
-<div id="bayesian-inference" class="section level2">
-<h2>4. Bayesian inference</h2>
-<p>Bayesian phylogenetic analysis was developed in the mid 1990s, and it now one of the most widely used methods for molecular phylogenetics.</p>
-<p>Key features of Bayesian paradigm</p>
-<ul>
-<li>Contrast with frequentist statistics (likelihood)</li>
-<li>Parameters have distributions</li>
-<li>Before the data are observed, each parameter has a prior distribution</li>
-<li>The likelihood of the data is computed</li>
-<li>The prior distribution is combined (updated) with the likelihood to yield the posterior distribution</li>
-</ul>
-<p><em>Priors</em></p>
-<ul>
-<li>Priors are chosen in the form of probability distributions</li>
-<li>Reflect our prior expectations (and uncertainty) about values of parameters (without knowledge of the data)
-<ul>
-<li>Past observations</li>
-<li>Personal beliefs</li>
-<li>Use of a biological model</li>
-</ul></li>
-<li>Uninformative priors</li>
-</ul>
-<p><em>‘Prior options’</em></p>
-<ol style="list-style-type: decimal">
-<li>Use a flat prior for tree topology (MrBayes)
-<ul>
-<li>All trees have equal probability</li>
-<li>Also need a prior for branch lengths or node times</li>
-</ul></li>
-<li>Use a biological model to generate prior distribution (BEAST and MrBayes)
-<ul>
-<li>Among species: speciation model</li>
-<li>Within species: coalescent model</li>
-</ul></li>
-</ol>
-<p><em>Markov Chain Monte Carlo Sampling</em></p>
-<p>It is impossible to obtain the posterior directly. Instead, the posterior can be estimated using Markov chain Monte Carlo simulation. This is usually done using the Metropolis-Hastings algorithm. There is a wealth of literature available for more information on this topic. It can get super technical - we’ve just covered the basics.</p>
-<p><em>Pros</em></p>
-<ul>
-<li>Able to implement highly parameterised models</li>
-<li>Estimating tree uncertainty is straightforward</li>
-<li>Can only do this indirectly in likelihood (via bootstrapping)</li>
-<li>Posterior probabilities have an intuitive interpretation</li>
-<li>Can incorporate independent information (in the prior)</li>
-</ul>
-<p><em>Popular software and programs for Bayesian analysis</em></p>
-<ul>
-<li>MrBayes
-<ul>
-<li>Primarily designed for species-level data</li>
-<li>Simultaneous estimation of tree and node times</li>
-<li>Range of clock models</li>
-<li>Range of tree priors</li>
-<li>Multiple chains and MCMC diagnostics</li>
-</ul></li>
-<li>RevBayes
-<ul>
-<li>Uses its own R-like language, Rev</li>
-<li>Interactive construction of graphical model</li>
-<li>Flexible and can be used for simulation and inference</li>
-<li>Ongoing development</li>
-</ul></li>
-<li>BEAST1 = Bayesian Evolutionary Analysis by Sampling Trees
-<ul>
-<li>Analyse population- or species-level data</li>
-<li>Simultaneous estimation of tree and node times</li>
-<li>Range of clock models</li>
-<li>Range of tree priors and demographic models</li>
-</ul></li>
-<li>BEAST2
-<ul>
-<li>Re-write of BEAST to increase modularity</li>
-<li>Users can extend BEAST by adding packages</li>
-<li>Additional tree priors not available in BEAST 1</li>
-<li>Capacity to perform simulations</li>
-<li>For a comparison of BEAST 1 and 2: www.beast2.org/beast-features</li>
-</ul></li>
-</ul>
-</div>
-<div id="bootstrapping" class="section level2">
-<h2>Bootstrapping</h2>
-<p>Felsenstein (1985) Evolution 39(4):783-791 (<a href="https://www.ncbi.nlm.nih.gov/pubmed/28561359">Pub med</a>) Bootstrapping provides a confidence interval that contains the phylogeny that would be estimated from repeated sampling of many characters from the underlying set of all characters. Bootstrap values are measures of repeatability. High when the data set is large. Not meaningful when analysing genome-scale data.</p>
 </div>
 
 <p>Copyright &copy; Siobhon L. Egan.</p>

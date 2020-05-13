@@ -19,36 +19,53 @@
 <link href="site_libs/bootstrap-3.4.1/bootstrap-custom.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.4.1/bootstrap.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre {
-    background-color: #f5f5f5;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: .5rem;
-  }
-  pre:not([class]) {
-    background-color: white;
-  }
-  pre code {
-    background-color: transparent;
-  }
-</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { font-weight: bold; } /* Keyword */
+code > span.dt { text-decoration: underline; } /* DataType */
+code > span.co { font-style: italic; } /* Comment */
+code > span.al { font-weight: bold; } /* Alert */
+code > span.er { font-weight: bold; } /* Error */
+code > span.wa { font-style: italic; } /* Warning */
+code > span.cf { font-weight: bold; } /* ControlFlow */
+code > span.pp { font-weight: bold; } /* Preprocessor */
+code > span.do { font-style: italic; } /* Documentation */
+code > span.an { font-style: italic; } /* Annotation */
+code > span.cv { font-style: italic; } /* CommentVar */
+code > span.in { font-style: italic; } /* Information */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 <style type="text/css">
@@ -114,33 +131,33 @@ summary {
 /* TODO: remove this padding CSS when we drop BS3 */
 /* padding for bootstrap navbar */
 body {
-  padding-top: 60px;
+  padding-top: 52px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 57px;
+  margin-top: -57px;
 }
 .section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 57px;
+  margin-top: -57px;
 }
 .section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 57px;
+  margin-top: -57px;
 }
 .section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 57px;
+  margin-top: -57px;
 }
 .section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 57px;
+  margin-top: -57px;
 }
 .section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 57px;
+  margin-top: -57px;
 }
 
 .dropdown-submenu {
@@ -450,13 +467,13 @@ $(document).ready(function () {
 <p>Some commonly used statistics calculations for use in RStudio.</p>
 <p><strong>Load data</strong></p>
 <p>We’ll load some data on Tasmanian devils and presence of DFTD (cancer) and <em>Trypanosoma</em> presence. The data is coded so that 0 is negative and 1 is positive.</p>
-<pre class="r"><code>library(readr)
-# Load data
-tasdevil &lt;- read_csv(&quot;data/tasdevil-parasite.csv&quot;)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)
+<span class="co"># Load data</span>
+tasdevil &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/tasdevil-parasite.csv&quot;</span>)</code></pre></div>
 <div id="basics" class="section level2">
 <h2>Basics</h2>
 <p>Sructure of data set</p>
-<pre class="r"><code>str(tasdevil)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(tasdevil)</code></pre></div>
 <pre><code>## tibble [95 × 17] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##  $ Microchip   : num [1:95] 9.82e+14 9.82e+14 9.82e+14 9.82e+14 9.82e+14 ...
 ##  $ Site_name   : chr [1:95] &quot;Takone&quot; &quot;Takone&quot; &quot;Takone&quot; &quot;Takone&quot; ...
@@ -496,24 +513,24 @@ tasdevil &lt;- read_csv(&quot;data/tasdevil-parasite.csv&quot;)</code></pre>
 ##   ..   TickSpp. = col_character()
 ##   .. )</code></pre>
 <p>How many had DFTD</p>
-<pre class="r"><code>sum(tasdevil$DFTDStatus)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(tasdevil<span class="op">$</span>DFTDStatus)</code></pre></div>
 <pre><code>## [1] 21</code></pre>
 </div>
 <div id="proportion-and-cis" class="section level2">
 <h2>Proportion and CIs</h2>
 <p><strong>Load libraries</strong></p>
-<pre class="r"><code># Install first if you need
-#
-# install.packages(&quot;DescTools&quot;)
-# install.packages(&quot;PropCIs&quot;)
-# install.packages(&quot;binom&quot;)
-# install.package(&quot;rcompanion&quot;)
-# install.package(&quot;tidyverse&quot;)</code></pre>
-<pre class="r"><code>library(DescTools)
-library(PropCIs)
-library(binom)
-library(rcompanion)
-library(tidyverse)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Install first if you need</span>
+<span class="co">#</span>
+<span class="co"># install.packages(&quot;DescTools&quot;)</span>
+<span class="co"># install.packages(&quot;PropCIs&quot;)</span>
+<span class="co"># install.packages(&quot;binom&quot;)</span>
+<span class="co"># install.package(&quot;rcompanion&quot;)</span>
+<span class="co"># install.package(&quot;tidyverse&quot;)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DescTools)
+<span class="kw">library</span>(PropCIs)
+<span class="kw">library</span>(binom)
+<span class="kw">library</span>(rcompanion)
+<span class="kw">library</span>(tidyverse)</code></pre></div>
 <pre><code>## ── Attaching packages ─────────────────── tidyverse 1.3.0 ──</code></pre>
 <pre><code>## ✓ ggplot2 3.3.0     ✓ dplyr   0.8.5
 ## ✓ tibble  3.0.1     ✓ stringr 1.4.0
@@ -523,37 +540,37 @@ library(tidyverse)</code></pre>
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
 <p>Calculate different in <em>Trypanosoma</em> prevalence between males and females with 95% CIs</p>
-<pre class="r"><code>groupwiseMean(TrypStatus ~ Sex,
-              data = tasdevil,
-              conf = 0.95,
-              digits = 3)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">groupwiseMean</span>(TrypStatus <span class="op">~</span><span class="st"> </span>Sex,
+              <span class="dt">data =</span> tasdevil,
+              <span class="dt">conf =</span> <span class="fl">0.95</span>,
+              <span class="dt">digits =</span> <span class="dv">3</span>)</code></pre></div>
 <pre><code>##      Sex  n  Mean Conf.level Trad.lower Trad.upper
 ## 1 Female 46 0.348       0.95      0.205      0.491
 ## 2   Male 49 0.306       0.95      0.172      0.440</code></pre>
 <p>We could plot the values above using this…</p>
-<pre class="r"><code>#save values to a data.frame
-CI &lt;- groupwiseMean(TrypStatus ~ Sex,
-              data = tasdevil,
-              conf = 0.95,
-              digits = 3)
-#plot
-qplot(x= Sex,
-      y = Mean,
-      data = CI,
-      shape= Sex) +
-  
-  geom_point(size=2.5) +
-  
-  geom_errorbar(aes(
-    ymin = Trad.lower,
-    ymax = Trad.upper,
-    width = 0.15)) + theme_bw() + ylim(0,1)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#save values to a data.frame</span>
+CI &lt;-<span class="st"> </span><span class="kw">groupwiseMean</span>(TrypStatus <span class="op">~</span><span class="st"> </span>Sex,
+              <span class="dt">data =</span> tasdevil,
+              <span class="dt">conf =</span> <span class="fl">0.95</span>,
+              <span class="dt">digits =</span> <span class="dv">3</span>)
+<span class="co">#plot</span>
+<span class="kw">qplot</span>(<span class="dt">x=</span> Sex,
+      <span class="dt">y =</span> Mean,
+      <span class="dt">data =</span> CI,
+      <span class="dt">shape=</span> Sex) <span class="op">+</span>
+<span class="st">  </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size=</span><span class="fl">2.5</span>) <span class="op">+</span>
+<span class="st">  </span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(
+    <span class="dt">ymin =</span> Trad.lower,
+    <span class="dt">ymax =</span> Trad.upper,
+    <span class="dt">width =</span> <span class="fl">0.15</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylim</span>(<span class="dv">0</span>,<span class="dv">1</span>)</code></pre></div>
 <p><img src="rstudio-statistics_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Calculate different in <em>Trypanosoma</em> prevalence between males and females and 4 different sites with 95% CIs</p>
-<pre class="r"><code>groupwiseMean(TrypStatus ~ Sex + Site_code,
-              data   = tasdevil,
-              conf   = 0.95,
-              digits = 3)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">groupwiseMean</span>(TrypStatus <span class="op">~</span><span class="st"> </span>Sex <span class="op">+</span><span class="st"> </span>Site_code,
+              <span class="dt">data   =</span> tasdevil,
+              <span class="dt">conf   =</span> <span class="fl">0.95</span>,
+              <span class="dt">digits =</span> <span class="dv">3</span>)</code></pre></div>
 <pre><code>##      Sex Site_code  n  Mean Conf.level Trad.lower Trad.upper
 ## 1 Female       BRI 16 0.438       0.95     0.1640      0.711
 ## 2 Female       FNP 12 0.000       0.95     0.0000      0.000
@@ -566,10 +583,10 @@ qplot(x= Sex,
 <div id="simple-stuff" class="section level4">
 <h4>Simple stuff</h4>
 <p>If you need here are some simple bits of code where you have basic numbers such as…7 positive out of sample size of 21.</p>
-<pre class="r"><code>binom.test(7, 21,
-           0.5,
-           alternative=&quot;two.sided&quot;,
-           conf.level=0.95)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">binom.test</span>(<span class="dv">7</span>, <span class="dv">21</span>,
+           <span class="fl">0.5</span>,
+           <span class="dt">alternative=</span><span class="st">&quot;two.sided&quot;</span>,
+           <span class="dt">conf.level=</span><span class="fl">0.95</span>)</code></pre></div>
 <pre><code>## 
 ##  Exact binomial test
 ## 
@@ -582,9 +599,9 @@ qplot(x= Sex,
 ## probability of success 
 ##              0.3333333</code></pre>
 <p>Now we’ll calculate the 95% CIs using the Jeffreys method.</p>
-<pre class="r"><code>BinomCI(7, 21,
-        conf.level=0.95,
-        method=&quot;jeffreys&quot;)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">BinomCI</span>(<span class="dv">7</span>, <span class="dv">21</span>,
+        <span class="dt">conf.level=</span><span class="fl">0.95</span>,
+        <span class="dt">method=</span><span class="st">&quot;jeffreys&quot;</span>)</code></pre></div>
 <pre><code>##            est    lwr.ci    upr.ci
 ## [1,] 0.3333333 0.1632227 0.5459686</code></pre>
 </div>
@@ -593,21 +610,21 @@ qplot(x= Sex,
 <p>Using epitools - <a href="https://cran.r-project.org/web/packages/epitools/epitools.pdf">manual here</a></p>
 <p><em>Reminder:</em> If you need more information on the tests use the help command in the console (e.g. <code>?riskratio</code>, <code>?oddsratio</code>).</p>
 <p><strong>Library</strong></p>
-<pre class="r"><code>library(epitools)
-# if you don&#39;t have this package, first install using `install.packages(&quot;epitools&quot;)`</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(epitools)
+<span class="co"># if you don&#39;t have this package, first install using `install.packages(&quot;epitools&quot;)`</span></code></pre></div>
 <p>Create a simple dataframe. In this case we’ll test effect of gender on parasite presence with a simple positive/negative summary. Of course if you have a your raw data in a spreadsheet you could make your own by summarising the releavnt information into a dataframe. (Need help tidying and summarising your data…check out <a href="https://datacarpentry.org/R-ecology-lesson/03-dplyr.html">this tutorial</a> to check you hooked on the <code>dplyr</code> and <code>tidyr</code> packages</p>
-<pre class="r"><code>factor1 &lt;- c(&quot;Female&quot;, &quot;Male&quot;)
-factor2 &lt;- c(&quot;Positive&quot;, &quot;Negative&quot;)</code></pre>
-<pre class="r"><code>dat &lt;- matrix(c(16, 30, 15, 34), nrow = 2, ncol = 2, byrow = TRUE)
-dimnames(dat) &lt;- list(&quot;Sex&quot; = factor1, &quot;Parasite present&quot; = factor2)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">factor1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>)
+factor2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Positive&quot;</span>, <span class="st">&quot;Negative&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">16</span>, <span class="dv">30</span>, <span class="dv">15</span>, <span class="dv">34</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)
+<span class="kw">dimnames</span>(dat) &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;Sex&quot;</span> =<span class="st"> </span>factor1, <span class="st">&quot;Parasite present&quot;</span> =<span class="st"> </span>factor2)</code></pre></div>
 <p>Your dataframe should look like this</p>
-<pre class="r"><code>dat</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat</code></pre></div>
 <pre><code>##         Parasite present
 ## Sex      Positive Negative
 ##   Female       16       30
 ##   Male         15       34</code></pre>
 <p>Now lets calculate our <strong>odds ratio</strong></p>
-<pre class="r"><code>oddsratio(dat)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">oddsratio</span>(dat)</code></pre></div>
 <pre><code>## $data
 ##         Parasite present
 ## Sex      Positive Negative Total
@@ -633,7 +650,7 @@ dimnames(dat) &lt;- list(&quot;Sex&quot; = factor1, &quot;Parasite present&quot;
 ## attr(,&quot;method&quot;)
 ## [1] &quot;median-unbiased estimate &amp; mid-p exact CI&quot;</code></pre>
 <p>and <strong>relative risk</strong></p>
-<pre class="r"><code>riskratio(dat)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">riskratio</span>(dat)</code></pre></div>
 <pre><code>## $data
 ##         Parasite present
 ## Sex      Positive Negative Total

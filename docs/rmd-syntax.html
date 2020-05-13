@@ -22,35 +22,52 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <script src="site_libs/font-awesome-5.13.0/js/script.js"></script>
 
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre {
-    background-color: #f5f5f5;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: .5rem;
-  }
-  pre:not([class]) {
-    background-color: white;
-  }
-  pre code {
-    background-color: transparent;
-  }
-</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { font-weight: bold; } /* Keyword */
+code > span.dt { text-decoration: underline; } /* DataType */
+code > span.co { font-style: italic; } /* Comment */
+code > span.al { font-weight: bold; } /* Alert */
+code > span.er { font-weight: bold; } /* Error */
+code > span.wa { font-style: italic; } /* Warning */
+code > span.cf { font-weight: bold; } /* ControlFlow */
+code > span.pp { font-weight: bold; } /* Preprocessor */
+code > span.do { font-style: italic; } /* Documentation */
+code > span.an { font-style: italic; } /* Annotation */
+code > span.cv { font-style: italic; } /* CommentVar */
+code > span.in { font-style: italic; } /* Information */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 <style type="text/css">
@@ -116,33 +133,33 @@ summary {
 /* TODO: remove this padding CSS when we drop BS3 */
 /* padding for bootstrap navbar */
 body {
-  padding-top: 60px;
+  padding-top: 52px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 57px;
+  margin-top: -57px;
 }
 .section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 57px;
+  margin-top: -57px;
 }
 .section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 57px;
+  margin-top: -57px;
 }
 .section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 57px;
+  margin-top: -57px;
 }
 .section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 57px;
+  margin-top: -57px;
 }
 .section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 57px;
+  margin-top: -57px;
 }
 
 .dropdown-submenu {
@@ -635,9 +652,23 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
 <pre><code>[\underline{R Markdown: The Definitive Guide}](https://bookdown.org/yihui/rmarkdown/)</code></pre>
 <p><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a></p>
 </div>
-<div id="images-and-figures" class="section level2">
-<h2>Images and Figures</h2>
-<p><a href="http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/">Tips and tricks for working with images and figures in R Markdown documents</a></p>
+<div id="images-figures-and-videos" class="section level2">
+<h2>Images, Figures and videos</h2>
+<p><a href="http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/">Tips and tricks for working with images and figures in R Markdown documents</a>.</p>
+<p>Simple add for image</p>
+<pre><code>![image caption](path/to/image.png)</code></pre>
+<div id="videos" class="section level3">
+<h3>Videos</h3>
+<p><strong>Embed video</strong></p>
+<p><code>vebmedr</code> is a package that makes embedding video into Rmarkdown simple.</p>
+<p>Install the package from CRAN</p>
+<pre><code>install.packages(&quot;vembedr&quot;)</code></pre>
+<p><em>Example</em></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;htmltools&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;vembedr&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">embed_url</span>(<span class="st">&quot;https://www.youtube.com/watch?v=uV4UpCq2azs&quot;</span>)</code></pre></div>
+<iframe src="https://www.youtube.com/embed/uV4UpCq2azs" width="420" height="315" frameborder="0" allowfullscreen=""></iframe>
+</div>
 </div>
 <div id="fun-stuff" class="section level2">
 <h2>Fun stuff</h2>
@@ -649,7 +680,8 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
 <p><strong>HTML docs</strong></p>
 <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 <p>For HTML docs (including webpages), I have found the following works best <code>&lt;i class=&quot;fab fa-r-project&quot;&gt;&lt;/i&gt;</code> this will give you a beautiful RStudio icon <i class="fab fa-r-project"></i>.</p>
-<p>If you want to use <a href="https://ionicons.com/"><code>Ionicons</code></a> then include you will first need to make sure the following line appears within your Rmarkdown doc (don’t worry it wont appear in the knitted product) <code>&lt;script src=&quot;https://unpkg.com/ionicons@5.0.0/dist/ionicons.js&quot;&gt;&lt;/script&gt;</code>. Then use the following code to insert your icons, for example this <code>&lt;ion-icon name=&quot;bug-outline&quot;&gt;&lt;/ion-icon&gt;</code> produces a lovely bug for you <ion-icon name="bug"></ion-icon>. You can customise the icons, <a href="https://ionicons.com/usage">see here</a></p>
+<p>If you want to use <a href="https://ionicons.com/"><code>Ionicons</code></a> then include you will first need to make sure the following line appears within your Rmarkdown doc (don’t worry it wont appear in the knitted product) <code>&lt;script src=&quot;https://unpkg.com/ionicons@5.0.0/dist/ionicons.js&quot;&gt;&lt;/script&gt;</code>. Then use the following code to insert your icons, for example this <code>&lt;ion-icon name=&quot;bug-outline&quot;&gt;&lt;/ion-icon&gt;</code> produces a lovely bug for you <ion-icon name="bug"></ion-icon>. You can customise the icons, <a href="https://ionicons.com/usage">see here</a>.</p>
+<p>This code <code>&lt;span class=&quot;badge badge-info&quot;&gt;Info&lt;/span&gt;</code> will produce this badge <span class="badge badge-info">Info</span> in html document, more details found <a href="https://getbootstrap.com/docs/4.0/components/badge/">here</a></p>
 <p><strong>Webpages (HTML) - nav bar</strong></p>
 <p>You can add icons to the nav bar on your webpage, just like on this one. In the YAML doc add the following bit of code under the relevent section <code>icon: fa-icon</code> e.g. for the rstudio icon use <code>fa-r-project</code> for this icon <i class="fab fa-r-project"></i></p>
 <p><em>Example</em> - partial YAML doc, for more info on RMarkdown webpages/YAML head to <a href="https://siobhon-egan.github.io/bioinfo-phylo/rmd-webpages.html">RMarkdown Webpages</a> section</p>
@@ -666,8 +698,8 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
 <pre><code># install.packages(&quot;devtools&quot;)
 devtools::install_github(&quot;ropenscilabs/icon&quot;)</code></pre>
 <p>Then add the following bit of code in your RMarkdown document.</p>
-<pre class="r"><code>library(icon)
-icon::fa(&quot;rocket&quot;) # equivalent to icon::fa_rocket()</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(icon)
+icon<span class="op">::</span><span class="kw">fa</span>(<span class="st">&quot;rocket&quot;</span>) <span class="co"># equivalent to icon::fa_rocket()</span></code></pre></div>
 <i class="fas  fa-rocket "></i>
 <p>and you’ll get this <i class="fas fa-rocket"></i>. Got some extra tips and trick <a href="https://slides.mitchelloharawild.com/icon/#1">see here</a>.</p>
 <p>Some more info on <code>icon</code> available <a href="https://ropensci.org/technotes/2018/05/15/icon/">here</a> and <a href="https://slides.mitchelloharawild.com/icon/#1">here</a>.</p>
@@ -678,15 +710,15 @@ icon::fa(&quot;rocket&quot;) # equivalent to icon::fa_rocket()</code></pre>
 <p>Install</p>
 <pre><code>install.packages(&quot;downloadthis&quot;)</code></pre>
 <p>Then add the following to your Rmarkdown document - this example will give you a red download button with a link to the <code>downloadthis</code> pdf manual (remember to hide the code so only the output appears using <code>{r echo=FALSE}</code> at the start of your code chunk).</p>
-<pre class="r"><code>library(downloadthis)
-download_link(
-  link = &quot;https://github.com/fmmattioni/downloadthis/raw/master/inst/example/file_1.pdf&quot;,
-  button_label = &quot;Download pdf file&quot;,
-  button_type = &quot;danger&quot;,
-  has_icon = TRUE,
-  icon = &quot;fa fa-save&quot;,
-  self_contained = FALSE
-)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(downloadthis)
+<span class="kw">download_link</span>(
+  <span class="dt">link =</span> <span class="st">&quot;https://github.com/fmmattioni/downloadthis/raw/master/inst/example/file_1.pdf&quot;</span>,
+  <span class="dt">button_label =</span> <span class="st">&quot;Download pdf file&quot;</span>,
+  <span class="dt">button_type =</span> <span class="st">&quot;danger&quot;</span>,
+  <span class="dt">has_icon =</span> <span class="ot">TRUE</span>,
+  <span class="dt">icon =</span> <span class="st">&quot;fa fa-save&quot;</span>,
+  <span class="dt">self_contained =</span> <span class="ot">FALSE</span>
+)</code></pre></div>
 <a href="https://github.com/fmmattioni/downloadthis/raw/master/inst/example/file_1.pdf">
 <button class="btn btn-danger"><i class="fa fa-save"></i> Download pdf file</button>
 </a>
@@ -694,18 +726,6 @@ download_link(
 <div id="diagram" class="section level3">
 <h3>Diagram</h3>
 <p><a href="https://mikeyharper.uk/flowcharts-in-r-using-diagrammer/">diagrams</a></p>
-</div>
-<div id="videos" class="section level3">
-<h3>Videos</h3>
-<p><strong>Embed video</strong></p>
-<p><code>vebmedr</code> is a package that makes embedding video into Rmarkdown simple.</p>
-<p>Install the package from CRAN</p>
-<pre><code>install.packages(&quot;vembedr&quot;)</code></pre>
-<p><em>Example</em></p>
-<pre class="r"><code>library(&quot;htmltools&quot;)
-library(&quot;vembedr&quot;)</code></pre>
-<pre class="r"><code>embed_url(&quot;https://www.youtube.com/watch?v=uV4UpCq2azs&quot;)</code></pre>
-<iframe src="https://www.youtube.com/embed/uV4UpCq2azs" width="420" height="315" frameborder="0" allowfullscreen=""></iframe>
 </div>
 </div>
 <div id="table" class="section level2">
@@ -736,13 +756,44 @@ Content Cell  | Content Cell</code></pre>
 </table>
 <p>You can use <a href="http://haozhu233.github.io/kableExtra/awesome_table_in_html.html">KableExtra</a></p>
 </div>
-<div id="headings-and-navigation" class="section level2">
-<h2>Headings and navigation</h2>
-<p><a href="https://bookdown.org/yihui/rmarkdown/html-document.html">bookdown</a> includes tabbed sections</p>
-</div>
 <div id="themes" class="section level2">
 <h2>Themes</h2>
 <p><a href="https://www.datadreaming.org/post/r-markdown-theme-gallery/">RMarkdown theme gallery</a></p>
+</div>
+<div id="headings-and-navigation" class="section level2">
+<h2>Headings and navigation</h2>
+<p><a href="https://bookdown.org/yihui/rmarkdown/html-document.html">bookdown</a> includes tabbed sections</p>
+<p>This code here will created heading with tabbed sections:</p>
+<pre><code>### Quarterly Results {.tabset}
+
+#### By Product
+
+Content on tabbed section 1 here
+
+#### By Region
+
+Maybe insert a short list here:
+
+* item 1
+* item 2
+* item 3</code></pre>
+<p>It will look like this:</p>
+<div id="quarterly-results" class="section level3 tabset">
+<h3>Quarterly Results</h3>
+<div id="by-product" class="section level4">
+<h4>By Product</h4>
+<p>Content on tabbed section 1 here</p>
+</div>
+<div id="by-region" class="section level4">
+<h4>By Region</h4>
+<p>Maybe insert a short list here:</p>
+<ul>
+<li>item 1</li>
+<li>item 2</li>
+<li>item 3</li>
+</ul>
+</div>
+</div>
 </div>
 
 <p>Copyright &copy; Siobhon L. Egan.</p>

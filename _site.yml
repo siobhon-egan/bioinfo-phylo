@@ -75,6 +75,7 @@ navbar:
       href: https://github.com/siobhon-egan
 output:
   html_document:
-    theme: flatly
+    theme: spacelab
+    highlight: monochrome
     include:
       after_body: footer.html

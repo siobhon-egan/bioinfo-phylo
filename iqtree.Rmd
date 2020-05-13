@@ -6,6 +6,7 @@ output:
     toc_float: true
 ---
 
+<span class="badge badge-info">Quick tutorial on using IQ-TREE webserver</span>
 
 [IQ-TREE](http://www.iqtree.org/) is available as a downloadable program and as an online interface (via web servers).
 

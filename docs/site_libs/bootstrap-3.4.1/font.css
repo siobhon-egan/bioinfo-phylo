@@ -1,30 +1,40 @@
 @font-face {
-	font-family: 'Lato';
-	font-style: normal;
-	font-weight: 400;
-	src:
-		local('Lato Regular'),
-		local('Lato-Regular'),
-		/* from https://fonts.gstatic.com/s/lato/v16/S6uyw4BMUTPHjx4wWw.ttf */
-		url('fonts/Lato_400.ttf') format('truetype');
-}
-@font-face {
-	font-family: 'Lato';
-	font-style: normal;
-	font-weight: 700;
-	src:
-		local('Lato Bold'),
-		local('Lato-Bold'),
-		/* from https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPHA.ttf */
-		url('fonts/Lato_700.ttf') format('truetype');
-}
-@font-face {
-	font-family: 'Lato';
+	font-family: 'Open Sans';
 	font-style: italic;
 	font-weight: 400;
 	src:
-		local('Lato Italic'),
-		local('Lato-Italic'),
-		/* from https://fonts.gstatic.com/s/lato/v16/S6u8w4BMUTPHjxsAXC-v.ttf */
-		url('fonts/Lato_400italic.ttf') format('truetype');
+		local('Open Sans Italic'),
+		local('OpenSans-Italic'),
+		/* from https://fonts.gstatic.com/s/opensans/v17/mem6YaGs126MiZpBA-UFUK0Zdcg.ttf */
+		url('fonts/Open_Sans_400italic.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Open Sans';
+	font-style: italic;
+	font-weight: 700;
+	src:
+		local('Open Sans Bold Italic'),
+		local('OpenSans-BoldItalic'),
+		/* from https://fonts.gstatic.com/s/opensans/v17/memnYaGs126MiZpBA-UFUKWiUNhrIqY.ttf */
+		url('fonts/Open_Sans_700italic.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 400;
+	src:
+		local('Open Sans Regular'),
+		local('OpenSans-Regular'),
+		/* from https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0e.ttf */
+		url('fonts/Open_Sans_400.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 700;
+	src:
+		local('Open Sans Bold'),
+		local('OpenSans-Bold'),
+		/* from https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN7rgOUuhs.ttf */
+		url('fonts/Open_Sans_700.ttf') format('truetype');
 }

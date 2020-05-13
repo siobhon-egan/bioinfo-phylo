@@ -6,6 +6,8 @@ output:
       toc_float: true
 ---
 
+<span class="badge badge-info">Coding starters</span>
+
 # Text editors
 
 The first step in your coding journey is to download yourself a good text editor.

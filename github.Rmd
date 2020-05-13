@@ -6,6 +6,10 @@ output:
       toc_float: true
 ---
 
+
+<span class="badge badge-info">Getting started on sharing code</span>
+
+
 [GitHub](https://github.com/) -  provides hosting for software development version control using Git. It the industry standard, universal platform to share code and collaborate on projects. GitHub offers plans free of charge but you can also upgrade for extra storage and other special features if you need.
 
 Offical GitHub links

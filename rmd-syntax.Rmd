@@ -187,9 +187,35 @@ Use the following to underlink the link.
 ```
 [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
 
-## Images and Figures
+## Images, Figures and videos
 
-[Tips and tricks for working with images and figures in R Markdown documents](http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/)
+[Tips and tricks for working with images and figures in R Markdown documents](http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/).
+
+Simple add for image
+```
+![image caption](path/to/image.png)
+```
+
+### Videos
+
+**Embed video**
+
+`vebmedr` is a package that makes embedding video into Rmarkdown simple.
+
+Install the package from CRAN
+```
+install.packages("vembedr")
+```
+*Example*
+```{r}
+library("htmltools")
+library("vembedr")
+```
+
+```{r}
+embed_url("https://www.youtube.com/watch?v=uV4UpCq2azs")
+```
+
 
 ## Fun stuff
 
@@ -208,7 +234,9 @@ To start with the most commonly used icons are from `font awesome` suite - so [h
 
 For HTML docs (including webpages), I have found the following works best `<i class="fab fa-r-project"></i>` this will give you a beautiful RStudio icon <i class="fab fa-r-project"></i>.
 
-If you want to use [`Ionicons`](https://ionicons.com/) then include you will first need to make sure the following line appears within your Rmarkdown doc (don't worry it wont appear in the knitted product) `<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>`. Then use the following code to insert your icons, for example this `<ion-icon name="bug-outline"></ion-icon>` produces a lovely bug for you <ion-icon name="bug"></ion-icon>. You can customise the icons, [see here](https://ionicons.com/usage)
+If you want to use [`Ionicons`](https://ionicons.com/) then include you will first need to make sure the following line appears within your Rmarkdown doc (don't worry it wont appear in the knitted product) `<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>`. Then use the following code to insert your icons, for example this `<ion-icon name="bug-outline"></ion-icon>` produces a lovely bug for you <ion-icon name="bug"></ion-icon>. You can customise the icons, [see here](https://ionicons.com/usage).
+
+This code `<span class="badge badge-info">Info</span>` will produce this badge <span class="badge badge-info">Info</span> in html document, more details found [here](https://getbootstrap.com/docs/4.0/components/badge/)
 
 
 **Webpages (HTML) - nav bar**
@@ -273,25 +301,6 @@ download_link(
 
 [diagrams](https://mikeyharper.uk/flowcharts-in-r-using-diagrammer/)
 
-### Videos
-
-**Embed video**
-
-`vebmedr` is a package that makes embedding video into Rmarkdown simple.
-
-Install the package from CRAN
-```
-install.packages("vembedr")
-```
-*Example*
-```{r}
-library("htmltools")
-library("vembedr")
-```
-
-```{r}
-embed_url("https://www.youtube.com/watch?v=uV4UpCq2azs")
-```
 
 ## Table
 
@@ -313,11 +322,42 @@ Content Cell  | Content Cell
 
 You can use [KableExtra](http://haozhu233.github.io/kableExtra/awesome_table_in_html.html)
 
-## Headings and navigation
-
-[bookdown](https://bookdown.org/yihui/rmarkdown/html-document.html) includes tabbed sections
-
 ## Themes
 
 [RMarkdown theme gallery](https://www.datadreaming.org/post/r-markdown-theme-gallery/)
 
+## Headings and navigation
+
+[bookdown](https://bookdown.org/yihui/rmarkdown/html-document.html) includes tabbed sections
+
+This code here will created heading with tabbed sections:
+```
+### Quarterly Results {.tabset}
+
+#### By Product
+
+Content on tabbed section 1 here
+
+#### By Region
+
+Maybe insert a short list here:
+
+* item 1
+* item 2
+* item 3
+```
+It will look like this:
+
+### Quarterly Results {.tabset}
+
+#### By Product
+
+Content on tabbed section 1 here
+
+#### By Region
+
+Maybe insert a short list here:
+
+* item 1
+* item 2
+* item 3
