@@ -1,15 +1,13 @@
 # bioinfo-phylo
 
+<div class="panel panel-info">
+**Note**
+{: .panel-heading}
+<div class="panel-body">
 
-<style>
-div.blue { background-color:#cc66ff; border-radius: 5px; padding: 20px;}
-</style>
-<div class = "blue">
-  
-  
 Website archived - see new site siobhonlegan.com/research_site/
 
-
+</div>
 </div>
 
 
