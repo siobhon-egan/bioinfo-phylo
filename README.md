@@ -1,17 +1,8 @@
 # bioinfo-phylo
 
->[!WARNING]
->This is a warning
 
-<div class="panel panel-info">
-**Note**
-{: .panel-heading}
-<div class="panel-body">
-
-Website archived - see new site siobhonlegan.com/research_site/
-
-</div>
-</div>
+| :warning: **Website archived** - *see new site siobhonlegan.com/research_site/* |
+| --- |
 
 
 Bioinformatics, phylogenetics and geonomics
